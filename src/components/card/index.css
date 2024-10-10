@@ -23,13 +23,7 @@
     margin-right: 5rem;
 }
 
-.text-container {
-    flex: 1;
-    width: 30rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+
 
 .title {
     
@@ -163,6 +157,6 @@
     }
     .description{
         padding: 0rem;
-        width: 80%;
+        width: 90%;
     }
 }

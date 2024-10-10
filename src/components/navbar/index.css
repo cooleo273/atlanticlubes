@@ -1,0 +1,10 @@
+/* styles.css */
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row; /* Stack vertically on mobile */
+    position: relative; /* Use relative positioning */
+    box-shadow: none; /* Ensure box shadow is removed */
+}

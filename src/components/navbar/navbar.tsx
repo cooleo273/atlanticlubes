@@ -16,6 +16,10 @@ const Navbar: React.FC = () => {
         setIsMobile(window.innerWidth < 768); // Update state on resize
     };
 
+    const handleLinkClick = () => {
+        setIsMenuOpen(false); // Close menu when a link is clicked
+    };
+
     useEffect(() => {
         window.addEventListener('resize', handleResize); // Add event listener
         return () => {
@@ -24,40 +28,61 @@ const Navbar: React.FC = () => {
     }, []);
 
     return (
-        <nav style={{ padding: theme.spacing.medium, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+        <nav style={{ 
+            padding: theme.spacing.medium, 
+            display: "flex", 
+            justifyContent: "space-between", 
+            alignItems: "center", 
+            position: "relative",
+            height: isMenuOpen ? "100vh" : "auto", // Take full height when menu is open
+            backgroundColor: isMenuOpen ? "white" : "transparent", // Change background color when menu is open
+            transition: "background-color 0.3s ease" // Smooth transition for background color
+        }}>
             {/* Logo */}
             <img src={img} alt="Logo" style={{ margin: 0, padding: 0, width: "200px" }} />
 
-            {/* Menu Button */}
-            {isMobile && (
-                <div style={menuButtonStyle} onClick={toggleMenu}>
-                    {isMenuOpen ? "X" : "☰"} {/* Show 'X' if open, else show ☰ */}
-                </div>
-            )}
+            <div>
+                {/* Menu Button */}
+                {isMobile && (
+                    <div style={menuButtonStyle} onClick={toggleMenu}>
+                        {isMenuOpen ? "X" : "☰"} {/* Show 'X' if open, else show ☰ */}
+                    </div>
+                )}
 
-            {/* Navigation Menu */}
-            {(isMobile && isMenuOpen) || !isMobile ? (
-                <ul style={{ ...navListStyle, ...mobileListStyle, display: isMobile && !isMenuOpen ? "none" : "flex" }}>
-                    <li style={navItemStyle}>
-                        <Link to="/" style={navLinkStyle}>Home</Link>
-                    </li>
-                    <li style={navItemStyle}>
-                        <Link to="/about" style={navLinkStyle}>About</Link>
-                    </li>
-                    <li style={navItemStyle}>
-                        <Link to="/contact" style={navLinkStyle}>Contact Us</Link>
-                    </li>
-                    <li style={navItemStyle}>
-                        <Link to="/products" style={navLinkStyle}>Products</Link>
-                    </li>
-                    <li style={navItemStyle}>
-                        <Link to="/blog" style={navLinkStyle}>Blog</Link>
-                    </li>
-                    <li style={navItemStyle}>
-                        <Button label="Become A Distributor" />
-                    </li>
-                </ul>
-            ) : null}
+                {/* Navigation Menu */}
+                {(isMobile && isMenuOpen) || !isMobile ? (
+                    <ul style={{ 
+                        ...navListStyle, 
+                        display: isMobile && !isMenuOpen ? "none" : "flex", 
+                        flexDirection: isMobile && isMenuOpen ? 'column' : 'row',
+                        height: isMenuOpen ? "100%" : "auto", // Take full height when menu is open
+                        width: isMenuOpen ? "100%" : "auto", // Take full width when menu is open
+                        position: isMenuOpen ? "absolute" : "relative", // Position absolute when open
+                        top: 0, // Align to the top
+                        left: 0, // Align to the left
+                        backgroundColor: isMenuOpen ? "white" : "transparent" // Change background color when menu is open
+                    }}>
+                        <li style={navItemStyle}>
+                            <Link to="/" style={navLinkStyle} onClick={handleLinkClick}>Home</Link>
+                        </li>
+                        <li style={navItemStyle}>
+                            <Link to="/about" style={navLinkStyle} onClick={handleLinkClick}>About</Link>
+                        </li>
+                        <li style={navItemStyle}>
+                            <Link to="/contact" style={navLinkStyle} onClick={handleLinkClick}>Contact Us</Link>
+                        </li>
+                        <li style={navItemStyle}>
+                            <Link to="/products" style={navLinkStyle} onClick={handleLinkClick}>Products</Link>
+                        </li>
+                        <li style={navItemStyle}>
+                            <Link to="/blog" style={navLinkStyle} onClick={handleLinkClick}>Blog</Link>
+                        </li>
+                        <li style={navItemStyle}>
+                            <Button label="Become A Distributor" />
+                        </li>
+                    </ul>
+                ) : null}
+            </div>
         </nav>
     );
 };
@@ -66,8 +91,9 @@ const Navbar: React.FC = () => {
 const menuButtonStyle: React.CSSProperties = {
     fontSize: '24px',
     cursor: 'pointer',
-    display: 'block', // Always show the menu button
+    display: 'flex', // Always show the menu button
     marginRight: '1rem',
+    justifyContent: 'center',
 };
 
 const navListStyle: React.CSSProperties = {
@@ -75,25 +101,15 @@ const navListStyle: React.CSSProperties = {
     margin: 0,
     padding: 0,
     display: 'flex',
-    flexDirection: 'column', // Make the items stack vertically on mobile when open
-};
-
-const mobileListStyle: React.CSSProperties = {
-    // Mobile-specific styles
-    alignItems: 'center',
-    
-    display: 'flex',
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    
-    gap: 10,
-    zIndex: 1000, // Ensure the menu appears on top of other elements
+    boxShadow: 'none', // Ensure box shadow is removed
 };
 
 const navItemStyle: React.CSSProperties = {
-    display: 'inline-block',
+    
     margin: '1rem 0', // Add some margin between items
     textAlign: 'center',
+    display: "flex",
+    justifyContent: "center",
 };
 
 const navLinkStyle: React.CSSProperties = {
