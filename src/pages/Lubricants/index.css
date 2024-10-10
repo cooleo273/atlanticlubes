@@ -1,0 +1,57 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+/* Hide sidebar and show menu button on screens smaller than 768px */
+/* General sidebar styles */
+.sidebar {
+    width: 250px;
+    padding: 5rem 0 0 4rem;
+    flex: 1;
+    
+    height: 100vh;
+}
+
+/* Sidebar is hidden on small screens */
+@media (max-width: 768px) {
+    .sidebar {
+        display: none;
+        
+        z-index: 1000;
+        width: 200px;
+        height: 100vh;
+        
+        padding: 0rem;
+    }
+    li{
+        text-align:left;
+    }
+    .sidebar-button{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sidebar.open {
+        display: block; /* Show the sidebar when 'open' class is added */
+    }
+
+    /* Show the menu button on smaller screens */
+    .menu-button {
+        display: block;
+        
+        background: white;
+        color: black;
+        font-size: 24px;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        height: 4rem;
+        
+    }
+    h2{
+        text-align: left;
+    }
+}
+
+/* Hide the menu button on larger screens */

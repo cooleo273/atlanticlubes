@@ -1,0 +1,22 @@
+/* Add this to your CSS file (e.g., App.css or Home.css) */
+.slider-container {
+    
+    background-color: #ffffff; /* Light background */
+    border-radius: 10px; /* Match the image border radius */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+.body-container-wrapper {
+    display: flex;
+    width: 100%;
+    gap: 1rem;
+    background: white;
+    margin-top: 2rem;
+}
+
+/* Make the layout change to column when the screen width is less than 768px */
+@media (max-width: 768px) {
+    .body-container-wrapper {
+        flex-direction: column;
+        align-items: center; /* Optional: center the content in the column */
+    }
+}

@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  line-height: 1.8;
+}
+

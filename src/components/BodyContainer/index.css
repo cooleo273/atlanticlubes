@@ -1,0 +1,84 @@
+/* Container styling */
+.container {
+    display: flex;
+    align-items: center;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+/* Reverse the flex direction if the reverse prop is true */
+.container.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Image container and image styling */
+.image-container {
+    flex: 1;
+}
+
+.image {
+    width: 35rem;
+    height: 35rem;
+    object-fit: cover;
+}
+
+/* Text container styling */
+.text-container {
+    flex: 1;
+}
+
+/* Responsive media query for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Stack the image and text vertically */
+        /* Center-align the text */
+    }
+    
+    .image {
+        width: 100%; /* Make the image responsive */
+        height: auto;
+    }
+    
+    .text-container {
+        margin-top: 1rem; /* Add some margin above the text container */
+    }
+    
+    .title-header {
+        font-size: 1.5rem; /* Adjust the title size for smaller screens */
+    }
+    
+    .description {
+        font-size: 1rem; /* Adjust the description size */
+    }
+}
+
+/* Button styling */
+.black-button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 0rem !important;
+}
+
+.white-button {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-left: 0rem !important;
+}
+
+.arrow {
+    display: inline-block;
+    margin-left: 8px;
+    border: solid;
+    border-width: 0 2px 2px 0;
+    padding: 3px;
+    transform: rotate(-45deg);
+    border-color: inherit;
+}

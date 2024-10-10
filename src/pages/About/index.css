@@ -1,0 +1,15 @@
+/* Default layout for larger screens */
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 2rem;
+}
+
+/* Media query for screens below 768px */
+@media (max-width: 768px) {
+    .cards-container {
+        flex-direction: column;  /* Stack cards in column */
+        align-items: center;    /* Center align the cards */
+    }
+}
