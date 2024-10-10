@@ -38,7 +38,7 @@ const gridStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', // Adjust the min width as needed
     gap: '1rem', // Space between grid items
-    padding: '5rem', //
+    padding: '5rem 0', //
 };
 
 const searchInputStyle: React.CSSProperties = {

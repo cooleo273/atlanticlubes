@@ -29,6 +29,7 @@
 
 /* Responsive media query for smaller screens */
 @media (max-width: 768px) {
+    
     .container {
         flex-direction: column; /* Stack the image and text vertically */
         /* Center-align the text */
@@ -45,7 +46,7 @@
     }
     
     .title-header {
-        font-size: 1.5rem; /* Adjust the title size for smaller screens */
+        font-size: 1rem; /* Adjust the title size for smaller screens */
     }
     
     .description {
@@ -61,6 +62,7 @@
         width: 100%;
     }
 }
+
 
 /* Button styling */
 .black-button {

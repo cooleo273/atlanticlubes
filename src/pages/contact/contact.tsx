@@ -147,7 +147,7 @@ const Contact: React.FC = () => {
           ></iframe>
         </div>
       </div>
-      <div style={{ display: "flex", marginLeft: "6rem",marginTop:"3rem", gap: "8rem", justifyContent:"center"}}>
+      <div style={{ display: "flex", marginLeft: "6rem",marginTop:"3rem", gap: "8rem", justifyContent:"center"}} className="bottom">
         <div>
           <h2>Atlantic Grease & Lubricant FZC</h2>
           <ul>

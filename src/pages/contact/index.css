@@ -101,3 +101,23 @@ iframe {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+@media (max-width: 768px) {
+    .form-group{
+        gap: 0rem;
+        flex-direction: column;
+    }
+    .contact-page{
+        flex-direction: column;
+        padding: 2rem;
+    }
+    iframe{
+        width: 100%;
+        height: 300px;
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column;
+    }
+}
