@@ -1,11 +1,12 @@
 import React from 'react';
 import ImageWithTitle from '../../components/Imagewithtitle/Imagewithtitle'; // Adjust the path as needed
 import yourImage from '../../assets/Atlantic-Lubes-web-header-4.webp'; // Update with your image path
+import "./index.css"
 
 const Product: React.FC = () => {
     return (
         <div style={containerStyle}>
-            <img src={yourImage} style={{width:"100%", height:"30rem", objectFit:"cover" }}/>
+            <img src={yourImage} style={{width:"100%", height:"30rem", objectFit:"cover" }} className='image'/>
             
            
             <input 

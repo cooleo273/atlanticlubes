@@ -31,6 +31,7 @@ const sliderContainerStyle: React.CSSProperties = {
     whiteSpace: 'nowrap',
     width: '100%',
     background: "white",
+    marginTop: "2rem"
 };
 
 const sliderStyle: React.CSSProperties = {

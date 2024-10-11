@@ -17,7 +17,7 @@ const Lubricants: React.FC = () => {
 
             {/* Main Content */}
             <div style={mainContentStyle}>
-                <img src={img} alt="Header" style={{ width: '100%' }} />
+                <img src={img} alt="Header" style={{ width: '100%', height:"30rem", objectFit:"cover" }} className='image'/>
 
                 <input
                     type="text"

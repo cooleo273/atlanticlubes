@@ -120,4 +120,7 @@ iframe {
         display: flex;
         flex-direction: column;
     }
+    .contact-us img{
+        height: 20rem !important;
+    }
 }

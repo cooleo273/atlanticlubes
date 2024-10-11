@@ -38,7 +38,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="contact-us">
     <img src={img} alt="contact" style={{height:"30rem", width:"100%", objectFit:"cover"}}/>
       <h1>Contact Us</h1>
 

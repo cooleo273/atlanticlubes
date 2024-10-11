@@ -19,4 +19,7 @@
         flex-direction: column;
         align-items: center; /* Optional: center the content in the column */
     }
+    .slider-container img{
+        height: 20rem !important;
+    }
 }
