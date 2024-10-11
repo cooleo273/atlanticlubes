@@ -17,4 +17,8 @@
 .next-arrow {
     right: 1%;
 }
-
+@media only screen and (max-width: 768px) {
+    .slider-image {
+        height: 20rem !important; /* Adjust height for mobile */
+    }
+}

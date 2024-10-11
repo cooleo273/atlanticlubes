@@ -39,13 +39,13 @@ const ImageSlider: React.FC = () => {
     return (
         <Slider {...settings}>
             <div>
-                <img src={img1} alt="Image 1" style={sliderImageStyle} />
+                <img src={img1} alt="Image 1" className="slider-image" style={sliderImageStyle} />
             </div>
             <div>
-                <img src={img2} alt="Image 2" style={sliderImageStyle} />
+                <img src={img2} alt="Image 2" className="slider-image" style={sliderImageStyle} />
             </div>
             <div>
-                <img src={img3} alt="Image 3" style={sliderImageStyle} />
+                <img src={img3} alt="Image 3" className="slider-image" style={sliderImageStyle} />
             </div>
         </Slider>
     );
@@ -55,8 +55,7 @@ const ImageSlider: React.FC = () => {
 const sliderImageStyle: React.CSSProperties = {
     width: '100%',
     height: '45rem',
-    objectFit:"cover"
-     // Rounded corners
+    objectFit: "cover"
 };
 
 export default ImageSlider;
