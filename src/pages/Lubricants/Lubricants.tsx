@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ImageWithTitle from '../../components/Imagewithtitle/Imagewithtitle'; // Adjust the path as needed
-import img from "../../assets/Atlantic-Lubes-web-header-4.webp"; // Header image
+import img from "../../assets/image-25.png"; // Header image
 import './index.css';
 import { useNavigate } from 'react-router-dom';
 

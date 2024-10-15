@@ -1,6 +1,6 @@
 import React from 'react';
 import ImageWithTitle from '../../components/Imagewithtitle/Imagewithtitle'; // Adjust the path as needed
-import yourImage from '../../assets/Atlantic-Lubes-web-header-4.webp'; // Update with your image path
+import yourImage from '../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg'; // Update with your image path
 import "./index.css"
 
 const Product: React.FC = () => {
@@ -39,7 +39,7 @@ const gridStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', // Adjust the min width as needed
     gap: '1rem', // Space between grid items
-    padding: '5rem 0', //
+    padding: '5rem', //
 };
 
 const searchInputStyle: React.CSSProperties = {

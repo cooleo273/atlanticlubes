@@ -2,7 +2,9 @@ import React from "react";
 import ImageSlider from "../../components/imageslider/ImageSlider"; // Adjust the path as necessary
 import "./index.css";
 import BodyContainer from "../../components/BodyContainer/Body";
-import img from "../../assets/Atlantic-Lubes-Production-line.webp";
+import img from "../../assets/20201102_153322-removebg-preview-2.png";
+import img1 from "../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg";
+
 import HorizontalImageSlider from "../../components/imageslider/slidingGallery";
 
 const Home: React.FC = () => {
@@ -24,7 +26,7 @@ const Home: React.FC = () => {
         onButtonClick={() => alert("Button clicked!")}
       />
       <BodyContainer
-        image={img}
+        image={img1}
         title="Products"
         description="Atlantic Grease and Lubricants produces high-quality products ranging from automotive, industrial, 
         marine lubricants and car care products.

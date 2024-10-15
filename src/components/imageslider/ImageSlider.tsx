@@ -1,8 +1,8 @@
 import React from 'react';
 import Slider from 'react-slick';
-import img1 from '../../assets/Atlantic-Lubes-web-header-4.webp';
-import img2 from '../../assets/Atlantic-Lubes-Production-line.webp'; 
-import img3 from '../../assets/Atlantic-Lubes-web-header-4.webp'; 
+import img1 from '../../assets/4th-01.jpg';
+import img3 from '../../assets/mt-1869-gallery-09bg.jpg'; 
+import img2 from '../../assets/image-25.png'; 
 import "./index.css"
 
 // Left Arrow Component

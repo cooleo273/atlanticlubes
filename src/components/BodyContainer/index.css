@@ -21,7 +21,7 @@
 .image-style {
     width: 100%;
     height: 35rem;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 /* Text container styling */

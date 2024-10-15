@@ -1,7 +1,8 @@
 import React from "react";
 import BodyContainer from "../../components/BodyContainer/Body";
-import img from "../../assets/Atlantic-Lubes-web-header-4.webp";
+import img from "../../assets/image-25.png";
 import img1 from "../../assets/Sheikh-Naseem-CEO-Atlantic-Lubricant.webp";
+import img2 from "../../assets/20201102_153322-removebg-preview-2.png";
 import Card from "../../components/card/card";
 import theme from "../../components/theme/theme";
 import "./index.css"
@@ -12,10 +13,10 @@ const About: React.FC = () => {
       <img
         src={img}
         alt="about"
-        style={{ height: "30rem", width: "100%", objectFit: "cover" }}
+        style={{ height: "45rem", width: "100%", objectFit: "cover" }}
       />
       <BodyContainer
-        image={img}
+        image={img2}
         title="About Us"
         description="Atlantic Grease & Lubricants (AGL) is part of the Atlantic group of companies registered at Hamriyah Free Zone, Sharjah, UAE, with a rich history spanning over seven decades. We have been dedicated to continuous research and growth to achieve customer satisfaction and high quality standards.
 
@@ -31,8 +32,8 @@ const About: React.FC = () => {
       <div
         style={{
           display: "flex",
-          width: "100%",
-          justifyContent: "space-evenly",
+          
+          justifyContent: "space-around",
           background: "white",
           marginTop: "2rem",
         }}
@@ -107,7 +108,7 @@ const About: React.FC = () => {
 
       <BodyContainer
       
-        image={img}
+        image={img2}
         title="Our Mission"
         description="At Atlantic Grease & Lubricants, our mission is to accelerate business transition with a 
         sustainable future in mind. Our strategy, called Lubricating Towards the Future, is designed to deliver value to our customers, 
