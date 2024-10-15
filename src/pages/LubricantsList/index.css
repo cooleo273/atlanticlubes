@@ -1,0 +1,79 @@
+.inventory-list {
+    max-width: 800px; /* Set a max width for the inventory list */
+    margin: 20px auto; /* Center the inventory list */
+    padding: 20px; /* Add padding around the container */
+    
+  }
+  
+  .inventory-list h1 {
+    text-align: left; /* Center the heading */
+    color: #333; /* Darker color for the heading */
+    margin-bottom: 20px; /* Space below the heading */
+  }
+  
+  .inventory-list ul {
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .inventory-list li {
+    display: flex; /* Use flexbox for layout */
+    justify-content: space-between; /* Space items evenly */
+    align-items: center; /* Center items vertically */
+    padding: 10px; /* Padding for each list item */
+    border-bottom: 1px solid #ccc; /* Light bottom border */
+  }
+  
+  .inventory-list li h4 {
+    margin: 0; /* Remove margin for heading */
+  }
+  
+  .inventory-list button {
+    margin-left: 10px; /* Space between buttons */
+    padding: 8px 12px; /* Padding for buttons */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+  }
+  
+  .inventory-list button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  .edit-form {
+    margin-top: 20px; /* Space above the edit form */
+    padding: 20px; /* Padding for the edit form */
+    background-color: #fff; /* White background for the form */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+  }
+  
+  .edit-form h2 {
+    margin: 0 0 20px; /* Space below the heading */
+    text-align: center; /* Center the heading */
+  }
+  
+  .edit-form input,
+  .edit-form textarea {
+    width: 100%; /* Full width for inputs */
+    margin-bottom: 15px; /* Space below inputs */
+    padding: 10px; /* Inner padding for inputs */
+    border: 1px solid #ccc; /* Light border */
+    border-radius: 4px; /* Slightly rounded corners */
+    font-size: 16px; /* Font size */
+  }
+  
+  .edit-form input:focus,
+  .edit-form textarea:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+  }
+  
+  .edit-form button {
+    width: 48%; /* Set width for buttons */
+    margin-top: 10px; /* Space above buttons */
+  }
+  

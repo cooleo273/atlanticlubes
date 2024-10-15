@@ -12,6 +12,9 @@ a{
     
     height: 100vh;
 }
+.menu-button{
+    display: none;
+}
 
 /* Sidebar is hidden on small screens */
 @media (max-width: 768px) {
@@ -31,7 +34,7 @@ a{
         flex-direction: column;
         align-items: center;
     }
-
+    
     .sidebar.open {
         display: block; /* Show the sidebar when 'open' class is added */
     }

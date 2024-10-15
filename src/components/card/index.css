@@ -3,8 +3,8 @@
     display: flex;
     justify-content: space-around;
     background-color: white;
-    padding: 4rem 0rem;
-    margin: 2rem 0rem;
+    padding: 4rem 2rem;
+    margin: 2rem 3rem;
 }
 
 .image-container {
@@ -40,12 +40,12 @@
 .description {
     font-size: 1rem;
     color: #555;
-    width: 37rem;
+    width: 90%;
     padding: 0 4rem;
 }
 .description-card{
-    width: 20rem;
-    font-size: 14px;
+    width: 90%  ;
+    font-size: 12px;
 }
 /* Button styles */
 .black-button {
@@ -104,8 +104,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px;
-    margin: 10px;
+   
     
 }
 
@@ -119,10 +118,7 @@
     padding: 10px;
 }
 
-.description-card {
-    font-size: 1rem;
-    padding: 10px;
-}
+
 
 .border {
     border: 1px solid #000;
@@ -147,7 +143,9 @@
         margin: 0rem;
     }
     .container{
-        flex-direction: column !important; /* Stack vertically on smaller screens */
+        flex-direction: column !important;
+        margin: 0rem;
+        padding: 2rem 0rem; /* Stack vertically on smaller screens */
     }
     .image-container img{
         margin: 0rem !important;
@@ -160,5 +158,8 @@
         padding: 0rem;
         width: 90%;
         font-size: 0.8rem;
+    }
+    .border{
+        width: 80%;
     }
 }

@@ -3,12 +3,14 @@
     display: flex;
     align-items: center;
     padding: 2rem;
-    gap: 2rem;
+    gap: 7rem;
+    margin-top: 2rem;
 }
 
 /* Reverse the flex direction if the reverse prop is true */
 .container.reverse {
     flex-direction: row-reverse;
+    margin-top: 2rem;
 }
 
 /* Image container and image styling */
@@ -16,8 +18,8 @@
     flex: 1;
 }
 
-.image {
-    width: 35rem;
+.image-style {
+    width: 100%;
     height: 35rem;
     object-fit: cover;
 }
@@ -33,6 +35,8 @@
     .container {
         flex-direction: column; /* Stack the image and text vertically */
         /* Center-align the text */
+        margin: 0rem;
+        padding: 0rem;
     }
     
     .image {

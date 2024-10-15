@@ -48,7 +48,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                     <img
                         src={image}
                         alt={title}
-                        className="image"
+                        className="image-style"
                     />
                 </div>
             )}

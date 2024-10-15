@@ -9,7 +9,7 @@ interface ImageWithTitleProps {
 
 const ImageWithTitle: React.FC<ImageWithTitleProps> = ({ image, title, style }) => {
     return (
-        <div style={{ textAlign: 'center', ...style }}>
+        <div style={{ textAlign: 'left', ...style }}>
             <img src={image} alt={title} style={imageStyle} />
             <h3 style={titleStyle}>{title}</h3>
         </div>
@@ -18,14 +18,14 @@ const ImageWithTitle: React.FC<ImageWithTitleProps> = ({ image, title, style }) 
 
 // Custom styles
 const imageStyle: React.CSSProperties = {
-    maxWidth: '15rem',
-    height: '15rem',
+    width: '100%',
+    height: '12rem',
     objectFit:"cover",
-    borderRadius:"1rem"
+    
 };
 
 const titleStyle: React.CSSProperties = {
-    fontSize: '1.2rem',
+    fontSize: '0.9rem',
     fontWeight: '600',
 };
 

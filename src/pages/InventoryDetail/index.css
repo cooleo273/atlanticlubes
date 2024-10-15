@@ -1,0 +1,110 @@
+.inventory-detail{
+    display: flex;
+    
+}
+.inventory-header img{
+    width: 30%;
+    object-fit: cover;
+    
+}
+
+.inventory-detail-container {
+    
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    flex: 6;
+    
+  }
+  
+  .inventory-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    justify-content: space-between;
+    gap: 4rem;
+    padding: 4rem;
+    flex-direction: row-reverse;
+  }
+  .inventory-info p{
+    text-align: left;
+  }
+
+  
+  .inventory-info h1 {
+    margin: 0;
+    font-size: 1.2rem;
+    text-align: left;
+  }
+  
+  .inventory-info p {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .section {
+    margin-top: 20px;
+    
+    width: 75%;
+  }
+  
+  .section h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    text-align: left;
+    padding-bottom: 5px;
+  }
+  
+  .section li {
+    list-style-type:circle;
+    text-align: left;
+    
+  }
+  
+  .section ul li {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+  }
+  @media(max-width:900px){
+    .inventory-header{
+        flex-direction: column;
+        gap: 2rem;
+        padding: 0;
+  
+  }
+  .inventory-info{
+    width: 80%;
+  }
+  .inventory-header img{
+    width: 80%;
+  }
+  .section{
+    margin-left: 5rem;
+    padding: 0rem;
+    width: 60%;
+  }
+}
+@media (max-width:468px){
+    .section{
+        display: flex;
+        flex-direction: column;
+        
+        margin-left: 2rem;
+        padding: 0rem;
+        width: 50%;
+    }
+    .inventory-info h1{
+        font-size: 1.2rem;
+    }
+    .inventory-info p{
+        font-size: 0.8rem;
+    }
+    .section ul li{
+        font-size: 0.8rem;
+    }
+    .section h2{
+        font-size: 0.8rem;
+        font-weight: 800;
+    }
+}

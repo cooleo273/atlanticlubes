@@ -7,7 +7,7 @@ import HorizontalImageSlider from "../../components/imageslider/slidingGallery";
 
 const Home: React.FC = () => {
   return (
-    <div className="slider-container">
+    <div>
       <ImageSlider />
       <BodyContainer
         image={img}

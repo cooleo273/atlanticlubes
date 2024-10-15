@@ -54,6 +54,7 @@ const Navbar: React.FC = () => {
                     <ul style={{ 
                         ...navListStyle, 
                         display: isMobile && !isMenuOpen ? "none" : "flex", 
+                        gap:"2rem",
                         flexDirection: isMobile && isMenuOpen ? 'column' : 'row',
                         height: isMenuOpen ? "100%" : "auto", // Take full height when menu is open
                         width: isMenuOpen ? "100%" : "auto", // Take full width when menu is open
@@ -116,6 +117,9 @@ const navLinkStyle: React.CSSProperties = {
     color: 'black',
     textDecoration: 'none',
     padding: '10px',
+    display: "flex",
+    alignItems: "center",
+    gap: "2rem"
 };
 
 export default Navbar;
