@@ -28,7 +28,7 @@ const InventoryDetail: React.FC = () => {
     useEffect(() => {
         const fetchItemDetails = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/inventory/${id}`);
+                const response = await fetch(`https://atlanticlubesbackend-63sviec2p-leuls-projects-1970b214.vercel.app/api/inventory/${id}`);
                 if (!response.ok) throw new Error('Error fetching item details');
                 const data = await response.json();
                 setItemData(data);

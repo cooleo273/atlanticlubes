@@ -33,7 +33,7 @@ const InventoryDetailForm = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/inventory", formData, {
+      const response = await axios.post("https://atlanticlubesbackend-63sviec2p-leuls-projects-1970b214.vercel.app/api/inventory", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
