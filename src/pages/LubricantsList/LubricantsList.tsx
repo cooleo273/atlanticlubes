@@ -21,7 +21,7 @@ const LubricantsList: React.FC = () => {
 
     // Fetch inventory data on component mount
     useEffect(() => {
-        axios.get('https://atlanticlubesbackend-63sviec2p-leuls-projects-1970b214.vercel.app/api/inventory')
+        axios.get('https://atlanticlubesbackend.vercel.app/api/inventory')
             .then((response) => setInventory(response.data))
             .catch((error) => console.error('Error fetching inventory:', error));
     }, []);
@@ -29,7 +29,7 @@ const LubricantsList: React.FC = () => {
     // Delete item from inventory
     const handleDelete = async (id: string) => {
         try {
-            await axios.delete(`https://atlanticlubesbackend-63sviec2p-leuls-projects-1970b214.vercel.app/api/inventory/${id}`);
+            await axios.delete(`https://atlanticlubesbackend.vercel.app/api/inventory/${id}`);
             alert('Item deleted successfully!');
             setInventory((prev) => prev.filter((item) => item.id !== id));
         } catch (error) {
@@ -92,7 +92,7 @@ const LubricantsList: React.FC = () => {
 
             try {
                 await axios.put(
-                    `https://atlanticlubesbackend-63sviec2p-leuls-projects-1970b214.vercel.app/api/inventory/${editingItem.id}`,
+                    `https://atlanticlubesbackend.vercel.app/api/inventory/${editingItem.id}`,
                     formDataToSend,
                     {
                         headers: {

@@ -18,7 +18,7 @@ const Lubricants: React.FC = () => {
     useEffect(() => {
         const fetchInventory = async () => {
             try {
-                const response = await fetch('https://atlanticlubesbackend-63sviec2p-leuls-projects-1970b214.vercel.app/api/inventory');
+                const response = await fetch('https://atlanticlubesbackend.vercel.app/api/inventory');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
