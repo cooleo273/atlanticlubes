@@ -50,7 +50,7 @@ label {
 }
 
 .input-field, .textarea-field {
-    width: 100%;
+    width: 90%;
     padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -70,7 +70,7 @@ label {
 
 .checkbox-group {
     display: flex;
-    align-items: center;
+    
 }
 
 .checkbox-group input {

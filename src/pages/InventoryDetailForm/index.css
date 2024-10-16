@@ -49,3 +49,8 @@
     background-color: #0056b3; /* Darker blue on hover */
   }
   
+  @media (max-width: 768px) {
+    .add-inventory-container h1{
+        font-size: 1.4rem; /* Smaller heading for smaller screens */
+    }
+  }

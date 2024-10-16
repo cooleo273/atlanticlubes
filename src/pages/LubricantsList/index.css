@@ -77,3 +77,23 @@
     margin-top: 10px; /* Space above buttons */
   }
   
+  @media (max-width: 768px) {
+    /* Adjust styles for larger screens */
+   .inventory-list li{
+     flex-direction: column;
+     align-items: start;
+     gap: 1rem; /* Change layout to vertical for larger screens */
+   }
+   .inventory-list button{
+     margin-left: 0; /* Remove left margin for buttons */
+   }
+   .inventory-list h1{
+     font-size: 1.4rem; /* Increase font size for larger screens */
+   }
+   .inventory-list li h4 {
+    font-size: 0.9rem;
+}
+.inventory-list li {
+    margin-bottom: 1rem;
+}
+  }

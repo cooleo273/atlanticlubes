@@ -123,7 +123,7 @@ const LubricantsList: React.FC = () => {
                 {inventory.map((item) => (
                     <li key={item.id}>
                         <h4>{item.inventory_name}</h4>
-                        <div style={{display:"flex"}}>
+                        <div style={{display:"flex", gap:"1rem"}}>
                         <button onClick={() => handleEditClick(item)}>Edit</button>
                         <button onClick={() => handleDelete(item.id)}>Delete</button>
                         </div>
