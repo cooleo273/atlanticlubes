@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./index.css"
+import "./index.css";
 
 const InventoryDetailForm = () => {
   const [inventoryName, setInventoryName] = useState("");
@@ -9,7 +9,22 @@ const InventoryDetailForm = () => {
   const [performance, setPerformance] = useState("");
   const [recommendations, setRecommendations] = useState("");
   const [properties, setProperties] = useState("");
-  const [image, setImage] = useState<File | null>(null); // Update state type to File | null
+  const [image, setImage] = useState<File | null>(null);
+  const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null); // Use number | null
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await axios.get("https://atlanticlubesbackend.vercel.app/api/category");
+        setCategories(response.data);
+      } catch (error) {
+        console.error("Error fetching categories", error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -22,12 +37,16 @@ const InventoryDetailForm = () => {
     const formData = new FormData();
     formData.append("inventory_name", inventoryName);
     formData.append("description", description);
-    formData.append("application", JSON.stringify(application.split(","))); // Convert to array
-    formData.append("performance", JSON.stringify(performance.split(","))); // Convert to array
+    formData.append("application", JSON.stringify(application.split(",")));
+    formData.append("performance", JSON.stringify(performance.split(",")));
     formData.append("recommendations", recommendations);
-    formData.append("properties", JSON.stringify(properties.split(","))); // Convert to array
+    formData.append("properties", JSON.stringify(properties.split(",")));
     
-    // Append the image only if it is not null
+    // Append selectedCategoryId if it's not null
+    if (selectedCategoryId) {
+      formData.append("categoryId", selectedCategoryId.toString());
+    }
+
     if (image) {
       formData.append("photo", image);
     }
@@ -48,6 +67,7 @@ const InventoryDetailForm = () => {
       setRecommendations("");
       setProperties("");
       setImage(null);
+      setSelectedCategoryId(null); // Reset selected category
     } catch (error) {
       console.error("There was an error adding the inventory item!", error);
       alert("Error adding inventory item!");
@@ -99,6 +119,18 @@ const InventoryDetailForm = () => {
           onChange={(e) => setProperties(e.target.value)}
           required
         />
+        <select
+          value={selectedCategoryId || ""}
+          onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
+          required
+        >
+          <option value="" disabled>Select a Category</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </select>
         <input
           type="file"
           onChange={handleFileChange}
@@ -108,8 +140,6 @@ const InventoryDetailForm = () => {
         <button type="submit">Add Inventory Item</button>
       </form>
     </div>
- 
-
   );
 };
 

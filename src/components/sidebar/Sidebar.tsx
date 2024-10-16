@@ -4,9 +4,10 @@ import './index.css'; // Updated CSS file for responsive styles
 
 import LubricantsList from '../../pages/LubricantsList/LubricantsList';
 import AddInventory from '../../pages/InventoryDetailForm/InventoryDetailForm';
+import AddCategoryForm from '../../pages/AddCategoryForm/AddCategoryForm'; // Import AddCategoryForm
 
 const Sidebar: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'add' | 'list'>('add'); // Active tab state
+    const [activeTab, setActiveTab] = useState<'add' | 'list' | 'category'>('add'); // Added 'category' to state
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar visibility state
 
     const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Toggle sidebar open/close
@@ -44,12 +45,23 @@ const Sidebar: React.FC = () => {
                             Inventory List
                         </button>
                     </li>
+                    <li>
+                        <button
+                            className={activeTab === 'category' ? 'active-link' : ''}
+                            onClick={() => {
+                                setActiveTab('category');
+                                setIsSidebarOpen(false); // Close sidebar after clicking
+                            }}
+                        >
+                            Add Category
+                        </button>
+                    </li>
                 </ul>
             </div>
 
             {/* Content Section */}
             <div className="content">
-                {activeTab === 'add' ? <AddInventory /> : <LubricantsList />}
+                {activeTab === 'add' ? <AddInventory /> : activeTab === 'list' ? <LubricantsList /> : <AddCategoryForm />}
             </div>
         </div>
     );
