@@ -130,3 +130,9 @@
       padding: 0rem;
     }
 }
+
+@media (max-width: 768px) {
+  button {
+      display: block; 
+  }
+}

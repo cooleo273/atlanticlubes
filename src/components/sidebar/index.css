@@ -3,6 +3,7 @@
     display: flex;
     min-height: 100vh;
     position: relative;
+    width: 100%;
 }
 
 /* Sidebar styles */
@@ -13,7 +14,9 @@
     padding: 20px;
     transition: transform 0.3s ease-in-out;
 }
-
+.content h1{
+    width: 60%;
+}
 /* Sidebar hidden on small screens by default */
 .sidebarn.open {
     transform: translateX(0);
