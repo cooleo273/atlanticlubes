@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import ImageWithTitle from '../../components/Imagewithtitle/Imagewithtitle'; // Adjust the path as needed
-import img from "../../assets/image-25.png"; // Header image
+import ImageWithTitle from '../../components/Imagewithtitle/Imagewithtitle';
+import img from "../../assets/image-25.png";
 import './index.css';
 import { useNavigate } from 'react-router-dom';
 
 const Lubricants: React.FC = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-    const [inventoryData, setInventoryData] = useState([]); // State for inventory data
-    const [loading, setLoading] = useState(true); // State for loading
+    const [inventoryData, setInventoryData] = useState([]); 
+    const [filteredData, setFilteredData] = useState([]); // For filtered search results
+    const [loading, setLoading] = useState(true);
+    const [searchQuery, setSearchQuery] = useState(''); // Search input state
     const navigate = useNavigate();
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
-    
-    // Fetch inventory data from the backend
+
     useEffect(() => {
         const fetchInventory = async () => {
             try {
@@ -23,40 +24,54 @@ const Lubricants: React.FC = () => {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                setInventoryData(data); // Update inventory data
-                setLoading(false); // Stop loading after data is fetched
+                setInventoryData(data);
+                setFilteredData(data); // Initialize filtered data with full inventory
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching inventory:', error);
-                setLoading(false); // Stop loading even if there is an error
+                setLoading(false);
             }
         };
-        
         fetchInventory();
     }, []);
 
+    // Handle search input change
+    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const query = event.target.value.toLowerCase();
+        setSearchQuery(query);
+
+        const filtered = inventoryData.filter((item: any) =>
+            item.inventory_name.toLowerCase().includes(query)
+        );
+        setFilteredData(filtered);
+    };
+
     if (loading) {
-        return <div>Loading...</div>; // Show loading state while fetching data
+        return (
+            <div style={loadingContainerStyle}>
+                <div className="spinner"></div>
+            </div>
+        );
     }
 
     return (
         <div style={layoutStyle}>
-            {/* Main Content */}
             <div style={mainContentStyle}>
                 <img src={img} alt="Header" style={{ width: '100%', height: "30rem", objectFit: "cover" }} className='image' />
 
                 <input
                     type="text"
-                    placeholder="Search for a plan..."
+                    placeholder="Search for a product..."
                     style={searchInputStyle}
+                    value={searchQuery}
+                    onChange={handleSearch} // Handle search input change
                 />
 
                 <div style={{ display: 'flex' }} className='sidebar-button'>
-                    {/* Sidebar toggle button (only visible on small screens) */}
                     <button onClick={toggleSidebar} className="menu-button">
                         {isSidebarOpen ? 'X' : '☰'}
                     </button>
 
-                    {/* Sidebar */}
                     <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
                         <h2>Categories</h2>
                         <ul style={sidebarListStyle}>
@@ -68,18 +83,21 @@ const Lubricants: React.FC = () => {
                         </ul>
                     </aside>
 
-                    {/* Inventory Grid */}
                     <div style={gridStyle}>
-        {inventoryData.map((item: { id: string; inventory_name: string; image: string }) => (
-            <div 
-                key={item.id} 
-                onClick={() => navigate(`/inventory/${item.id}`)}
-                style={{ cursor: 'pointer' }}
-            >
-                <ImageWithTitle title={item.inventory_name} image={item.image} />
-            </div>
-        ))}
-    </div>
+                        {filteredData.length > 0 ? (
+                            filteredData.map((item: { id: string; inventory_name: string; image: string }) => (
+                                <div 
+                                    key={item.id} 
+                                    onClick={() => navigate(`/inventory/${item.id}`)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    <ImageWithTitle title={item.inventory_name} image={item.image} />
+                                </div>
+                            ))
+                        ) : (
+                            <div>No products found</div>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -98,7 +116,7 @@ const sidebarListStyle: React.CSSProperties = {
     padding: 0,
     display: 'flex',
     flexDirection: 'column',
-    textAlign:"left",
+    textAlign: "left",
     gap: '1rem',
 };
 
@@ -112,7 +130,7 @@ const gridStyle: React.CSSProperties = {
     gridTemplateColumns: 'repeat(auto-fill, minmax(187px, 1fr))',
     gap: '3rem',
     padding: '5rem',
-    flex:"5"
+    flex: "5",
 };
 
 const searchInputStyle: React.CSSProperties = {
@@ -123,6 +141,13 @@ const searchInputStyle: React.CSSProperties = {
     borderRadius: '5px',
     border: '1px solid #ccc',
     marginTop: '3rem',
+};
+
+const loadingContainerStyle: React.CSSProperties = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100vh',
 };
 
 export default Lubricants;

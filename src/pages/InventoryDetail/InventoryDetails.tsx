@@ -41,7 +41,13 @@ const InventoryDetail: React.FC = () => {
         fetchItemDetails();
     }, [id]);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) {
+      return (
+          <div style={loadingContainerStyle}>
+              <div className="spinner"></div> {/* Circular Loader */}
+          </div>
+      );
+  }
     if (error) return <div>Error: {error}</div>;
     if (!itemData) return <div>No item data found</div>;
 
@@ -67,7 +73,7 @@ const InventoryDetail: React.FC = () => {
                 <img src={img} alt="Header" style={{ width: '100%', height: "30rem", objectFit: "cover" }} className='image' />
 
                 {/* Sidebar toggle button */}
-                <div style={{display:"flex", flexDirection:"row"}}>
+                <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
                 <button onClick={toggleSidebar} className="menu-button">
                     {isSidebarOpen ? 'X' : '☰'}
                 </button>
@@ -108,6 +114,12 @@ const layoutStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     minHeight: '100vh',
+};
+const loadingContainerStyle: React.CSSProperties = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: '100vh',
 };
 
 const sidebarListStyle: React.CSSProperties = {

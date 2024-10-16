@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
+import './index.css'; // Import the CSS file for styling
 
 const supabaseUrl = 'https://vkqgunmfpvjkftehgtio.supabase.co'; // Your Supabase URL
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrcWd1bm1mcHZqa2Z0ZWhndGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjg4NDAyNDMsImV4cCI6MjA0NDQxNjI0M30.aCA0aSE76g1LTkpvD7la7bAd8zG8WaQ4qSC_WgBBGVA'; // Your Supabase key
@@ -26,11 +27,10 @@ const Login: React.FC = () => {
         if (error) {
             setError(error.message);
         } else {
-            // Check if user is defined
             const user = data?.user;
             if (user) {
                 console.log('User logged in:', user);
-                navigate('/inventory'); // Redirect to your dashboard or another page
+                navigate('/inventory');
             } else {
                 setError('User not found.');
             }
@@ -40,36 +40,40 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div style={{ maxWidth: '400px', margin: 'auto', padding: '20px', border: '1px solid #ccc', borderRadius: '8px' }}>
-            <h2>Login</h2>
-            <form onSubmit={handleLogin}>
-                <div>
-                    <label htmlFor="email">Email:</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-                    />
-                </div>
-                <div>
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        style={{ width: '100%', marginBottom: '10px', padding: '8px' }}
-                    />
-                </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" disabled={loading} style={{ padding: '10px 15px' }}>
-                    {loading ? 'Logging in...' : 'Login'}
-                </button>
-            </form>
+        <div className="login-container">
+            <div className="login-card">
+                <h2 className="login-title">Welcome Back</h2>
+                <p className="login-subtitle">Login to your account</p>
+                <form onSubmit={handleLogin}>
+                    <div className="form-groups">
+                        <label htmlFor="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            placeholder="Enter your email"
+                        />
+                    </div>
+                    <div className="form-groups">
+                        <label htmlFor="password">Password</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            placeholder="Enter your password"
+                        />
+                    </div>
+                    {error && <p className="error-message">{error}</p>}
+                    <button type="submit" disabled={loading}>
+                        {loading ? 'Logging in...' : 'Login'}
+                    </button>
+                </form>
+                <p className="login-footer">Don't have an account? <a href="/signup">Sign Up</a></p>
+            </div>
         </div>
     );
 };

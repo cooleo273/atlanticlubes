@@ -60,3 +60,15 @@
         flex-direction: column;
     }
 }
+@media (max-width: 468px){
+    .footer{
+        flex-direction: column;
+        padding: 0rem 2rem;
+    }
+    .footer p{
+        font-size: 0.9rem;
+    }
+    .footer h5{
+        font-size: 1rem;
+    }
+}

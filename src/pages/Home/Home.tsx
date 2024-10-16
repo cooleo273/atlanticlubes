@@ -6,8 +6,10 @@ import img from "../../assets/20201102_153322-removebg-preview-2.png";
 import img1 from "../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg";
 
 import HorizontalImageSlider from "../../components/imageslider/slidingGallery";
+import { useNavigate } from "react-router-dom";
 
 const Home: React.FC = () => {
+  const navigate = useNavigate(); 
   return (
     <div>
       <ImageSlider />
@@ -23,7 +25,7 @@ const Home: React.FC = () => {
         their unique requirements."
         reverse={true}
         buttonText="Our Story"
-        onButtonClick={() => alert("Button clicked!")}
+        onButtonClick={() => navigate("/about")}
       />
       <BodyContainer
         image={img1}
@@ -38,7 +40,7 @@ const Home: React.FC = () => {
         offering a diverse solution to all your lubrication needs."
         buttonText="Explore Our Products"
         buttonVariant="white"
-        onButtonClick={() => alert("Button clicked!")}
+        onButtonClick={() => navigate("/products")}
       />
       <HorizontalImageSlider/>
       <div className="body-container-wrapper">

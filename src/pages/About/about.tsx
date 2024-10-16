@@ -24,8 +24,7 @@ const About: React.FC = () => {
             emphasis on making meaningful contributions to society, serving our valued customers, and
             achieving sustainability goals. We have secured OEM approvals by major American and European car manufacturers."
         reverse={true}
-        buttonText="Our Story"
-        onButtonClick={() => alert("Button clicked!")}
+        
       />
       
 
