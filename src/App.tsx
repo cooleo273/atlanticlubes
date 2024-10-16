@@ -7,12 +7,12 @@ import Home from './pages/Home/Home';
 import About from './pages/About/about';
 import Contact from './pages/contact/contact';
 import Product from './pages/Product/Product';
-import Blog from './pages/Blog/blog';
+
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Lubricants from './pages/Lubricants/Lubricants';
 import InventoryDetail from './pages/InventoryDetail/InventoryDetails';
-import AddInventoryForm from './pages/InventoryDetailForm/InventoryDetailForm';
+
 import VerifyEmail from './components/auth/VerifyEmail';
 import Login from './components/auth/Login';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -28,7 +28,7 @@ const App: React.FC = () => {
                     <Route path="/about" element={<About />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/products" element={<Product />} />
-                    <Route path="/blog" element={<Blog />} />
+                    
                     <Route path="/lubricants" element={<Lubricants />} />
                     <Route path="/inventory/:id" element={<InventoryDetail />} />
                     <Route path="/login" element={<Login />} />

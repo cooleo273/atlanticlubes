@@ -82,6 +82,7 @@
     border: 2px solid #4a4a4a; /* Dark gray solid border */
     padding: 10px; /* Add padding */
     width: 25rem;
+    height: 14rem;
     border-radius: 10px; /* Rounded corners */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
     position: relative; /* Position for the pseudo-elements */

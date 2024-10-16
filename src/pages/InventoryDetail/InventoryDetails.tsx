@@ -73,7 +73,7 @@ const InventoryDetail: React.FC = () => {
                 <img src={img} alt="Header" style={{ width: '100%', height: "30rem", objectFit: "cover" }} className='image' />
 
                 {/* Sidebar toggle button */}
-                <div style={{display:"flex", flexDirection:"column", alignItems:"center"}}>
+                <div className='sahasfgihiaugfya'>
                 <button onClick={toggleSidebar} className="menu-button">
                     {isSidebarOpen ? 'X' : '☰'}
                 </button>

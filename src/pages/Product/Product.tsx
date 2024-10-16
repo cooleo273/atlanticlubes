@@ -1,12 +1,13 @@
 import React from 'react';
 import ImageWithTitle from '../../components/Imagewithtitle/Imagewithtitle'; // Adjust the path as needed
 import yourImage from '../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg'; // Update with your image path
+import img from '../../assets/mt-1869-gallery-09bg.jpg'
 import "./index.css"
 
 const Product: React.FC = () => {
     return (
         <div style={containerStyle}>
-            <img src={yourImage} style={{width:"100%", height:"30rem", objectFit:"cover" }} className='image'/>
+            <img src={img} style={{width:"100%", height:"30rem", objectFit:"cover" }} className='image'/>
             
            
             <input 
@@ -16,13 +17,13 @@ const Product: React.FC = () => {
             />
             <a href="/lubricants">
              <div style={gridStyle}>
-                {Array.from({ length: 12 }).map((_, index) => (
+               
                     <ImageWithTitle 
                         
                         title='Automotive Lubricants' 
                         image={yourImage} 
                     />
-                ))}
+                
             </div>
             </a>
         </div>

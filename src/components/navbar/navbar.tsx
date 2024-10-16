@@ -75,9 +75,7 @@ const Navbar: React.FC = () => {
                         <li style={navItemStyle}>
                             <Link to="/products" style={navLinkStyle} onClick={handleLinkClick}>Products</Link>
                         </li>
-                        <li style={navItemStyle}>
-                            <Link to="/blog" style={navLinkStyle} onClick={handleLinkClick}>Blog</Link>
-                        </li>
+                        
                         <li style={navItemStyle}>
                             <Button label="Become A Distributor" />
                         </li>
