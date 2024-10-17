@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
+import BounceLoader from "react-spinners/BounceLoader";
+
+// Usage in your component
+
+
 import "./index.css";
 
 const InventoryDetailForm = () => {
@@ -11,7 +17,8 @@ const InventoryDetailForm = () => {
   const [properties, setProperties] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null); // Use number | null
+  const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
+  const [loading, setLoading] = useState(false); // Loading state
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -33,6 +40,7 @@ const InventoryDetailForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true
 
     const formData = new FormData();
     formData.append("inventory_name", inventoryName);
@@ -41,8 +49,7 @@ const InventoryDetailForm = () => {
     formData.append("performance", JSON.stringify(performance.split(",")));
     formData.append("recommendations", recommendations);
     formData.append("properties", JSON.stringify(properties.split(",")));
-    
-    // Append selectedCategoryId if it's not null
+
     if (selectedCategoryId) {
       formData.append("categoryId", selectedCategoryId.toString());
     }
@@ -71,6 +78,8 @@ const InventoryDetailForm = () => {
     } catch (error) {
       console.error("There was an error adding the inventory item!", error);
       alert("Error adding inventory item!");
+    } finally {
+      setLoading(false); // Set loading to false after request is completed
     }
   };
 
@@ -138,18 +147,20 @@ const InventoryDetailForm = () => {
           accept="image/*"
           required
         />
-        <button type="submit">Add Inventory Item</button>
+        <button type="submit" disabled={loading} style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
+          {loading ? <BounceLoader color="#36D7B7" loading={loading} size={50} /> : "Add Inventory Item"}
+        </button>
       </form>
     </div>
   );
 };
+
 const formContainerStyle: React.CSSProperties = {
-    padding: '1rem',
-    width:"100%",
-    marginBottom: '1rem',
-    borderRadius: '0.5rem',
-    borderColor:"#ccc",
-    
-    
+  padding: '1rem',
+  width: "100%",
+  marginBottom: '1rem',
+  borderRadius: '0.5rem',
+  borderColor: "#ccc",
 };
+
 export default InventoryDetailForm;

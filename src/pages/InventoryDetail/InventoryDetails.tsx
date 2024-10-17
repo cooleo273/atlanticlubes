@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import img from "../../assets/Atlantic-Lubes-web-header-4.webp"; // Header image
 import './index.css'; // Importing custom CSS
+import { BounceLoader } from 'react-spinners';
 
 interface InventoryItem {
     inventory_name: string;
@@ -70,9 +71,9 @@ const InventoryDetail: React.FC = () => {
 
     if (loading) {
         return (
-            <div style={loadingContainerStyle}>
-                <div className="spinner"></div> {/* Circular Loader */}
-            </div>
+          <div style={loadingContainerStyle}>
+          <BounceLoader color="#36D7B7" loading={loading} size={60} />
+      </div>
         );
     }
 

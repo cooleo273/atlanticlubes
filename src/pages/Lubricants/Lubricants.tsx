@@ -183,6 +183,7 @@ const categoriesStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    flex:"1"
 };
 
 const categoriesListStyle: React.CSSProperties = {
@@ -192,9 +193,11 @@ const categoriesListStyle: React.CSSProperties = {
 
 const gridStyle: React.CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))',
     gap: '1rem',
     padding: '2rem',
+    width:"100%",
+    flex:"7"
 };
 
 const itemStyle: React.CSSProperties = {

@@ -96,4 +96,12 @@
 .inventory-list li {
     margin-bottom: 1rem;
 }
+
   }
+
+  .loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
