@@ -196,7 +196,7 @@ const gridStyle: React.CSSProperties = {
     gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))',
     gap: '1rem',
     padding: '2rem',
-    width:"100%",
+    width:"85%",
     flex:"7"
 };
 
