@@ -54,3 +54,26 @@
         font-size: 1.4rem; /* Smaller heading for smaller screens */
     }
   }
+
+  input[type="file"] {
+    display: inline-block;
+    padding: 10px;
+    
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #0056b3; /* Green background for button */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    padding: 10px; /* Add padding */
+    border-radius: 5px; /* Round corners */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s; /* Smooth transition */
+}

@@ -4,13 +4,15 @@ import './index.css'; // Updated CSS file for responsive styles
 
 import LubricantsList from '../../pages/LubricantsList/LubricantsList';
 import AddInventory from '../../pages/InventoryDetailForm/InventoryDetailForm';
-import AddCategoryForm from '../../pages/AddCategoryForm/AddCategoryForm'; // Import AddCategoryForm
+import AddCategoryForm from '../../pages/AddCategoryForm/AddCategoryForm';
+import EditCategoryForm from '../../components/editInventoryForm/EditICategoryForm'; // Import EditCategoryForm
 
 const Sidebar: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'add' | 'list' | 'category'>('add'); // Added 'category' to state
+    const [activeTab, setActiveTab] = useState<'add' | 'list' | 'category' | 'editCategory'>('add'); 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar visibility state
 
-    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Toggle sidebar open/close
+    // Toggle sidebar open/close
+    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); 
 
     return (
         <div className="inventory-management">
@@ -56,12 +58,26 @@ const Sidebar: React.FC = () => {
                             Add Category
                         </button>
                     </li>
+                    <li>
+                        <button
+                            className={activeTab === 'editCategory' ? 'active-link' : ''}
+                            onClick={() => {
+                                setActiveTab('editCategory');
+                                setIsSidebarOpen(false); // Close sidebar after clicking
+                            }}
+                        >
+                            Edit Category
+                        </button>
+                    </li>
                 </ul>
             </div>
 
             {/* Content Section */}
             <div className="content">
-                {activeTab === 'add' ? <AddInventory /> : activeTab === 'list' ? <LubricantsList /> : <AddCategoryForm />}
+                {activeTab === 'add' && <AddInventory />}
+                {activeTab === 'list' && <LubricantsList />}
+                {activeTab === 'category' && <AddCategoryForm />}
+                {activeTab === 'editCategory' && <EditCategoryForm />} {/* New Tab for Editing */}
             </div>
         </div>
     );

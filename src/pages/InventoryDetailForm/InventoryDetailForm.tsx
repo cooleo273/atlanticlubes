@@ -120,6 +120,7 @@ const InventoryDetailForm = () => {
           required
         />
         <select
+          style={formContainerStyle}
           value={selectedCategoryId || ""}
           onChange={(e) => setSelectedCategoryId(Number(e.target.value))}
           required
@@ -142,5 +143,13 @@ const InventoryDetailForm = () => {
     </div>
   );
 };
-
+const formContainerStyle: React.CSSProperties = {
+    padding: '1rem',
+    width:"100%",
+    marginBottom: '1rem',
+    borderRadius: '0.5rem',
+    borderColor:"#ccc",
+    
+    
+};
 export default InventoryDetailForm;
