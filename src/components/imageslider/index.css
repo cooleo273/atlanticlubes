@@ -17,6 +17,12 @@
 .next-arrow {
     right: 1%;
 }
+.slider-container {
+    width: 100%;
+    height: 45rem; /* Ensure parent has enough height */
+    overflow: hidden; /* Prevent overflow */
+}
+
 @media only screen and (max-width: 768px) {
     .slider-image {
         height: 20rem !important; /* Adjust height for mobile */

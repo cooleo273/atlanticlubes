@@ -1,123 +1,78 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import theme from '../theme/theme';
 import img from "../../assets/Atlanticlubes-logo.png (1).webp";
 import Button from '../button/button';
+import { Mail, Phone } from 'lucide-react';
 
 const Navbar: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // Track mobile view
+    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     const handleResize = () => {
-        setIsMobile(window.innerWidth < 768); // Update state on resize
+        setIsMobile(window.innerWidth < 768);
     };
 
     const handleLinkClick = () => {
-        setIsMenuOpen(false); // Close menu when a link is clicked
+        setIsMenuOpen(false);
     };
 
     useEffect(() => {
-        window.addEventListener('resize', handleResize); // Add event listener
+        window.addEventListener('resize', handleResize);
         return () => {
-            window.removeEventListener('resize', handleResize); // Clean up
+            window.removeEventListener('resize', handleResize);
         };
     }, []);
 
     return (
-        <nav style={{ 
-            padding: theme.spacing.medium, 
-            display: "flex", 
-            justifyContent: "space-between", 
-            alignItems: "center", 
-            position: "relative",
-            height: isMenuOpen ? "100vh" : "auto", // Take full height when menu is open
-            backgroundColor: isMenuOpen ? "white" : "transparent", // Change background color when menu is open
-            transition: "background-color 0.3s ease" // Smooth transition for background color
-        }}>
+        <nav className={`px-20 py-4 flex justify-between items-center ${isMenuOpen ? 'h-screen bg-white' : 'bg-transparent'}`}>
             {/* Logo */}
-            <img src={img} alt="Logo" style={{ margin: 0, padding: 0, width: "200px" }} />
+            <Link to="/" onClick={handleLinkClick} className="flex-shrink-0">
+                <img src={img} alt="Logo" className="w-48" />
+            </Link>
 
-            <div>
-                {/* Menu Button */}
-                {isMobile && (
-                    <div style={menuButtonStyle} onClick={toggleMenu}>
-                        {isMenuOpen ? "X" : "☰"} {/* Show 'X' if open, else show ☰ */}
-                    </div>
-                )}
+            {/* Menu Button for Mobile */}
+            {isMobile && (
+                <button onClick={toggleMenu} className="text-2xl cursor-pointer mr-4">
+                    {isMenuOpen ? '✕' : '☰'}
+                </button>
+            )}
 
-                {/* Navigation Menu */}
-                {(isMobile && isMenuOpen) || !isMobile ? (
-                    <ul style={{ 
-                        ...navListStyle, 
-                        display: isMobile && !isMenuOpen ? "none" : "flex", 
-                        gap:"1rem",
-                        flexDirection: isMobile && isMenuOpen ? 'column' : 'row',
-                        height: isMenuOpen ? "100%" : "auto", // Take full height when menu is open
-                        width: isMenuOpen ? "100%" : "auto", // Take full width when menu is open
-                        position: isMenuOpen ? "absolute" : "relative", // Position absolute when open
-                        top: 0, // Align to the top
-                        left: 0, // Align to the left
-                        backgroundColor: isMenuOpen ? "white" : "transparent" // Change background color when menu is open
-                    }}>
-                        <li style={navItemStyle}>
-                            <Link to="/" style={navLinkStyle} onClick={handleLinkClick}>Home</Link>
-                        </li>
-                        <li style={navItemStyle}>
-                            <Link to="/about" style={navLinkStyle} onClick={handleLinkClick}>About</Link>
-                        </li>
-                        <li style={navItemStyle}>
-                            <Link to="/contact" style={navLinkStyle} onClick={handleLinkClick}>Contact Us</Link>
-                        </li>
-                        <li style={navItemStyle}>
-                            <Link to="/products" style={navLinkStyle} onClick={handleLinkClick}>Products</Link>
-                        </li>
-                        
-                        <li style={navItemStyle}>
-                            <Button label="Become A Distributor" />
-                        </li>
-                    </ul>
-                ) : null}
+            {/* Navigation Menu */}
+            {(isMobile && isMenuOpen) || !isMobile ? (
+                <ul
+                    className={`flex ${isMobile && isMenuOpen ? 'flex-col items-center w-full h-full absolute top-0 left-0 bg-white' : 'flex-row gap-12 items-center'}`}
+                >
+                    <li className="my-4">
+                        <Link to="/" className="text-black no-underline" onClick={handleLinkClick}>Home</Link>
+                    </li>
+                    <li className="my-4">
+                        <a href="/#about" className="text-black no-underline" onClick={handleLinkClick}>About</a>
+                    </li>
+                    <li className="my-4">
+                        <Link to="/contact" className="text-black no-underline" onClick={handleLinkClick}>Contact Us</Link>
+                    </li>
+                    <li className="my-4">
+                        <Link to="/products" className="text-black no-underline" onClick={handleLinkClick}>Products</Link>
+                    </li>
+                    
+                </ul>
+            ) : null}
+            <div className='flex flex-col gap-4'>
+                <div className='flex flex-row gap-4 cursor-pointer'>
+            <Mail size={24} color="#000" />
+            <p>Info@schmierol.de</p>
+            </div>
+            <div  className='flex flex-row gap-4 cursor-pointer'>
+                <Phone size={24} color='#000'/>
+                <p>+49 178 8854076</p>
+            </div>
             </div>
         </nav>
     );
-};
-
-// Custom styles
-const menuButtonStyle: React.CSSProperties = {
-    fontSize: '24px',
-    cursor: 'pointer',
-    display: 'flex', // Always show the menu button
-    marginRight: '1rem',
-    justifyContent: 'center',
-};
-
-const navListStyle: React.CSSProperties = {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'flex',
-    boxShadow: 'none', // Ensure box shadow is removed
-};
-
-const navItemStyle: React.CSSProperties = {
-    
-    margin: '1rem 0', // Add some margin between items
-    textAlign: 'center',
-    display: "flex",
-    justifyContent: "center",
-};
-
-const navLinkStyle: React.CSSProperties = {
-    color: 'black',
-    textDecoration: 'none',
-    padding: '10px',
-    display: "flex",
-    alignItems: "center",
-    gap: "2rem"
 };
 
 export default Navbar;

@@ -1,11 +1,11 @@
+/* src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 * {
@@ -14,3 +14,6 @@ code {
   line-height: 1.8;
 }
 
+html {
+  scroll-behavior: smooth;
+}

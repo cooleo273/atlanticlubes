@@ -44,13 +44,14 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
             }}
         >
             {image && (
-                <div className="image-container">
-                    <img
-                        src={image}
-                        alt={title}
-                        className="image-style"
-                    />
-                </div>
+                <div
+                    className="flex-1 bg-cover bg-center h-[35rem]"
+                    style={{
+                        backgroundImage: `url(${image})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                />
             )}
             <div className="text-container">
                 <h2
@@ -62,7 +63,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                 >
                     {title}
                 </h2>
-                <p className="description" style={{ color: titleColor || "inherit" }}>
+                <p className="text-md text-gray-600">
                     {description}
                 </p>
 
@@ -79,7 +80,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                     </h2>
                 )}
                 {description2 && (
-                    <p className="description" style={{ color: descriptionColor || "inherit" }}>
+                    <p className="text-md text-gray-600">
                         {description2}
                     </p>
                 )}

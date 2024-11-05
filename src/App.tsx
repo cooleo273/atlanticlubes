@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
 import Home from './pages/Home/Home';
-import About from './pages/About/about';
+
 import Contact from './pages/contact/contact';
 import Product from './pages/Product/Product';
 
@@ -18,6 +18,8 @@ import Login from './components/auth/Login';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Sidebar from './components/sidebar/Sidebar';
 
+
+
 const App: React.FC = () => {
     return (
         <Router>
@@ -25,7 +27,7 @@ const App: React.FC = () => {
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
+                    
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/products" element={<Product />} />
                     

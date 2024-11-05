@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import img from '../../assets/mt-1869-gallery-09bg.jpg';
-import './index.css';
 
 interface InventoryItem {
     id: number;
@@ -76,19 +75,15 @@ const CategoryDetails: React.FC = () => {
     }, [id]);
 
     return (
-        <div style={containerStyle}>
-            <img
-                src={img}
-                style={{ width: '100%', height: '30rem', objectFit: 'cover' }}
-                className="image"
-            />
+        <div className="text-left">
+            <img src={img} className="w-full h-96 object-cover" />
 
-            <div style={{ ...layoutStyle, flexDirection: showCategories || windowWidth < 768 ? 'column' : 'row' }}>
+            <div className={`flex ${showCategories || windowWidth < 768 ? 'flex-col' : 'flex-row'}`}>
                 {/* Show menu button only on small screens */}
                 {windowWidth < 768 && (
-                    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                    <div className="w-full flex justify-center">
                         <button
-                            style={menuButtonStyle}
+                            className="block p-2 m-4 rounded-full bg-blue-500 text-white cursor-pointer w-12 h-12"
                             onClick={() => setShowCategories(prev => !prev)}
                         >
                             {showCategories ? '✕' : '☰'}
@@ -98,9 +93,9 @@ const CategoryDetails: React.FC = () => {
 
                 {/* Categories Displayed Above Items */}
                 {(windowWidth >= 768 || showCategories) && (
-                    <div style={categoriesStyle}>
-                        <h2 style={hstyle}>Categories</h2>
-                        <ul style={categoriesListStyle}>
+                    <div className="p-4 mt-8 flex flex-col items-center flex-1">
+                        <h2 className="m-0 text-lg font-bold">Categories</h2>
+                        <ul className="list-none p-0">
                             {loading ? (
                                 <li>Loading categories...</li>
                             ) : error ? (
@@ -110,8 +105,8 @@ const CategoryDetails: React.FC = () => {
                                     <li>No categories found.</li>
                                 ) : (
                                     categories.map((category) => (
-                                        <li key={category.id} style={{ marginLeft: "1rem" }}>
-                                            <Link to={`/category/${category.id}`}>{category.name}</Link>
+                                        <li key={category.id} className="ml-4">
+                                            <Link to={`/category/${category.id}`} className="text-blue-600 hover:underline">{category.name}</Link>
                                         </li>
                                     ))
                                 )
@@ -120,7 +115,7 @@ const CategoryDetails: React.FC = () => {
                     </div>
                 )}
 
-                <div style={gridStyle}>
+                <div className="grid grid-cols-[repeat(auto-fill,_minmax(245px,_1fr))] gap-4 p-8 w-5/6 flex-7">
                     {loading ? (
                         <p>Loading items...</p>
                     ) : error ? (
@@ -130,12 +125,12 @@ const CategoryDetails: React.FC = () => {
                             <p>No items found in this category.</p>
                         ) : (
                             items.map((item) => (
-                                <Link key={item.id} to={`/inventory/${item.id}`} style={{ textDecoration: 'none' }}>
-                                    <div style={itemStyle}>
+                                <Link key={item.id} to={`/inventory/${item.id}`} className="no-underline">
+                                    <div className="p-4 text-left">
                                         <img
                                             src={item.image}
                                             alt={item.inventory_name}
-                                            style={{ width: '100%', height: '10rem', objectFit: 'cover' }}
+                                            className="w-full h-40 object-cover"
                                         />
                                         <h3>{item.inventory_name}</h3>
                                     </div>
@@ -147,62 +142,6 @@ const CategoryDetails: React.FC = () => {
             </div>
         </div>
     );
-};
-
-// Custom styles
-const containerStyle: React.CSSProperties = {
-    textAlign: 'left',
-};
-
-const hstyle: React.CSSProperties = {
-    margin: "0",
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-};
-
-const layoutStyle: React.CSSProperties = {
-    display: 'flex',
-};
-
-const menuButtonStyle: React.CSSProperties = {
-    display: 'block',
-    padding: '0.5rem 1rem',
-    margin: '1rem 0',
-    border: 'none',
-    borderRadius: '50%',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    cursor: 'pointer',
-    width: "3rem",
-    height: "3rem",
-};
-
-const categoriesStyle: React.CSSProperties = {
-    padding: '1rem',
-    marginTop: '2rem',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    flex:"1"
-};
-
-const categoriesListStyle: React.CSSProperties = {
-    listStyleType: 'none',
-    padding: 0,
-};
-
-const gridStyle: React.CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(245px, 1fr))',
-    gap: '1rem',
-    padding: '2rem',
-    width:"85%",
-    flex:"7"
-};
-
-const itemStyle: React.CSSProperties = {
-    padding: '1rem',
-    textAlign: 'left',
 };
 
 export default CategoryDetails;

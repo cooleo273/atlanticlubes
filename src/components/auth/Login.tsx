@@ -3,8 +3,9 @@ import { createClient } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
 import './index.css'; // Import the CSS file for styling
 
-const supabaseUrl = 'https://vkqgunmfpvjkftehgtio.supabase.co'; // Your Supabase URL
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrcWd1bm1mcHZqa2Z0ZWhndGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjg4NDAyNDMsImV4cCI6MjA0NDQxNjI0M30.aCA0aSE76g1LTkpvD7la7bAd8zG8WaQ4qSC_WgBBGVA'; // Your Supabase key
+// Replace with your actual environment variables setup (e.g., Vite)
+const supabaseUrl = 'https://euflaebxyipiwrhlpqud.supabase.co';
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZmxhZWJ4eWlwaXdyaGxwcXVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA3OTM0MzMsImV4cCI6MjA0NjM2OTQzM30.ptUF0JoOcawNcHNWmZZo1rzToZMDDZIHQ1X3e0QGQnY"; // Ensure the key is loaded from the env
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 const Login: React.FC = () => {
@@ -19,18 +20,25 @@ const Login: React.FC = () => {
         setLoading(true);
         setError(null);
 
+        if (!email || !password) {
+            setError('Please fill in both fields');
+            setLoading(false);
+            return;
+        }
+
+        // Log in the user
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         });
 
         if (error) {
-            setError(error.message);
+            setError(error.message);  // Show the error if login fails
         } else {
             const user = data?.user;
             if (user) {
                 console.log('User logged in:', user);
-                navigate('/inventory');
+                navigate('/inventory');  // Redirect on successful login
             } else {
                 setError('User not found.');
             }

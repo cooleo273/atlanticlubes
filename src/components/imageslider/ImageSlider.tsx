@@ -6,34 +6,21 @@ import img2 from '../../assets/image-25.png';
 import "./index.css"
 
 // Left Arrow Component
-const PreviousArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
-    return (
-        <div className="slick-arrow prev-arrow" onClick={onClick}>
-            &#10094; {/* HTML code for left arrow */}
-        </div>
-    );
-};
+
 
 // Right Arrow Component
-const NextArrow: React.FC<{ onClick?: () => void }> = ({ onClick }) => {
-    return (
-        <div className="slick-arrow next-arrow" onClick={onClick}>
-            &#10095; {/* HTML code for right arrow */}
-        </div>
-    );
-};
 
 const ImageSlider: React.FC = () => {
     const settings = {
         infinite: true,
-        speed: 500,
+        speed: 1000,
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
         arrows: true,
-        nextArrow: <NextArrow />,
-        prevArrow: <PreviousArrow />,
+        pauseOnHover: false,
+        
     };
 
     return (

@@ -1,69 +1,79 @@
 import React from "react";
-import "./index.css"; // For custom styles
-import img from "../../assets/Atlanticlubes-logo.png (1).webp"
+import { Phone, Mail, MapPin, ThumbsUp, Share2, Facebook } from "lucide-react";
+import img from "../../assets/Atlanticlubes-logo.png (1).webp";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="footer">
-      <div className="footer-container">
+    <footer style={{ backgroundColor: "black", color: "#fff", paddingTop: "20px" }}>
+      <div style={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "flex-start",
+        flexWrap: "wrap",
+        padding:"2rem 3rem",
+        gap:"4rem"
+      }}>
         {/* About Us Section */}
-        <div className="footer-section">
-          <h5>ABOUT COMPANY</h5>
-          <img src={img} alt="logo"/>
-          <p>
-          Atlantic Lubes is a premier quality lubricant product manufacturer and supplier all over the world with certified ISO 9001-2015, ISO 17025-2015, & ISO 14001-2015 17025-BN14013
+        <div style={{ flex: 1, minWidth: "200px", margin: "20px" }}>
+          <a href="https://www.facebook.com/YOUR_FACEBOOK_PAGE" target="_blank" rel="noopener noreferrer">
+            <img src={img} alt="logo" style={{ width: "150px", marginBottom: "10px" }} />
+          </a>
+          <p className="text-sm mt-7 leading-relaxed">
+            SCHMIERÖL offers a variety of products specifically tailored for the lubricants industry. Our custom-made blends have always proven to be successful.
+            Work smarter, not harder. Choose SCHMIERÖL.
           </p>
         </div>
 
-        {/* Quick Links Section */}
-        <div className="footer-section">
-          <h5>Quick Links</h5>
-          <ul className="footer-links">
-            <li>
-              <a href="/home">Certifications & Approvals</a>
+        {/* Get in Touch Section */}
+        <div style={{ flex: 1, minWidth: "200px", margin: "10px" }}>
+          <h5 style={{ marginBottom: "10px" }}>Get in Touch</h5>
+          <ul style={{ listStyle: "none", padding: 0 }} className="text-sm">
+            <li style={{ margin: "8px 0", display:"flex", gap:"1rem", alignItems:"center" }}>
+              <Phone style={{ color: "#fff", marginRight: "5px" }} size={16} /> 
+              <a href="tel:+491788854076" style={{ color: "#fff", textDecoration: "none" }}>+49 178 8854076</a>
             </li>
-            <li>
-              <a href="/about">Privacy Policy</a>
+            <li style={{ margin: "8px 0", display:"flex", gap:"1rem", alignItems:"center"  }}>
+              <Mail style={{ color: "#fff", marginRight: "5px" }} size={16} />
+              <a href="mailto:Info@schmierol.de" style={{ color: "#fff", textDecoration: "none" }}>Info@schmierol.de</a>
             </li>
-            <li>
-              <a href="/pricing">Interested Parties</a>
-            </li>
-            <li>
-              <a href="/blog">IMS Policy</a>
-            </li>
-            <li>
-              <a href="/contact">HSE</a>
+            <h5 style={{ margin: "10px 0" }}>Head Office</h5>
+            <li style={{ margin: "8px 0", display:"flex", gap:"1rem", alignItems:"center"  }}>
+              <MapPin style={{ color: "#fff", marginRight: "5px" }} size={16} />
+              <a href="https://maps.google.com/?q=IndustrialParkArea24,Hamburg,Germany" target="_blank" rel="noopener noreferrer" style={{ color: "#fff", textDecoration: "none" }}>
+                11 Industrial Park Area 24, Hamburg, Germany
+              </a>
             </li>
           </ul>
         </div>
 
-        {/* Get in Touch Section */}
-        <div className="footer-section">
-          <h5>Get in Touch</h5>
-          <ul className="footer-links">
-            <li>
-              <a href="tel:+1234567890">T +971-(06)-5264688</a>
-            </li>
-            <li>
-              <a href="mailto:info@atlanticlubes.com">
-              Email: info@atlanticlubes.com
-              </a>
-            </li>
-            <h5>Head Office</h5>
-            <li>
-              <a
-                href="https://maps.google.com/?q=Your+Address"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Atlantic Grease and Lubricants, Hamriyah Freezone P.O.BOX 41583, Sharjah, United Arab Emirates
-              </a>
-            </li>
-            <li>
-              <a href="/support">Open in Google Maps</a>
-            </li>
-          </ul>
+        {/* Social Media Section */}
+        <div style={{ flex: 1, minWidth: "200px", margin: "10px" }}>
+          <h5 style={{ marginBottom: "10px" }}>Follow Us</h5>
+          <div style={{ display: "flex", gap: "15px", flexDirection:"column"}}>
+            <a href="https://www.facebook.com/YOUR_FACEBOOK_PAGE" target="_blank" rel="noopener noreferrer" style={{ color: "white", display: "flex", alignItems: "center", textDecoration: "none" }}>
+              <Facebook size={18} style={{ marginRight: "5px", color:"white" }} /> Facebook
+            </a>
+            <div style={{display:"flex", gap:"1rem"}}>
+            <button style={{
+              backgroundColor: "#555", color: "#fff", border: "none", padding: "5px 10px", cursor: "pointer", borderRadius: "5px", display: "flex", alignItems: "center"
+            }}>
+              <ThumbsUp size={16} style={{ marginRight: "5px" }} /> Like
+            </button>
+            <button style={{
+              backgroundColor: "#555", color: "#fff", border: "none", padding: "5px 10px", cursor: "pointer", borderRadius: "5px", display: "flex", alignItems: "center"
+            }}>
+              <Share2 size={16} style={{ marginRight: "5px" }} /> Share
+            </button>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Footer Bottom */}
+      <div style={{
+        textAlign: "center", padding: "10px 0", backgroundColor: "#222", fontSize: "0.9rem", color: "#bbb"
+      }}>
+        © 2022 SCHMIERÖL - All rights reserved
       </div>
     </footer>
   );
