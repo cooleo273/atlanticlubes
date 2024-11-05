@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import img from "../../assets/Atlantic-Lubes-web-header-4.webp"; // Header image
-import './index.css'; // Importing custom CSS
 import { BounceLoader } from 'react-spinners';
 
 interface InventoryItem {
@@ -22,13 +21,12 @@ interface Category {
 const InventoryDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [itemData, setItemData] = useState<InventoryItem | null>(null);
-    const [categories, setCategories] = useState<Category[]>([]); // State for categories
-    const [loading, setLoading] = useState(true); // State for loading
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showCategories, setShowCategories] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-    // Update window width on resize
     useEffect(() => {
         const handleResize = () => {
             setWindowWidth(window.innerWidth);
@@ -66,30 +64,29 @@ const InventoryDetail: React.FC = () => {
         };
 
         fetchItemDetails();
-        fetchCategories(); // Call to fetch categories
+        fetchCategories();
     }, [id]);
 
     if (loading) {
         return (
-          <div style={loadingContainerStyle}>
-          <BounceLoader color="#36D7B7" loading={loading} size={60} />
-      </div>
+            <div className="flex justify-center items-center h-screen">
+                <BounceLoader color="#36D7B7" loading={loading} size={60} />
+            </div>
         );
     }
 
-    if (error) return <div>Error: {error}</div>;
-    if (!itemData) return <div>No item data found</div>;
+    if (error) return <div className="text-red-500 text-center">{error}</div>;
+    if (!itemData) return <div className="text-center">No item data found</div>;
 
     return (
-        <div style={containerStyle}>
-            <img src={img} alt="Header" style={{ width: '100%', height: "30rem", objectFit: "cover" }} className='image' />
+        <div className="bg-white text-left min-h-screen">
+            <img src={img} alt="Header" className="w-full h-80 object-cover rounded-b-lg shadow-md" />
 
-            <div style={{ ...layoutStyle, flexDirection: showCategories || windowWidth < 768 ? 'column' : 'row' }}>
-                {/* Show menu button only on small screens */}
+            <div className={`flex ${showCategories || windowWidth < 768 ? 'flex-col' : 'flex-row'} p-4`}>
                 {windowWidth < 768 && (
-                    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+                    <div className="flex justify-center w-full mb-4">
                         <button
-                            style={menuButtonStyle}
+                            className="p-2 bg-blue-600 text-white rounded-full shadow-lg transition duration-300 hover:bg-blue-500"
                             onClick={() => setShowCategories(prev => !prev)}
                         >
                             {showCategories ? '✕' : '☰'}
@@ -97,17 +94,18 @@ const InventoryDetail: React.FC = () => {
                     </div>
                 )}
 
-                {/* Categories Displayed Above Items */}
                 {(windowWidth >= 768 || showCategories) && (
-                    <div style={categoriesStyle}>
-                        <h2 style={hstyle}>Categories</h2>
-                        <ul style={categoriesListStyle}>
+                    <div className="bg-white py-4 px-2 w-full md:w-1/4 lg:w-1/6">
+                        <h2 className="text-xl font-bold mb-2 text-gray-800">Categories</h2>
+                        <ul className="list-none">
                             {categories.length === 0 ? (
-                                <li>No categories found.</li>
+                                <li className="text-gray-600">No categories found.</li>
                             ) : (
                                 categories.map((category) => (
-                                    <li key={category.id} style={{ marginLeft: "1rem" }}>
-                                        <Link to={`/category/${category.id}`}>{category.name}</Link>
+                                    <li key={category.id} className="my-1">
+                                        <Link to={`/category/${category.id}`} className="block p-2 hover:bg-blue-50 rounded hover:text-blue-500">
+                                            {category.name}
+                                        </Link>
                                     </li>
                                 ))
                             )}
@@ -115,16 +113,17 @@ const InventoryDetail: React.FC = () => {
                     </div>
                 )}
 
-                <div className="inventory-detail-container">
-                    <div className="inventory-header">
-                        <img src={itemData.image} alt={itemData.inventory_name} />
-                        <div className="inventory-info">
-                            <h1>{itemData.inventory_name}</h1>
-                            <p>{itemData.description}</p>
-                            {renderList('Recommendations', itemData.recommendations)}
-                            {renderList('Application', itemData.application)}
-                            {renderList('Performance', itemData.performance)}
-                            {renderList('Properties', itemData.properties)}
+                <div className="inventory-detail-container w-full md:w-3/4 lg:w-5/6 px-4 md:px-8 py-4">
+                    <div className="flex flex-col overflow-hidden bg-white ">
+                        <img src={itemData.image} alt={itemData.inventory_name} className="w-full h-64 md:h-80 object-cover" />
+                        <div className="inventory-info p-4">
+                            <h1 className="text-2xl font-bold text-gray-800">{itemData.inventory_name}</h1>
+                            <p className="text-gray-600 mt-2">{itemData.description}</p>
+                            {renderStyledList('Application', itemData.application)}
+                            {renderStyledList('Performance', itemData.performance)}
+                            {renderStyledList('Properties', itemData.properties)}
+                            <h2 className="text-lg font-semibold text-gray-800 border-b pb-2 mt-2">Recommendations</h2>
+                            <p className='text-gray-600 mt-2'>{itemData.recommendations}</p>
                         </div>
                     </div>
                 </div>
@@ -133,68 +132,22 @@ const InventoryDetail: React.FC = () => {
     );
 };
 
-// Helper function to render array data as a list
-const renderList = (title: string, items: string[] | null) => (
-    <div className="section">
-        <h2>{title}</h2>
+// Helper function to render array data as a styled list
+const renderStyledList = (title: string, items: string[] | null) => (
+    <div className="section mt-4">
+        <h2 className="text-lg font-semibold text-gray-800 border-b pb-2 mb-2">{title}</h2>
         {Array.isArray(items) && items.length > 0 ? (
-            <ul>
+            <ul className="list-none text-gray-600 space-y-1">
                 {items.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index} className="bg-gray-200 p-2 rounded-md hover:bg-gray-300 transition duration-200">
+                        {item}
+                    </li>
                 ))}
             </ul>
         ) : (
-            <p>No {title.toLowerCase()} available</p>
+            <p className="text-gray-500">No {title.toLowerCase()} available</p>
         )}
     </div>
 );
-
-// Custom styles
-const containerStyle: React.CSSProperties = {
-    textAlign: 'left',
-};
-
-const hstyle: React.CSSProperties = {
-    margin: "0",
-    fontSize: "1.2rem",
-    fontWeight: "bold",
-};
-
-const layoutStyle: React.CSSProperties = {
-    display: 'flex',
-};
-
-const loadingContainerStyle: React.CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-};
-
-const menuButtonStyle: React.CSSProperties = {
-    display: 'block',
-    padding: '0.5rem 1rem',
-    margin: '1rem 0',
-    border: 'none',
-    borderRadius: '50%',
-    backgroundColor: '#007BFF',
-    color: '#fff',
-    cursor: 'pointer',
-    width: "3rem",
-    height: "3rem",
-};
-
-const categoriesStyle: React.CSSProperties = {
-    padding: '1rem',
-    marginTop:"5rem",
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-};
-
-const categoriesListStyle: React.CSSProperties = {
-    listStyleType: 'none',
-    padding: 0,
-};
 
 export default InventoryDetail;
