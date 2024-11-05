@@ -18,6 +18,8 @@ import Login from './components/auth/Login';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Sidebar from './components/sidebar/Sidebar';
 
+import CertificatesPage from './pages/Certificates/index';
+
 
 
 const App: React.FC = () => {
@@ -30,7 +32,7 @@ const App: React.FC = () => {
                     
                     <Route path="/contact" element={<Contact />} />
                     <Route path="/products" element={<Product />} />
-                    
+                    <Route path="/certificates" element={<CertificatesPage/>}/>
                     <Route path="/category/:id" element={<Lubricants />} />
                     <Route path="/inventory/:id" element={<InventoryDetail />} />
                     <Route path="/login" element={<Login />} />
