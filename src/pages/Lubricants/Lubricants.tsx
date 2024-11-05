@@ -17,10 +17,12 @@ interface Category {
 const CategoryDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [items, setItems] = useState<InventoryItem[]>([]);
+    const [filteredItems, setFilteredItems] = useState<InventoryItem[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showCategories, setShowCategories] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     // Update window width on resize
@@ -35,20 +37,16 @@ const CategoryDetails: React.FC = () => {
         };
     }, []);
 
-    // Fetch inventory items for the selected category
+    // Fetch inventory items and categories for the selected category
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                console.log(`Fetching items for category ID: ${id}`);
                 const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/inventory?categoryId=${id}`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                console.log('Fetched items:', data);
                 setItems(data);
+                setFilteredItems(data); // Initialize filtered items with all items
             } catch (error) {
-                console.error('Error fetching items:', error);
                 setError('Error fetching items');
             } finally {
                 setLoading(false);
@@ -58,14 +56,10 @@ const CategoryDetails: React.FC = () => {
         const fetchCategories = async () => {
             try {
                 const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/category`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
-                console.log('Fetched categories:', data);
                 setCategories(data);
             } catch (error) {
-                console.error('Error fetching categories:', error);
                 setError('Error fetching categories');
             }
         };
@@ -74,70 +68,100 @@ const CategoryDetails: React.FC = () => {
         fetchCategories();
     }, [id]);
 
+    // Filter items based on search term
+    useEffect(() => {
+        if (searchTerm === '') {
+            setFilteredItems(items);
+        } else {
+            setFilteredItems(
+                items.filter(item =>
+                    item.inventory_name.toLowerCase().includes(searchTerm.toLowerCase())
+                )
+            );
+        }
+    }, [searchTerm, items]);
+
     return (
-        <div className="text-left">
-            <img src={img} className="w-full h-96 object-cover" />
+        <div className="text-left bg-white">
+            <img src={img} className="w-full h-80 object-cover mb-8" />
 
             <div className={`flex ${showCategories || windowWidth < 768 ? 'flex-col' : 'flex-row'}`}>
-                {/* Show menu button only on small screens */}
+                {/* Toggle button for categories on small screens */}
                 {windowWidth < 768 && (
-                    <div className="w-full flex justify-center">
+                    <div className="w-full flex justify-center mb-4">
                         <button
-                            className="block p-2 m-4 rounded-full bg-blue-500 text-white cursor-pointer w-12 h-12"
-                            onClick={() => setShowCategories(prev => !prev)}
+                            className="p-2 rounded-full bg-blue-600 text-white w-10 h-10 flex items-center justify-center"
+                            onClick={() => setShowCategories((prev) => !prev)}
                         >
                             {showCategories ? '✕' : '☰'}
                         </button>
                     </div>
                 )}
 
-                {/* Categories Displayed Above Items */}
+                {/* Categories List */}
                 {(windowWidth >= 768 || showCategories) && (
-                    <div className="p-4 mt-8 flex flex-col items-center flex-1">
-                        <h2 className="m-0 text-lg font-bold">Categories</h2>
-                        <ul className="list-none p-0">
+                    <div className="p-4 bg-white mt-4 mx-auto w-full max-w-xs">
+                        <h2 className="text-lg font-bold text-black mb-4">Categories</h2>
+                        <ul className="space-y-2">
                             {loading ? (
                                 <li>Loading categories...</li>
                             ) : error ? (
-                                <li>{error}</li>
+                                <li className="text-red-500">{error}</li>
                             ) : (
-                                categories.length === 0 ? (
-                                    <li>No categories found.</li>
-                                ) : (
-                                    categories.map((category) => (
-                                        <li key={category.id} className="ml-4">
-                                            <Link to={`/category/${category.id}`} className="text-blue-600 hover:underline">{category.name}</Link>
-                                        </li>
-                                    ))
-                                )
+                                categories.map((category) => (
+                                    <li key={category.id} className="text-black hover:text-blue-700">
+                                        <Link to={`/category/${category.id}`} className="block p-2 hover:bg-blue-50 rounded">
+                                            {category.name}
+                                        </Link>
+                                    </li>
+                                ))
                             )}
                         </ul>
                     </div>
                 )}
 
-                <div className="grid grid-cols-[repeat(auto-fill,_minmax(245px,_1fr))] gap-4 p-8 w-5/6 flex-7">
+                {/* Search Bar */}
+                <div>
+                <div className="p-4 w-full max-w-sm mx-auto">
+                    <input
+                        type="text"
+                        placeholder="Search for items..."
+                        className="w-full p-2 border rounded"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+
+                {/* Items Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 w-full flex-1">
                     {loading ? (
-                        <p>Loading items...</p>
+                        <p className="text-center col-span-full text-gray-500">Loading items...</p>
                     ) : error ? (
-                        <p>{error}</p>
+                        <p className="text-center col-span-full text-red-500">{error}</p>
+                    ) : filteredItems.length === 0 ? (
+                        <p className="text-center col-span-full text-gray-500">No items found in this category.</p>
                     ) : (
-                        items.length === 0 ? (
-                            <p>No items found in this category.</p>
-                        ) : (
-                            items.map((item) => (
-                                <Link key={item.id} to={`/inventory/${item.id}`} className="no-underline">
-                                    <div className="p-4 text-left">
+                        filteredItems.map((item) => (
+                            <Link key={item.id} to={`/inventory/${item.id}`} className="group">
+                                <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 h-72 hover:bg-black">
+                                    <div className="relative overflow-hidden">
                                         <img
                                             src={item.image}
                                             alt={item.inventory_name}
-                                            className="w-full h-40 object-cover"
+                                            className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity duration-300"
                                         />
-                                        <h3>{item.inventory_name}</h3>
+                                        {/* Overlay */}
+                                        <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 text-white font-semibold text-lg">
+                                        </div>
                                     </div>
-                                </Link>
-                            ))
-                        )
+                                    <div className="p-4">
+                                        <h3 className="text-lg font-semibold text-gray-800 group-hover:text-white text-center transition-colors ">{item.inventory_name}</h3>
+                                    </div>
+                                </div>
+                            </Link>
+                        ))
                     )}
+                </div>
                 </div>
             </div>
         </div>
