@@ -92,7 +92,7 @@ const Home: React.FC = () => {
             <p className="text-md text-left mb-3">We follow a rule of one distributor per country, ensuring exclusive rights and support for our partners. By becoming a SCHMIERÖL distributor, you join a global network that is committed to excellence and quality. </p>
           </div>
           <button
-            className="bg-transparent text-white font-semibold py-0 px-12 rounded-lg border-2 border-white hover:bg-black hover:border-gray-500 transition"
+            className="bg-transparent text-white font-semibold py-0 px-12 rounded-lg border-2 border-white hover:bg-white hover:text-black hover:border-gray-500 transition h-24"
             onClick={() => alert("Callback requested!")}
           >
             Request a Callback
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
           </p>
           <button
             className="bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-400 hover:text-black transition"
-            onClick={() => alert("Button clicked!")}
+            onClick={() => navigate('/certificates')}
           >
             Certification & Approvals
           </button>
