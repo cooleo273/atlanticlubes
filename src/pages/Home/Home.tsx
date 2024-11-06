@@ -22,16 +22,11 @@ const Home: React.FC = () => {
   }, []);
 
   // Scroll to top function with smoother animation
-  const scrollToTop = () => {
-    const scrollStep = -window.scrollY / 50; // Adjust for slower scrolling
-    const scrollInterval = () => {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep);
-        requestAnimationFrame(scrollInterval);
-      }
-    };
-    requestAnimationFrame(scrollInterval);
-  };
+  // Scroll to top function using native smooth scrolling
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 
   // WhatsApp Click Handler
   const openWhatsApp = () => {
