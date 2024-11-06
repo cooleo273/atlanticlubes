@@ -141,9 +141,9 @@ const LubricantsList: React.FC = () => {
       </ul>
 
       {loading ? (
-        <div className="loader">
-          <ClipLoader color="#36d7b7" />
-        </div>
+       <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
+       <ClipLoader size={50} color="#007bff" />
+   </div>
       ) : (
         editingItem && (
           <div className="edit-form">

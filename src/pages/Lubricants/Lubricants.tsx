@@ -77,9 +77,9 @@ const CategoryDetails: React.FC = () => {
     // Display loading spinner if data is loading
     if (loading) {
         return (
-            <div className="flex justify-center items-center h-screen">
-                <ClipLoader color="#36D7B7" loading={loading} size={60} />
-            </div>
+            <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
+            <ClipLoader size={50} color="#007bff" />
+        </div>
         );
     }
 

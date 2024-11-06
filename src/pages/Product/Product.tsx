@@ -38,13 +38,20 @@ const Product: React.FC = () => {
     );
 
     return (
-        <div className="flex flex-col items-center">
+        <div className="relative flex flex-col items-center min-h-screen">
             {/* Background Image */}
             <img
                 src={img}
                 alt="Background"
                 className="w-full h-80 object-cover mb-8"
             />
+
+            {/* Loading Overlay */}
+            {loading && (
+                <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
+                    <ClipLoader size={50} color="#007bff" />
+                </div>
+            )}
 
             {/* Search Input */}
             <input
@@ -57,11 +64,7 @@ const Product: React.FC = () => {
 
             {/* Categories Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 w-full max-w-7xl">
-                {loading ? (
-                    <div className='flex items-center justify-center w-full'>
-                    <ClipLoader size={30}/>
-                    </div>
-                ) : error ? (
+                {error ? (
                     <p className="text-center col-span-full text-red-500">{error}</p>
                 ) : (
                     filteredCategories.length > 0 ? (
@@ -69,7 +72,7 @@ const Product: React.FC = () => {
                             <a
                                 key={category.id}
                                 href={`/category/${category.id}`}
-                                className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300  hover:bg-black"
+                                className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-black"
                             >
                                 <div className="overflow-hidden rounded-t-lg ">
                                     <img
