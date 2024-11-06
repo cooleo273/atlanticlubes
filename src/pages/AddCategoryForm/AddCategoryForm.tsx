@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import BounceLoader from "react-spinners/BounceLoader"; // Import BounceLoader
+import ClipLoader from "react-spinners/ClipLoader"; // Import ClipLoader
 
 const AddCategoryForm: React.FC = () => {
   const [categoryName, setCategoryName] = useState("");
@@ -65,7 +65,7 @@ const AddCategoryForm: React.FC = () => {
         />
         <button type="submit" disabled={loading} style={buttonStyle}>
           {loading ? (
-            <BounceLoader color="#fff" size={24} />
+            <ClipLoader color="#fff" size={24} />
           ) : (
             "Add Category"
           )}

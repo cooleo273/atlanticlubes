@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import img from '../../assets/mt-1869-gallery-09bg.jpg';
+import { ClipLoader } from 'react-spinners';
 
 interface InventoryItem {
     id: number;
@@ -104,7 +105,7 @@ const CategoryDetails: React.FC = () => {
                         <h2 className="text-lg font-bold text-black mb-4">Categories</h2>
                         <ul className="space-y-2">
                             {loading ? (
-                                <li>Loading categories...</li>
+                                <ClipLoader/>
                             ) : error ? (
                                 <li className="text-red-500">{error}</li>
                             ) : (

@@ -66,6 +66,7 @@
     .image {
         width: 100%; /* Make the image responsive */
         height: auto;
+        display: none;
     }
     
     .text-container {

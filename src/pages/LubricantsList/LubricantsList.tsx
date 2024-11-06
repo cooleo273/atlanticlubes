@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import BounceLoader from 'react-spinners/BounceLoader'; // Import the loader
+import ClipLoader from 'react-spinners/ClipLoader'; // Import the loader
 import './index.css';
 
 
@@ -133,7 +133,7 @@ const LubricantsList: React.FC = () => {
 
             {loading ? (
                 <div className="loader">
-                    <BounceLoader color="#36d7b7" />
+                    <ClipLoader color="#36d7b7" />
                 </div>
             ) : (
                 editingItem && (
@@ -183,7 +183,7 @@ const LubricantsList: React.FC = () => {
                         <input type="file" onChange={handleImageChange} accept="image/*" />
                         {isUpdating ? (
     <div className="loader">
-        <BounceLoader color="#36d7b7" size={50} />
+        <ClipLoader color="#36d7b7" size={50} />
     </div>
 ) : (
     <button onClick={handleUpdate}>Update</button>

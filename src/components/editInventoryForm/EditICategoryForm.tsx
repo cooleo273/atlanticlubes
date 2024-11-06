@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import BounceLoader from "react-spinners/BounceLoader"; // Import BounceLoader
+import ClipLoader from "react-spinners/ClipLoader"; // Import ClipLoader
 
 interface Category {
   id: number;
@@ -142,14 +142,14 @@ const EditCategoryForm: React.FC = () => {
               onClick={handleUpdate}
               disabled={loading} // Disable button while loading
             >
-              {loading ? <BounceLoader color="#fff" size={24} /> : "Update"}
+              {loading ? <ClipLoader color="#fff" size={24} /> : "Update"}
             </button>
             <button
               onClick={handleDelete}
               style={deleteButtonStyle}
               disabled={loading} // Disable button while loading
             >
-              {loading ? <BounceLoader color="#fff" size={24} /> : "Delete"}
+              {loading ? <ClipLoader color="#fff" size={24} /> : "Delete"}
             </button>
           </div>
         </div>

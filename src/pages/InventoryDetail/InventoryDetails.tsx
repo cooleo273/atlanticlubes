@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import img from "../../assets/Atlantic-Lubes-web-header-4.webp"; // Header image
-import { BounceLoader } from 'react-spinners';
+import { ClipLoader } from 'react-spinners';
 
 interface InventoryItem {
     inventory_name: string;
@@ -70,7 +70,7 @@ const InventoryDetail: React.FC = () => {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-screen">
-                <BounceLoader color="#36D7B7" loading={loading} size={60} />
+                <ClipLoader color="#36D7B7" loading={loading} size={60} />
             </div>
         );
     }
@@ -80,7 +80,6 @@ const InventoryDetail: React.FC = () => {
 
     return (
         <div className="bg-white text-left min-h-screen">
-            <img src={img} alt="Header" className="w-full h-80 object-cover rounded-b-lg shadow-md" />
 
             <div className={`flex ${showCategories || windowWidth < 768 ? 'flex-col' : 'flex-row'} p-4`}>
                 {windowWidth < 768 && (
@@ -115,7 +114,7 @@ const InventoryDetail: React.FC = () => {
 
                 <div className="inventory-detail-container w-full md:w-3/4 lg:w-5/6 px-4 md:px-8 py-4">
                     <div className="flex flex-col overflow-hidden bg-white ">
-                        <img src={itemData.image} alt={itemData.inventory_name} className="w-full h-64 md:h-80 object-cover" />
+                        <img src={itemData.image} alt={itemData.inventory_name} className="w-full h-64 md:h-80 object-contain" />
                         <div className="inventory-info p-4">
                             <h1 className="text-2xl font-bold text-gray-800">{itemData.inventory_name}</h1>
                             <p className="text-gray-600 mt-2">{itemData.description}</p>

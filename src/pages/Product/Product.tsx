@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import yourImage from '../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg'; // Optional default image
 import img from '../../assets/mt-1869-gallery-09bg.jpg';
+import { ClipLoader } from 'react-spinners';
 
 interface Category {
     id: number;
@@ -57,7 +58,9 @@ const Product: React.FC = () => {
             {/* Categories Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 w-full max-w-7xl">
                 {loading ? (
-                    <p className="text-center col-span-full text-gray-500">Loading categories...</p>
+                    <div className='flex items-center justify-center w-full'>
+                    <ClipLoader size={30}/>
+                    </div>
                 ) : error ? (
                     <p className="text-center col-span-full text-red-500">{error}</p>
                 ) : (

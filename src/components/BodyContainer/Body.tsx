@@ -45,7 +45,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
         >
             {image && (
                 <div
-                    className="flex-1 bg-cover bg-center h-[35rem]"
+                    className=" image flex-1 bg-cover bg-center h-[35rem]"
                     style={{
                         backgroundImage: `url(${image})`,
                         backgroundSize: 'cover',
@@ -55,7 +55,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
             )}
             <div className="text-container">
                 <h2
-                    className="title-header"
+                    className="title-header  text-2xl font-bold"
                     style={{
                         color: titleColor || "inherit",
                         backgroundColor: titleBackgroundColor || "transparent",

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import BounceLoader from "react-spinners/BounceLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 
 // Usage in your component
 
@@ -148,7 +148,7 @@ const InventoryDetailForm = () => {
           required
         />
         <button type="submit" disabled={loading} style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-          {loading ? <BounceLoader color="#36D7B7" loading={loading} size={50} /> : "Add Inventory Item"}
+          {loading ? <ClipLoader color="#36D7B7" loading={loading} size={50} /> : "Add Inventory Item"}
         </button>
       </form>
     </div>
