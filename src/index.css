@@ -6,14 +6,17 @@
 body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
 }
 
 * {
   font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   line-height: 1.8;
+  scroll-behavior: smooth;
 }
 
+/* Apply smooth scrolling globally */
 html {
   scroll-behavior: smooth;
 }

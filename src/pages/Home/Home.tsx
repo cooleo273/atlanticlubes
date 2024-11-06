@@ -63,20 +63,21 @@ const scrollToTop = () => {
       </div>
 
       {/* About Us Section */}
-      <div id="about" className="py-12 px-20 bg-white rounded-lg mx-4 md:mx-8 lg:mx-16 transition-shadow duration-300">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">About Us</h2>
-        <p className="text-md text-gray-600 mb-6">
-          SCHMIERÖL offers a wide variety of products and services, ranging from supply, manufacturing, and distribution for the entire lubricants industry spectrum. We are dedicated to providing comprehensive solutions to meet the specific needs of our clients across various industries, ensuring quality, efficiency, and environmental stewardship in every product.
-        </p>
-        <h3 className="text-2xl font-semibold text-gray-800 mb-2">What is lubrication, and why is it important?</h3>
-        <p className="text-md text-gray-600 mb-4">
-          Lubrication can be defined as the application of oily or greasy substances, also called ‘lubricants’, to reduce friction and allow moving machine parts to slide smoothly past each other. It is a critical component in the functioning of machines, vehicles, and industrial equipment, as it not only reduces wear and tear but also aids in heat dissipation, corrosion prevention, and energy efficiency.
-        </p>
-        <h3 className="text-2xl font-semibold text-gray-900 mt-6 mb-2">Why Our Products?</h3>
-        <p className="text-md text-gray-700 mb-8">
-          SCHMIERÖL products are blended with the highest quality of base oil and OEM-approved additive packages. Our products are certified by different world-renowned organizations, like the American Petroleum Institute (API), which guarantees that we meet strict industry standards. With a strong focus on research and development, we ensure that our products deliver exceptional performance under various conditions, providing peace of mind and extending the lifespan of your equipment.
-        </p>
-      </div>
+      <div id="about" className="py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-10 lg:py-12 lg:px-20 bg-white rounded-lg mx-2 sm:mx-4 md:mx-8 lg:mx-16 transition-shadow duration-300">
+  <h2 className="text-3xl font-bold text-gray-800 mb-4">About Us</h2>
+  <p className="text-md text-gray-600 mb-6">
+    SCHMIERÖL offers a wide variety of products and services, ranging from supply, manufacturing, and distribution for the entire lubricants industry spectrum. We are dedicated to providing comprehensive solutions to meet the specific needs of our clients across various industries, ensuring quality, efficiency, and environmental stewardship in every product.
+  </p>
+  <h3 className="text-2xl font-semibold text-gray-800 mb-2">What is lubrication, and why is it important?</h3>
+  <p className="text-md text-gray-600 mb-4">
+    Lubrication can be defined as the application of oily or greasy substances, also called ‘lubricants’, to reduce friction and allow moving machine parts to slide smoothly past each other. It is a critical component in the functioning of machines, vehicles, and industrial equipment, as it not only reduces wear and tear but also aids in heat dissipation, corrosion prevention, and energy efficiency.
+  </p>
+  <h3 className="text-2xl font-semibold text-gray-900 mt-6 mb-2">Why Our Products?</h3>
+  <p className="text-md text-gray-700 mb-8">
+    SCHMIERÖL products are blended with the highest quality of base oil and OEM-approved additive packages. Our products are certified by different world-renowned organizations, like the American Petroleum Institute (API), which guarantees that we meet strict industry standards. With a strong focus on research and development, we ensure that our products deliver exceptional performance under various conditions, providing peace of mind and extending the lifespan of your equipment.
+  </p>
+</div>
+
       
       {/* Distributor Section */}
       <div className="relative flex items-center justify-center h-[400px] text-white bg-cover bg-center" style={{ backgroundImage: `url(${img2})` }}>
