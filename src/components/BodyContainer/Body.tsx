@@ -48,7 +48,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                     className=" image flex-1 bg-cover bg-center h-[35rem]"
                     style={{
                         backgroundImage: `url(${image})`,
-                        backgroundSize: 'cover',
+                        backgroundSize: 'contain',
                         backgroundPosition: 'center',
                     }}
                 />

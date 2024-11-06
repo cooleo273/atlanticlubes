@@ -23,7 +23,7 @@ const Home: React.FC = () => {
 
   // Scroll to top function with smoother animation
   const scrollToTop = () => {
-    const scrollStep = -window.scrollY / 150; // Adjust for slower scrolling
+    const scrollStep = -window.scrollY / 50; // Adjust for slower scrolling
     const scrollInterval = () => {
       if (window.scrollY !== 0) {
         window.scrollBy(0, scrollStep);
@@ -35,8 +35,8 @@ const Home: React.FC = () => {
 
   // WhatsApp Click Handler
   const openWhatsApp = () => {
-    const phoneNumber = "123456789"; // Replace with your WhatsApp number
-    window.open(`https://wa.me/${phoneNumber}`, "_blank");
+     // Replace with your WhatsApp number
+    window.open(`https://api.whatsapp.com/send/?phone=491788854076&text&type=phone_number&app_absent=0`, "_blank");
   };
 
   return (

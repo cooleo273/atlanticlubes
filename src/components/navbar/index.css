@@ -8,3 +8,7 @@
     position: relative; /* Use relative positioning */
     box-shadow: none; /* Ensure box shadow is removed */
 }
+
+.class{
+    flex: 3;
+}

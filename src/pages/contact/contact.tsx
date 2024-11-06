@@ -80,7 +80,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="flex items-center space-x-2">
-              <CheckSquare className="text-blue-500" />
+            
               <input
                 type="checkbox"
                 name="notARobot"
@@ -102,14 +102,14 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Embedded Google Map */}
-        <div className="map-container flex-1">
+        <div className="flex-1" style={{height:'32rem'}}>
           <iframe
             title="Google Map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.8696803425675!2d144.95605421552427!3d-37.8172091797516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f11fd81%3A0x5045675218ceed11!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2s!4v1617946844145!5m2!1sen!2s"
             width="100%"
             height="100%"
-            className="w-full h-80 rounded-lg shadow-lg"
-            allowFullScreen={false}
+            className="w-full h-full rounded-lg shadow-lg"
+            
             loading="lazy"
           ></iframe>
         </div>
