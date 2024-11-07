@@ -50,7 +50,7 @@ const Navbar: React.FC = () => {
 
       {/* Menu Button for Mobile */}
       {isMobile && (
-        <button onClick={toggleMenu} className="text-2xl cursor-pointer">
+        <button onClick={toggleMenu} className="text-md cursor-pointer px-2 py-1 bg-black">
           {isMenuOpen ? "✕" : "☰"}
         </button>
       )}
