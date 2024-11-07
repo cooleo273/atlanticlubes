@@ -50,6 +50,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                         backgroundImage: `url(${image})`,
                         backgroundSize: 'contain',
                         backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
                     }}
                 />
             )}
