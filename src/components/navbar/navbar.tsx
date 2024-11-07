@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`px-4 py-4 flex items-center ${
+      className={`px-4 py-4 flex items-center w-full gap-0 lg:gap-20 ${
         isMenuOpen ? "h-screen bg-white" : "bg-transparent"
       } transition-all duration-300`}
     >
@@ -60,7 +60,7 @@ const Navbar: React.FC = () => {
       {isMobile && (
         <button
           onClick={toggleMenu}
-          className={`text-md cursor-pointer px-2 py-1 bg-black text-white fixed top-4 right-4 z-50`}
+          className={`text-md cursor-pointer px-2 py-1 text-black hover:bg-white bg-white fixed top-4 right-4 z-50 font-bold `}
         >
           {isMenuOpen ? "✕" : "☰"}
         </button>
@@ -73,13 +73,13 @@ const Navbar: React.FC = () => {
             className={`flex ${
               isMobile && isMenuOpen
                 ? "flex-col items-center w-full h-full absolute top-0 left-0 bg-white p-4"
-                : "flex-row gap-6 items-center"
+                : "flex-row gap-6 items-center justify-around w-2/3 px-20"
             }`}
           >
             <li className="my-4">
               <Link
                 to="/"
-                className="text-black no-underline"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
                 onClick={handleLinkClick}
               >
                 Home
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <a
                 href="/#about"
-                className="text-black no-underline"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
                 onClick={handleLinkClick}
               >
                 About
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/contact"
-                className="text-black no-underline"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
                 onClick={handleLinkClick}
               >
                 Contact Us
@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/products"
-                className="text-black no-underline"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
                 onClick={handleLinkClick}
               >
                 Products
