@@ -40,11 +40,11 @@ const AddCategoryForm: React.FC = () => {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop:"4rem" }}>
       <h1>Add Category</h1>
       <form
         onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", width: "60%", gap: "1rem" }}
+        style={{ display: "flex", flexDirection: "column", width: "60%", gap: "2rem" }}
       >
         <input
           type="text"
@@ -52,11 +52,12 @@ const AddCategoryForm: React.FC = () => {
           value={categoryName}
           onChange={(e) => setCategoryName(e.target.value)}
           required
-          style={{ height: "2.5rem", border: "none", borderBottom: "1px solid" }}
+          style={{ height: "2.5rem", border: "none", borderBottom: "1px solid", padding:"0rem" }}
         />
         <input
           type="file"
           accept="image/*"
+          style={{padding: "0rem"}}
           onChange={(e) => {
             if (e.target.files && e.target.files[0]) {
               setImageFile(e.target.files[0]);
@@ -77,7 +78,7 @@ const AddCategoryForm: React.FC = () => {
 
 const buttonStyle: React.CSSProperties = {
   height: "2.5rem",
-  backgroundColor: "#007BFF",
+  backgroundColor: "#3b3b98",
   color: "#fff",
   border: "none",
   borderRadius: "5px",
