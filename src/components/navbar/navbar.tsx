@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import img from "../../assets/Atlanticlubes-logo.png (1).webp";
 import { Mail, Phone } from "lucide-react";
 import "./index.css";
+
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -34,30 +35,33 @@ const Navbar: React.FC = () => {
     >
       {/* Logo */}
       <Link to="/" onClick={handleLinkClick} className="flex-shrink-0 flex-1">
-      <div
-        style={{
-          backgroundImage: `url("${img}")` ,
-          width: "8rem",
-          height: "64px",
-          backgroundSize: "contain",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          pointerEvents: "none", // Prevents interaction with the image itself
-        }}
-        className="h-16" // Adjust height if needed
-      ></div>
-    </Link>
+        <div
+          style={{
+            backgroundImage: `url("${img}")`,
+            width: "8rem",
+            height: "64px",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            pointerEvents: "none",
+          }}
+          className="h-16"
+        ></div>
+      </Link>
 
       {/* Menu Button for Mobile */}
       {isMobile && (
-        <button onClick={toggleMenu} className="text-md cursor-pointer px-2 py-1 bg-black">
+        <button
+          onClick={toggleMenu}
+          className={`text-md cursor-pointer px-2 py-1 bg-black text-white fixed top-4 right-4 z-50`}
+        >
           {isMenuOpen ? "✕" : "☰"}
         </button>
       )}
 
       {/* Navigation Menu */}
       {(isMobile && isMenuOpen) || !isMobile ? (
-        <div className="flex justify-around class">
+        <div className="flex justify-around w-full">
           <ul
             className={`flex ${
               isMobile && isMenuOpen
@@ -124,8 +128,6 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       ) : null}
-
-      {/* Contact Info */}
     </nav>
   );
 };
