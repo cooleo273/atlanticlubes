@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from "react";
 import axios from "axios";
-import ClipLoader from "react-spinners/ClipLoader"; // Import ClipLoader
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface Category {
   id: number;
@@ -13,7 +13,8 @@ const EditCategoryForm: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [newName, setNewName] = useState("");
   const [newImage, setNewImage] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false); // State for loading spinner
+  const [updateLoading, setUpdateLoading] = useState(false); // Separate loading state for update
+  const [deleteLoading, setDeleteLoading] = useState(false); // Separate loading state for delete
 
   // Fetch categories for editing
   useEffect(() => {
@@ -44,7 +45,7 @@ const EditCategoryForm: React.FC = () => {
 
   const handleUpdate = async () => {
     if (!selectedCategory) return;
-    setLoading(true); // Start loader
+    setUpdateLoading(true); // Start update loader
 
     const formData = new FormData();
     formData.append("name", newName);
@@ -63,7 +64,7 @@ const EditCategoryForm: React.FC = () => {
       console.error("Update failed!", error);
       alert("Failed to update the category.");
     } finally {
-      setLoading(false); // Stop loader
+      setUpdateLoading(false); // Stop update loader
     }
   };
 
@@ -79,7 +80,7 @@ const EditCategoryForm: React.FC = () => {
 
     if (!confirmDelete) return;
 
-    setLoading(true); // Start loader
+    setDeleteLoading(true); // Start delete loader
     try {
       await axios.delete(
         `https://atlanticlubesbackend.vercel.app/api/category/${selectedCategory.id}`
@@ -93,7 +94,7 @@ const EditCategoryForm: React.FC = () => {
       console.error("Error deleting category:", error);
       alert("Failed to delete the category.");
     } finally {
-      setLoading(false); // Stop loader
+      setDeleteLoading(false); // Stop delete loader
     }
   };
 
@@ -140,16 +141,16 @@ const EditCategoryForm: React.FC = () => {
             <button
               style={updateButtonStyle}
               onClick={handleUpdate}
-              disabled={loading} // Disable button while loading
+              disabled={updateLoading} // Disable update button while loading
             >
-              {loading ? <ClipLoader color="#fff" size={24} /> : "Update"}
+              {updateLoading ? <ClipLoader color="#fff" size={24} /> : "Update"}
             </button>
             <button
               onClick={handleDelete}
               style={deleteButtonStyle}
-              disabled={loading} // Disable button while loading
+              disabled={deleteLoading} // Disable delete button while loading
             >
-              {loading ? <ClipLoader color="#fff" size={24} /> : "Delete"}
+              {deleteLoading ? <ClipLoader color="#fff" size={24} /> : "Delete"}
             </button>
           </div>
         </div>
