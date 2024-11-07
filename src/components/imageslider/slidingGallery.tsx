@@ -18,17 +18,7 @@ const HorizontalImageSlider: React.FC = () => {
         <div style={sliderContainerStyle}>
             <div style={sliderStyle}>
                 {duplicatedImages.map((image, index) => (
-                    <div
-                        key={index}
-                        style={{
-                            width:"100px",
-                            height:"100px",
-                            backgroundImage: `url(${image})`,
-                            backgroundSize: "contain",
-                            backgroundRepeat: "no-repeat",
-                            backgroundPosition: "center",
-                        }}
-                    ></div>
+                    <img key={index} src={image} alt={`Slide ${index + 1}`} style={imageStyle} />
                 ))}
             </div>
         </div>
@@ -45,18 +35,23 @@ const sliderContainerStyle: React.CSSProperties = {
 };
 
 const sliderStyle: React.CSSProperties = {
-    display: 'flex',
+    display: 'flex', // Use flexbox to manage alignment
     animation: 'scroll 30s linear infinite',
-
 };
 
+const imageStyle: React.CSSProperties = {
+    width: '100px', // Adjust size as needed
+    height: '100px',
+    objectFit: "contain",
+    marginRight: '5rem',
+};
 
-
-// Keyframes for scrolling effect
+// Add keyframes for scrolling effect
 const styles = `
 @keyframes scroll {
     0% { transform: translateX(0); }
-    100% { transform: translateX(-${images.length * 192}px); } /* Updated based on larger image width */
+    100% { transform: translateX(-${images.length * 105}px); } /* Adjust based on image width */
+}
 `;
 
 // Append styles to the head
