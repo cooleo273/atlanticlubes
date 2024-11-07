@@ -5,10 +5,6 @@ import img3 from "../../assets/mt-1869-gallery-09bg.jpg";
 import img2 from "../../assets/image-25.png";
 import "./index.css";
 
-// Left Arrow Component
-
-// Right Arrow Component
-
 const ImageSlider: React.FC = () => {
   const settings = {
     infinite: true,
@@ -25,46 +21,24 @@ const ImageSlider: React.FC = () => {
     <Slider {...settings}>
       <div>
         <div
-          style={{
-            ...sliderImageStyle,
-            backgroundImage: `url("${img1}")`,
-            backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          }}
+          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[45rem] bg-cover bg-center"
+          style={{ backgroundImage: `url(${img1})` }}
         ></div>
       </div>
       <div>
         <div
-          style={{
-            ...sliderImageStyle,
-            backgroundImage: `url("${img2}")`,
-            backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          }}
+          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[45rem] bg-cover bg-center"
+          style={{ backgroundImage: `url(${img2})` }}
         ></div>
       </div>
       <div>
         <div
-          style={{
-            ...sliderImageStyle,
-            backgroundImage: `url("${img2}")`,
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
-          }}
+          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[45rem] bg-cover bg-center"
+          style={{ backgroundImage: `url(${img3})` }}
         ></div>
       </div>
     </Slider>
   );
-};
-
-// Custom styles for the images
-const sliderImageStyle: React.CSSProperties = {
-  width: "100%",
-  height: "45rem",
-  objectFit: "cover",
 };
 
 export default ImageSlider;
