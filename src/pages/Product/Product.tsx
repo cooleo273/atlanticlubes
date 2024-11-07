@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import yourImage from '../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg'; // Optional default image
 import img from '../../assets/mt-1869-gallery-09bg.jpg';
 import { ClipLoader } from 'react-spinners';
 
@@ -7,6 +6,7 @@ interface Category {
     id: number;
     name: string;
     description?: string;
+    image?: string; // Optional image property
 }
 
 const Product: React.FC = () => {
@@ -22,6 +22,7 @@ const Product: React.FC = () => {
                 const response = await fetch('https://atlanticlubesbackend.vercel.app/api/category'); // Adjust your API URL
                 const data = await response.json();
                 setCategories(data);
+                console.log(data);
                 setLoading(false);
             } catch (error) {
                 setError('Error fetching categories');
@@ -76,9 +77,9 @@ const Product: React.FC = () => {
                             >
                                 <div className="overflow-hidden rounded-t-lg ">
                                     <img
-                                        src={yourImage}
+                                        src={category.image} // Use category image or fallback to a default image
                                         alt={category.name}
-                                        className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300 hover:opacity-70"
+                                        className="w-full h-40 object-contain group-hover:scale-105 transition-transform duration-300 hover:opacity-70"
                                     />
                                 </div>
                                 <div className="p-4 text-center">

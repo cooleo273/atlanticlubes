@@ -81,38 +81,10 @@ const InventoryDetail: React.FC = () => {
     return (
         <div className="bg-white text-left min-h-screen">
 
-            <div className={`flex ${showCategories || windowWidth < 768 ? 'flex-col' : 'flex-row'} p-4`}>
-                {windowWidth < 768 && (
-                    <div className="flex justify-center w-full mb-4">
-                        <button
-                            className="p-2 bg-blue-600 text-white rounded-full shadow-lg transition duration-300 hover:bg-blue-500"
-                            onClick={() => setShowCategories(prev => !prev)}
-                        >
-                            {showCategories ? '✕' : '☰'}
-                        </button>
-                    </div>
-                )}
+            <div className={`flex`}>
+                
 
-                {(windowWidth >= 768 || showCategories) && (
-                    <div className="bg-white py-4 px-2 w-full md:w-1/4 lg:w-1/6">
-                        <h2 className="text-xl font-bold mb-2 text-gray-800">Categories</h2>
-                        <ul className="list-none">
-                            {categories.length === 0 ? (
-                                <li className="text-gray-600">No categories found.</li>
-                            ) : (
-                                categories.map((category) => (
-                                    <li key={category.id} className="my-1">
-                                        <Link to={`/category/${category.id}`} className="block p-2 hover:bg-blue-50 rounded hover:text-blue-500">
-                                            {category.name}
-                                        </Link>
-                                    </li>
-                                ))
-                            )}
-                        </ul>
-                    </div>
-                )}
-
-                <div className="inventory-detail-container w-full md:w-3/4 lg:w-5/6 px-4 md:px-8 py-4">
+                <div className="inventory-detail-container w-full px-4 md:px-8 py-4">
                     <div className="flex flex-col overflow-hidden bg-white ">
                         <img src={itemData.image} alt={itemData.inventory_name} className="w-full h-64 md:h-80 object-contain" />
                         <div className="inventory-info p-4">

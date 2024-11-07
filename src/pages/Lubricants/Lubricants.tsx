@@ -100,7 +100,7 @@ const CategoryDetails: React.FC = () => {
                 )}
 
                 {(windowWidth >= 768 || showCategories) && (
-                    <div className="p-4 bg-white mt-4 mx-auto w-full max-w-xs">
+                    <div className="p-4 bg-white mt-4 w-full max-w-xs">
                         <h2 className="text-lg font-bold text-black mb-4">Categories</h2>
                         <ul className="space-y-2">
                             {error ? (
@@ -142,7 +142,7 @@ const CategoryDetails: React.FC = () => {
                                             <img
                                                 src={item.image}
                                                 alt={item.inventory_name}
-                                                className="w-full h-48 object-cover group-hover:opacity-80 transition-opacity duration-300"
+                                                className="w-full h-48 object-contain group-hover:opacity-80 transition-opacity duration-300"
                                             />
                                             <div className="absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 text-white font-semibold text-lg">
                                             </div>
