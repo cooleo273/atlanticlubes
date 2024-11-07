@@ -33,10 +33,10 @@ const CertificatesPage: React.FC = () => {
             {certificates.map((category, index) => (
                 <div key={index} className="mb-6">
                     <h2 className="text-xl font-bold mb-3">{category.category}</h2>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 w-2/3">
                         {category.items.map((item, idx) => (
                             <li key={idx} className="flex items-center justify-between border-b pb-2">
-                                <button onClick={() => openModal(item)} className="text-blue-500 bg-white hover:text-white">
+                                <button onClick={() => openModal(item)} className="text-black bg-white hover:text-white hover:bg-black">
                                     {item.name} Image
                                 </button>
                                 <a href={item.pdfLink} download className="text-blue-500  hover:text-blue-700">
