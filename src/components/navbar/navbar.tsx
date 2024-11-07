@@ -9,21 +9,28 @@ const Navbar: React.FC = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
+    setIsMenuOpen((prev) => !prev);
+    document.body.classList.toggle("overflow-hidden", !isMenuOpen);
   };
 
   const handleResize = () => {
     setIsMobile(window.innerWidth < 768);
+    if (window.innerWidth >= 768) {
+      document.body.classList.remove("overflow-hidden");
+      setIsMenuOpen(false);
+    }
   };
 
   const handleLinkClick = () => {
     setIsMenuOpen(false);
+    document.body.classList.remove("overflow-hidden");
   };
 
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+      document.body.classList.remove("overflow-hidden");
     };
   }, []);
 
