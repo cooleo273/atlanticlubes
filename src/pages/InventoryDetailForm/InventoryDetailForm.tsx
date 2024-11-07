@@ -147,8 +147,8 @@ const InventoryDetailForm = () => {
           accept="image/*"
           required
         />
-        <button type="submit" disabled={loading} style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
-          {loading ? <ClipLoader color="#36D7B7" loading={loading} size={50} /> : "Add Inventory Item"}
+        <button type="submit" disabled={loading} style={{display:"flex", justifyContent:"center", alignItems:"center"}} className="bg-violet-600">
+          {loading ? <ClipLoader color="#36D7B7" loading={loading} size={30} /> : "Add Inventory Item"}
         </button>
       </form>
     </div>

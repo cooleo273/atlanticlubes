@@ -76,7 +76,7 @@ const Login: React.FC = () => {
                         />
                     </div>
                     {error && <p className="error-message">{error}</p>}
-                    <button type="submit" disabled={loading} className='login-button w-full'>
+                    <button type="submit" disabled={loading} className='login-button w-full bg-violet-600'>
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>

@@ -31,7 +31,7 @@
   .inventory-list button {
     margin-left: 10px; /* Space between buttons */
     padding: 8px 12px; /* Padding for buttons */
-    background-color: #007bff; /* Blue background color */
+    background-color: #3b3b98; /* Blue background color */
     color: white; /* White text color */
     border: none; /* Remove border */
     border-radius: 4px; /* Rounded corners */
@@ -68,7 +68,7 @@
   
   .edit-form input:focus,
   .edit-form textarea:focus {
-    border-color: #007bff; /* Change border color on focus */
+    border-color: #3b3b98; /* Change border color on focus */
     outline: none; /* Remove default outline */
   }
   

@@ -30,13 +30,13 @@
   
   .add-inventory-form input:focus,
   .add-inventory-form textarea:focus {
-    border-color: #007bff; /* Change border color on focus */
+    border-color: #3b3b98; /* Change border color on focus */
     outline: none; /* Remove default outline */
   }
   
   .add-inventory-form button {
     padding: 10px; /* Inner padding for the button */
-    background-color: #007bff; /* Blue background color */
+    background-color: #3b3b98; /* Blue background color */
     color: white; /* White text color */
     border: none; /* Remove border */
     border-radius: 4px; /* Rounded corners */
@@ -68,7 +68,7 @@
 
 
 input[type="file"]::-webkit-file-upload-button {
-    background-color: #0056b3; /* Green background for button */
+    background-color: #3b3b98; /* Green background for button */
     color: white; /* Text color */
     border: none; /* Remove border */
     padding: 10px; /* Add padding */
