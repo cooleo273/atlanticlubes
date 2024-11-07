@@ -34,8 +34,19 @@ const Navbar: React.FC = () => {
     >
       {/* Logo */}
       <Link to="/" onClick={handleLinkClick} className="flex-shrink-0 flex-1">
-        <img src={img} alt="Logo" className="w-32 md:w-48" />
-      </Link>
+      <div
+        style={{
+          backgroundImage: `url("${img}")` ,
+          width: "8rem",
+          height: "64px",
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          pointerEvents: "none", // Prevents interaction with the image itself
+        }}
+        className="h-16" // Adjust height if needed
+      ></div>
+    </Link>
 
       {/* Menu Button for Mobile */}
       {isMobile && (
