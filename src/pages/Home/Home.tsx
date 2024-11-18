@@ -11,7 +11,7 @@ import { ArrowBigUpIcon, MessageCircleIcon } from "lucide-react"; // Import What
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(true);
   const { id } = useParams<{ id: string }>();
 
   // Toggle scroll-to-top button visibility based on scroll position
@@ -33,12 +33,25 @@ const Home: React.FC = () => {
 
     fetchItems();
   }, [id]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+    window.addEventListener("scroll", handleScroll);
   
-  // Scroll to top function with smoother animation
-  // Scroll to top function using native smooth scrolling
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
+
+// Scroll to top function with smoother animation
+// Scroll to top function using native smooth scrolling
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
 
   // WhatsApp Click Handler
   const openWhatsApp = () => {
