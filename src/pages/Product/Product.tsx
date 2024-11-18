@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import img from '../../assets/mt-1869-gallery-09bg.jpg';
+import img from '../../assets/ImageSlider/mt-1869-gallery-09bg.jpg';
 import { ClipLoader } from 'react-spinners';
 
 interface Category {

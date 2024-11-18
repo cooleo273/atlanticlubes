@@ -47,12 +47,13 @@ const CertificatesPage: React.FC = () => {
     };
 
     return (
-        <div className="p-8">
+        <div className='flex items-center justify-center'>
+        <div className="p-8 w-2/3">
             <h1 className="text-2xl font-semibold mb-4">Certificates</h1>
             {certificates.map((category, index) => (
                 <div key={index} className="mb-6">
                     <h2 className="text-xl font-bold mb-3">{category.category}</h2>
-                    <ul className="space-y-2 w-full sm:w-2/3">
+                    <ul className="space-y-2 w-2/3 lg:w-full">
                         {category.items.map((item, idx) => (
                             <li key={idx} className="flex flex-col lg:flex-row items-center  justify-between border-b pb-2 gap-2">
                                 <button onClick={() => openModal(item)} className="text-black bg-white hover:text-white hover:bg-black py-2 px-4 rounded-md">
@@ -92,6 +93,7 @@ const CertificatesPage: React.FC = () => {
                     )}
                 </Dialog.Panel>
             </Dialog>
+        </div>
         </div>
     );
 };

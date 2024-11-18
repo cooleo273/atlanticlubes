@@ -1,8 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
-import img1 from "../../assets/4th-01.jpg";
-import img3 from "../../assets/mt-1869-gallery-09bg.jpg";
-import img2 from "../../assets/image-25.png";
+import img1 from "../../assets/ImageSlider/4th-01.jpg";
+import img3 from "../../assets/ImageSlider/mt-1869-gallery-09bg.jpg";
+import img2 from "../../assets/ImageSlider/image-25.png";
 import "./index.css";
 
 const ImageSlider: React.FC = () => {
