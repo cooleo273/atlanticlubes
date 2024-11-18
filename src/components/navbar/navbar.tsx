@@ -68,18 +68,18 @@ const Navbar: React.FC = () => {
 
       {/* Navigation Menu */}
       {(isMobile && isMenuOpen) || !isMobile ? (
-        <div className="flex justify-around w-full">
+        <div className="flex justify-evenly w-full">
           <ul
             className={`flex ${
               isMobile && isMenuOpen
                 ? "flex-col items-center w-full h-full absolute top-0 left-0 bg-white p-4"
-                : "flex-row gap-6 items-center justify-around w-2/3 px-20"
+                : "flex-row items-center justify-evenly w-2/3 px-20"
             }`}
           >
             <li className="my-4">
               <Link
                 to="/"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
                 onClick={handleLinkClick}
               >
                 Home
@@ -88,7 +88,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <a
                 href="/#about"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
                 onClick={handleLinkClick}
               >
                 About
@@ -97,7 +97,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/contact"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
                 onClick={handleLinkClick}
               >
                 Contact Us
@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/products"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-bold sm:font-bold md:font-semibold lg:font-semibold"
+                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
                 onClick={handleLinkClick}
               >
                 Products

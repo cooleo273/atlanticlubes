@@ -1,13 +1,13 @@
 import React from 'react';
-import img1 from '../../assets/kisspng-volvo-cars-ab-volvo-subaru-automobilbau-aut-tech-group-5b6fcd064f8111.1990852515340536383257.png';
-import img2 from '../../assets/6c51218a97e0db72e3fd5be461478816.png';
-import img3 from '../../assets/CAT-logo.png';
-import img4 from '../../assets/Mercedes-Benz_logo_2.svg.png';
-import img5 from '../../assets/Porsche_(5).png';
-import img6 from '../../assets/Renault_2021_Text.svg.png';
-import img7 from '../../assets/Superbrands-2022.jpg';
-import img8 from '../../assets/dexos1-gen2.png';
-import img9 from '../../assets/man logo.png';
+import img1 from '../../assets/SlidingGallery/kisspng-volvo-cars-ab-volvo-subaru-automobilbau-aut-tech-group-5b6fcd064f8111.1990852515340536383257.png';
+import img2 from '../../assets/SlidingGallery/6c51218a97e0db72e3fd5be461478816.png';
+import img3 from '../../assets/SlidingGallery/CAT-logo.png';
+import img4 from '../../assets/SlidingGallery/Mercedes-Benz_logo_2.svg.png';
+import img5 from '../../assets/SlidingGallery/Porsche_(5).png';
+import img6 from '../../assets/SlidingGallery/Renault_2021_Text.svg.png';
+import img7 from '../../assets/SlidingGallery/Superbrands-2022.jpg';
+import img8 from '../../assets/SlidingGallery/dexos1-gen2.png';
+import img9 from '../../assets/SlidingGallery/man logo.png';
 
 const images = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
 

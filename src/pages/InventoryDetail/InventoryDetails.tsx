@@ -87,7 +87,8 @@ const InventoryDetail: React.FC = () => {
                 <div className="inventory-detail-container w-full px-4 md:px-8 py-4">
                     <div className="flex flex-col overflow-hidden bg-white ">
                         <img src={itemData.image} alt={itemData.inventory_name} className="w-full h-64 md:h-80 object-contain" />
-                        <div className="inventory-info p-4">
+                        <div className='inventory-info px-4 flex justify-center py-12'>
+                        <div className="w-3/4">
                             <h1 className="text-2xl font-bold text-gray-800">{itemData.inventory_name}</h1>
                             <p className="text-gray-600 mt-2">{itemData.description}</p>
                             {renderStyledList('Application', itemData.application)}
@@ -95,6 +96,7 @@ const InventoryDetail: React.FC = () => {
                             {renderStyledList('Properties', itemData.properties)}
                             <h2 className="text-lg font-semibold text-gray-800 border-b pb-2 mt-2">Recommendations</h2>
                             <p className='text-gray-600 mt-2'>{itemData.recommendations}</p>
+                        </div>
                         </div>
                     </div>
                 </div>
