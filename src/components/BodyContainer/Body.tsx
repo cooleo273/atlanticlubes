@@ -17,6 +17,8 @@ interface BodyContainerProps {
     descriptionColor?: string; // Optional prop for description color
     title2?: string; // Optional second title
     description2?: string; // Optional second description
+    title3?: string; // Optional third title
+    description3?: string; // Optional third description
 }
 
 // Define the BodyContainer component
@@ -32,9 +34,10 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
     backgroundColor,
     titleColor,
     titleBackgroundColor,
-    descriptionColor,
     title2, // Second title
     description2, // Second description
+    title3,
+    description3, // Second description
 }) => {
     return (
         <div
@@ -71,7 +74,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                 {/* Conditionally render the second title and description */}
                 {title2 && (
                     <h2
-                        className="title-header"
+                        className="title-header font-bold"
                         style={{
                             color: titleColor || "inherit",
                             backgroundColor: titleBackgroundColor || "transparent",
@@ -83,6 +86,23 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                 {description2 && (
                     <p className="text-md text-gray-600">
                         {description2}
+                    </p>
+                )}
+                {/* Conditionally render the second title and description */}
+                {title3 && (
+                    <h2
+                        className="title-header font-bold"
+                        style={{
+                            color: titleColor || "inherit",
+                            backgroundColor: titleBackgroundColor || "transparent",
+                        }}
+                    >
+                        {title3}
+                    </h2>
+                )}
+                {description3 && (
+                    <p className="text-md text-gray-600">
+                        {description3}
                     </p>
                 )}
 
