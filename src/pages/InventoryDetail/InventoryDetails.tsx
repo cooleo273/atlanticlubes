@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import img from "../../assets/Atlantic-Lubes-web-header-4.webp"; // Header image
+import { useParams } from 'react-router-dom';
 import { ClipLoader } from 'react-spinners';
 
 interface InventoryItem {
@@ -24,7 +23,6 @@ const InventoryDetail: React.FC = () => {
     const [categories, setCategories] = useState<Category[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [showCategories, setShowCategories] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
     useEffect(() => {
@@ -124,3 +122,8 @@ const renderStyledList = (title: string, items: string[] | null) => (
 );
 
 export default InventoryDetail;
+
+
+
+
+

@@ -85,7 +85,7 @@ const CategoryDetails: React.FC = () => {
 
     return (
         <div className="text-left bg-white">
-            <img src={img} className="w-full h-80 object-cover mb-8" />
+            <img src={img} alt='asdas' className="w-full h-80 object-cover mb-8" />
 
             <div className={`flex ${showCategories || windowWidth < 768 ? 'flex-col' : 'flex-row'}`}>
                 {windowWidth < 768 && (
