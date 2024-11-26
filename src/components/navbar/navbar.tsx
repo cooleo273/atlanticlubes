@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import img from "../../assets/Atlanticlubes-logo.png (1).webp";
+import img from "../../assets/schmierol.png";
 import { Mail, Phone } from "lucide-react";
-import "./index.css";
 
 const Navbar: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,7 +59,7 @@ const Navbar: React.FC = () => {
       {isMobile && (
         <button
           onClick={toggleMenu}
-          className={`text-md cursor-pointer px-2 py-1 text-black hover:bg-white bg-white fixed top-4 right-4 z-50 font-bold `}
+          className={`text-md cursor-pointer px-2 py-1 text-black hover:bg-gray-100 bg-white fixed top-4 right-4 z-50 font-bold`}
         >
           {isMenuOpen ? "✕" : "☰"}
         </button>
@@ -79,37 +78,37 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
-                Home
+                HOME
               </Link>
             </li>
             <li className="my-4">
               <a
-                href="/#about"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
+                href="/certificates"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
-                About
+                CERTIFICATES
               </a>
             </li>
             <li className="my-4">
               <Link
                 to="/contact"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
-                Contact Us
+                CONTACT US
               </Link>
             </li>
             <li className="my-4">
               <Link
                 to="/products"
-                className="text-black no-underline text-xs sm:text-sm md:text-md lg:text-lg font-medium lg:font-medium"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
-                Products
+                PRODUCTS
               </Link>
             </li>
           </ul>
