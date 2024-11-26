@@ -7,11 +7,13 @@ import img2 from "../../assets/ImageSlider/4th-01.jpg";
 import HorizontalImageSlider from "../../components/imageslider/slidingGallery";
 import { useNavigate, useParams } from "react-router-dom";
 import { ArrowBigUpIcon, MessageCircleIcon } from "lucide-react"; // Import WhatsApp-like icon
-
+import person from "../../assets/capture.png"
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [showScrollTop, setShowScrollTop] = useState(true);
+  const [showWhatsAppPopup, setShowWhatsAppPopup] = useState(false)
+  const [showCallbackPopup, setShowCallbackPopup] = useState(false);
   const { id } = useParams<{ id: string }>();
 
   // Toggle scroll-to-top button visibility based on scroll position
@@ -35,23 +37,30 @@ const Home: React.FC = () => {
   }, [id]);
 
   useEffect(() => {
+    // Resetting state when the component mounts
+    setShowScrollTop(false);
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
     window.addEventListener("scroll", handleScroll);
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
 
-// Scroll to top function with smoother animation
-// Scroll to top function using native smooth scrolling
-const scrollToTop = () => {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-};
+  // Scroll to top function with smoother animation
+  // Scroll to top function using native smooth scrolling
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
+  const toggleCallbackPopup = () => {
+    setShowCallbackPopup(!showCallbackPopup);
+  };
 
   // WhatsApp Click Handler
   const openWhatsApp = () => {
@@ -71,8 +80,29 @@ const scrollToTop = () => {
       <div className="py-2 bg-white rounded-lg mx-4 md:mx-8 lg:mx-16 transition-shadow duration-300">
         <BodyContainer
           image={img}
-          title="Pioneers of Lubricants and Grease Manufacturing"
-          description="Atlantic Grease & Lubricants is one of the leading manufacturers in the automotive industry, dedicated to providing the highest quality products that meet global standards. Our manufacturing processes are powered by state-of-the-art technologies, and we are constantly innovating to bring the most efficient and effective products to the market. We are committed to serving our clients with solutions that extend the life of their machinery and vehicles while maintaining high standards of environmental care."
+          title="About Us"
+          description="SCHMIERÖL offers a wide variety of products and services, ranging from
+          supply, manufacturing, and distribution for the entire lubricants
+          industry spectrum. We are dedicated to providing comprehensive
+          solutions to meet the specific needs of our clients across various
+          industries, ensuring quality, efficiency, and environmental
+          stewardship in every product."
+          title2="What is lubrication, and why is it important?"
+          description2="Lubrication can be defined as the application of oily or greasy
+          substances, also called ‘lubricants’, to reduce friction and allow
+          moving machine parts to slide smoothly past each other. It is a
+          critical component in the functioning of machines, vehicles, and
+          industrial equipment, as it not only reduces wear and tear but also
+          aids in heat dissipation, corrosion prevention, and energy efficiency."
+          title3="Why Our Products?"
+          description3="  SCHMIERÖL products are blended with the highest quality of base oil
+          and OEM-approved additive packages. Our products are certified by
+          different world-renowned organizations, like the American Petroleum
+          Institute (API), which guarantees that we meet strict industry
+          standards. With a strong focus on research and development, we ensure
+          that our products deliver exceptional performance under various
+          conditions, providing peace of mind and extending the lifespan of your
+          equipment."
           reverse={true}
           buttonText="Our Story"
           onButtonClick={() => navigate("/about")}
@@ -83,53 +113,14 @@ const scrollToTop = () => {
         <BodyContainer
           image={img1}
           title="Products"
-          description="Atlantic Grease and Lubricants produces high-quality products ranging from automotive, industrial, marine lubricants, and car care products. Our extensive product line includes engine oils, transmission fluids, brake fluids, and industrial oils. We work tirelessly to develop solutions that keep up with the demands of modern machinery and engines, ensuring that our clients' assets are protected and perform optimally under various conditions."
+          description="SCHMIERÖL  specializes in producing premium-quality automotive, industrial, and marine lubricants, additives, antifreeze, brake fluid and car care products. Our comprehensive product range includes engine oils, transmission fluids, brake fluids, and industrial oils. We are dedicated to creating innovative solutions that meet the demands of modern engines and machinery, ensuring optimal performance and protection for our clients' assets under diverse operating conditions."
           buttonText="Explore Our Products"
           buttonVariant="white"
           onButtonClick={() => navigate("/products")}
         />
       </div>
 
-      {/* About Us Section */}
-      <div
-        id="about"
-        className="py-4 px-4 sm:py-6 sm:px-6 md:py-8 md:px-10 lg:py-12 lg:px-20 bg-white rounded-lg mx-2 sm:mx-4 md:mx-8 lg:mx-16 transition-shadow duration-300"
-      >
-        <h2 className="text-3xl font-bold text-gray-800 mb-4">About Us</h2>
-        <p className="text-md text-gray-600 mb-6">
-          SCHMIERÖL offers a wide variety of products and services, ranging from
-          supply, manufacturing, and distribution for the entire lubricants
-          industry spectrum. We are dedicated to providing comprehensive
-          solutions to meet the specific needs of our clients across various
-          industries, ensuring quality, efficiency, and environmental
-          stewardship in every product.
-        </p>
-        <h3 className="text-2xl font-semibold text-gray-800 mb-2">
-          What is lubrication, and why is it important?
-        </h3>
-        <p className="text-md text-gray-600 mb-4">
-          Lubrication can be defined as the application of oily or greasy
-          substances, also called ‘lubricants’, to reduce friction and allow
-          moving machine parts to slide smoothly past each other. It is a
-          critical component in the functioning of machines, vehicles, and
-          industrial equipment, as it not only reduces wear and tear but also
-          aids in heat dissipation, corrosion prevention, and energy efficiency.
-        </p>
-        <h3 className="text-2xl font-semibold text-gray-900 mt-6 mb-2">
-          Why Our Products?
-        </h3>
-        <p className="text-md text-gray-700 mb-8">
-          SCHMIERÖL products are blended with the highest quality of base oil
-          and OEM-approved additive packages. Our products are certified by
-          different world-renowned organizations, like the American Petroleum
-          Institute (API), which guarantees that we meet strict industry
-          standards. With a strong focus on research and development, we ensure
-          that our products deliver exceptional performance under various
-          conditions, providing peace of mind and extending the lifespan of your
-          equipment.
-        </p>
-      </div>
-
+      
       {/* Distributor Section */}
       <div
         className="relative flex items-center justify-center h-[400px] text-white bg-cover bg-center"
@@ -142,20 +133,73 @@ const scrollToTop = () => {
               Become a Distributor
             </h1>
             <p className="text-sm sm:text-md mb-3">
-              We follow a rule of one distributor per country, ensuring
-              exclusive rights and support for our partners. By becoming a
-              SCHMIERÖL distributor, you join a global network that is committed
-              to excellence and quality.
+            We follow a rule of one distributor per country. Hurry up and become one of our international distributors.
             </p>
           </div>
           <button
             className="bg-transparent text-white font-semibold py-2 px-6 sm:px-12 rounded-lg border-2 border-white hover:bg-white hover:text-black hover:border-gray-500 transition h-12 sm:h-16 md:h-24"
-            onClick={() => alert("Callback requested!")}
+            onClick={toggleCallbackPopup}
           >
             Request a Callback
           </button>
         </div>
       </div>
+
+      {/* Callback Popup */}
+      {showCallbackPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h2 className="text-xl font-semibold mb-4">Request a Callback</h2>
+            <form>
+              <div className="mb-4">
+                <label className="block text-gray-700">Name</label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded p-2"
+                  placeholder="Enter your name"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Email</label>
+                <input
+                  type="email"
+                  className="w-full border border-gray-300 rounded p-2"
+                  placeholder="Enter your email"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Country</label>
+                <input
+                  type="text"
+                  className="w-full border border-gray-300 rounded p-2"
+                  placeholder="Enter your country"
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-700">Phone Number</label>
+                <input
+                  type="tel"
+                  className="w-full border border-gray-300 rounded p-2"
+                  placeholder="Enter your phone number"
+                />
+              </div>
+              <button
+                type="button"
+                className="bg-black text-white w-full py-2 rounded hover:bg-gray-800 transition"
+              >
+                Request
+              </button>
+            </form>
+            <button
+              className="absolute top-2 right-2 text-white hover:text-white bg-black hover:bg-black"
+              onClick={toggleCallbackPopup}
+            >
+              ✖
+            </button>
+          </div>
+        </div>
+      )}
+
 
       {/* Horizontal Image Slider */}
       <HorizontalImageSlider />
@@ -164,28 +208,33 @@ const scrollToTop = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-4 md:px-8 lg:px-16 py-12">
         <div className="bg-white rounded-lg p-6 transition-shadow duration-300">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">
-            OEM Approvals
+            OEM and API Approvals
           </h3>
           <p className="text-md text-gray-600 mb-4">
-            At Atlantic Grease and Lubricants, we have secured approvals from
-            leading automobile manufacturers, attesting to the quality and
-            reliability of our products. Our OEM-approved lubricants meet the
-            exacting standards required by top brands, ensuring compatibility
-            and peak performance across various makes and models.
+            At SCHMIERÖL, we are proud to be approved by the American Petroleum
+            Institute (API), a testament to the quality and performance of our
+            products. Additionally, we have secured approvals from leading
+            automobile manufacturers, reinforcing the reliability and excellence
+            of our lubricants. Our API-certified and OEM-approved products meet
+            the rigorous standards set by top brands, ensuring optimal
+            compatibility and performance across a wide range of makes and
+            models.
           </p>
         </div>
 
         <div className="bg-white rounded-lg p-6 transition-shadow duration-300">
           <h3 className="text-2xl font-bold text-gray-800 mb-4">
-            Maintain Stringent Quality Standards
+            Exceptional Quality Standards
           </h3>
           <p className="text-md text-gray-600 mb-4">
-            Achieving premium quality standards is at the core of our
-            operations. Each batch of lubricant is subjected to rigorous testing
-            in our labs to ensure consistency, reliability, and safety. Our
-            commitment to quality is reflected in every product, and we strive
-            to meet and exceed industry benchmarks in all aspects of production,
-            from raw materials to final packaging.
+            For SCHMIERÖL, maintaining the highest quality standards is central
+            to everything we do. Each batch of our lubricants undergoes
+            stringent testing in our state-of-the-art laboratories to ensure
+            consistency, reliability, and safety. With API certification and a
+            commitment to excellence, our products not only meet but exceed
+            industry benchmarks at every stage of production—from raw materials
+            to final packaging. This dedication to quality is what sets us apart
+            and ensures customer satisfaction.
           </p>
           <button
             className="bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-400 hover:text-black transition"
@@ -203,20 +252,45 @@ const scrollToTop = () => {
           className="fixed bottom-20 right-5 bg-black text-white p-3 rounded-full shadow-lg hover:bg-gray-700 transition duration-300"
           aria-label="Scroll to top"
         >
-          <ArrowBigUpIcon size={30} />
+          <ArrowBigUpIcon size={24} />
         </button>
       )}
 
       {/* WhatsApp Button */}
-      <button
-        onClick={openWhatsApp}
-        className="fixed bottom-5 right-5 bg-green-500 text-white p-3 rounded-full shadow-lg hover:bg-green-600 transition duration-300"
-        aria-label="Chat on WhatsApp"
-      >
-        <MessageCircleIcon size={30} />
-      </button>
+<div
+className="fixed bottom-5 right-5 z-50 cursor-pointer"
+onClick={() => setShowWhatsAppPopup((prev) => !prev)}
+>
+<div className="p-3 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition">
+  <MessageCircleIcon color="white" size={24} />
+</div>
+</div>
+
+{/* WhatsApp Popup */}
+{showWhatsAppPopup && (
+<div className="fixed bottom-20 right-5 z-50 bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-72">
+  <div className="flex items-center">
+    <img
+      src={person} // Replace with the image of the person
+      alt="Person"
+      className="w-16 h-16 rounded-full mr-4"
+    />
+    <div>
+      <h3 className="text-lg font-bold">John Doe</h3>
+      <h5 className="text-sm text-gray-600 font-bold">Customer Support</h5>
+      <p className="text-sm text-gray-600">+491788854076</p>
+    </div>
+  </div>
+  <button
+    className="w-full mt-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+    onClick={openWhatsApp}
+  >
+    Chat on WhatsApp
+  </button>
+</div>
+)}
     </div>
   );
 };
 
-export default Home;  
+export default Home;
