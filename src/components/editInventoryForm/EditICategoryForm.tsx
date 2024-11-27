@@ -163,11 +163,12 @@ const EditCategoryForm: React.FC = () => {
 const formContainerStyle: React.CSSProperties = {
   padding: "2rem",
   margin: "0 auto",
+  width: "75%",
 };
 
 // Styling for the select dropdown
 const selectStyle: React.CSSProperties = {
-  width: "75%",
+  width:"100%",
   padding: "0.8rem",
   marginBottom: "1rem",
   borderRadius: "8px",

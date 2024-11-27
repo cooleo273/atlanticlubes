@@ -168,7 +168,8 @@ const formContainerStyle: React.CSSProperties = {
   width: "100%",
   marginBottom: "1rem",
   borderRadius: "0.5rem",
-  borderColor: "#ccc",
+  border:"1px solid",
+  borderColor: "#cccc",
 };
 
 export default InventoryDetailForm;
