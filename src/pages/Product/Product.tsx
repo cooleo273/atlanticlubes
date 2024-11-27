@@ -73,17 +73,17 @@ const Product: React.FC = () => {
                             <a
                                 key={category.id}
                                 href={`/category/${category.id}`}
-                                className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 hover:bg-black"
+                                className="group block bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
                             >
                                 <div className="overflow-hidden rounded-t-lg ">
                                     <img
                                         src={category.image} // Use category image or fallback to a default image
                                         alt={category.name}
-                                        className="w-full h-40 object-contain group-hover:scale-105 transition-transform duration-300 hover:opacity-70"
+                                        className="w-full h-40 object-contain group-hover:scale-105 transition-transform duration-300"
                                     />
                                 </div>
                                 <div className="p-4 text-center">
-                                    <h3 className="text-md font-semibold text-gray-800 group-hover:text-white transition-colors hover:text-lg">
+                                    <h3 className="text-md font-semibold text-gray-800  transition-colors hover:text-lg">
                                         {category.name}
                                     </h3>
                                 </div>

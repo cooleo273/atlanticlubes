@@ -137,7 +137,7 @@ const CategoryDetails: React.FC = () => {
                         ) : (
                             filteredItems.map(item => (
                                 <Link key={item.id} to={`/inventory/${item.id}`} className="group">
-                                    <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 h-72 hover:bg-black">
+                                    <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 h-72">
                                         <div className="relative overflow-hidden">
                                             <img
                                                 src={item.image}
@@ -148,7 +148,7 @@ const CategoryDetails: React.FC = () => {
                                             </div>
                                         </div>
                                         <div className="p-4">
-                                            <h3 className="text-lg font-semibold text-gray-800 group-hover:text-white text-center transition-colors">
+                                            <h3 className="text-md font-semibold text-gray-800 text-center transition-colors">
                                                 {item.inventory_name}
                                             </h3>
                                         </div>

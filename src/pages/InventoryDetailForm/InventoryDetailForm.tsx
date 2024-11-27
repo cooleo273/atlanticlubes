@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
 import ClipLoader from "react-spinners/ClipLoader";
-
-// Usage in your component
-
 
 import "./index.css";
 
@@ -18,7 +14,7 @@ const InventoryDetailForm = () => {
   const [image, setImage] = useState<File | null>(null);
   const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -40,7 +36,7 @@ const InventoryDetailForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true); // Set loading to true
+    setLoading(true);
 
     const formData = new FormData();
     formData.append("inventory_name", inventoryName);
@@ -66,6 +62,7 @@ const InventoryDetailForm = () => {
       });
       console.log(response.data);
       alert("Inventory item added successfully!");
+
       // Reset form fields
       setInventoryName("");
       setDescription("");
@@ -74,12 +71,18 @@ const InventoryDetailForm = () => {
       setRecommendations("");
       setProperties("");
       setImage(null);
-      setSelectedCategoryId(null); // Reset selected category
+      setSelectedCategoryId(null);
+
+      // Clear the file input field
+      const fileInput = document.querySelector<HTMLInputElement>('input[type="file"]');
+      if (fileInput) {
+        fileInput.value = "";
+      }
     } catch (error) {
       console.error("There was an error adding the inventory item!", error);
       alert("Error adding inventory item!");
     } finally {
-      setLoading(false); // Set loading to false after request is completed
+      setLoading(false);
     }
   };
 
@@ -147,7 +150,12 @@ const InventoryDetailForm = () => {
           accept="image/*"
           required
         />
-        <button type="submit" disabled={loading} style={{display:"flex", justifyContent:"center", alignItems:"center"}} className="bg-violet-600">
+        <button
+          type="submit"
+          disabled={loading}
+          style={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+          className="bg-violet-600"
+        >
           {loading ? <ClipLoader color="#36D7B7" loading={loading} size={30} /> : "Add Inventory Item"}
         </button>
       </form>
@@ -156,10 +164,10 @@ const InventoryDetailForm = () => {
 };
 
 const formContainerStyle: React.CSSProperties = {
-  padding: '1rem',
+  padding: "1rem",
   width: "100%",
-  marginBottom: '1rem',
-  borderRadius: '0.5rem',
+  marginBottom: "1rem",
+  borderRadius: "0.5rem",
   borderColor: "#ccc",
 };
 

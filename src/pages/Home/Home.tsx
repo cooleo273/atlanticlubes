@@ -191,7 +191,7 @@ const Home: React.FC = () => {
               </button>
             </form>
             <button
-              className="absolute top-2 right-2 text-white hover:text-white bg-black hover:bg-black"
+              className="absolute top-2 p-2 right-2 text-white hover:text-white bg-black hover:bg-black rounded-full "
               onClick={toggleCallbackPopup}
             >
               ✖
