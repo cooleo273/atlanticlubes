@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { createClient, User } from '@supabase/supabase-js';
+import {  User } from '@supabase/supabase-js';
 import { supabase } from './Supabase';
 
 

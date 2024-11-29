@@ -12,15 +12,12 @@ interface InventoryItem {
     properties: string[] | null;
 }
 
-interface Category {
-    id: number;
-    name: string;
-}
+
 
 const InventoryDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [itemData, setItemData] = useState<InventoryItem | null>(null);
-    const [categories, setCategories] = useState<Category[]>([]);
+   
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -54,8 +51,8 @@ const InventoryDetail: React.FC = () => {
             try {
                 const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/category`);
                 if (!response.ok) throw new Error('Error fetching categories');
-                const data = await response.json();
-                setCategories(data);
+                
+                
             } catch (err: any) {
                 setError(err.message);
             }

@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/"
-                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
                 HOME
@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <a
                 href="/certificates"
-                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
                 CERTIFICATES
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/contact"
-                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
                 CONTACT US
@@ -105,7 +105,7 @@ const Navbar: React.FC = () => {
             <li className="my-4">
               <Link
                 to="/products"
-                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-blue-500 hover:underline decoration-blue-500 underline-offset-4"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
                 PRODUCTS
@@ -117,7 +117,7 @@ const Navbar: React.FC = () => {
               <Mail size={24} color="#000" />
               <a
                 href="mailto:Info@schmierol.de"
-                className="text-black hover:text-blue-500"
+                className="text-black hover:text-orange-500"
               >
                 Info@schmierol.de
               </a>
@@ -126,7 +126,7 @@ const Navbar: React.FC = () => {
               <Phone size={24} color="#000" />
               <a
                 href="tel:+491788854076"
-                className="text-black hover:text-blue-500"
+                className="text-black hover:text-orange-500"
               >
                 +49 178 8854076
               </a>

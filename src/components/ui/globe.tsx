@@ -142,7 +142,7 @@ export function Cobe() {
       >
         Rotate to:
         <button
-          className="bg-[#2563eb]"
+          className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
           onClick={() => {
             focusRef.current = locationToAngles(37.78, -122.412);
             setDistributor(distributors["San Francisco"]);
@@ -151,7 +151,7 @@ export function Cobe() {
           📍 San Francisco
         </button>
         <button
-        className="bg-[#2563eb]"
+        className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
           onClick={() => {
             focusRef.current = locationToAngles(52.52, 13.405);
             setDistributor(distributors["Berlin"]);
@@ -160,7 +160,7 @@ export function Cobe() {
           📍 Berlin
         </button>
         <button
-        className="bg-[#2563eb]"
+        className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
           onClick={() => {
             focusRef.current = locationToAngles(35.676, 139.65);
             setDistributor(distributors["Tokyo"]);
@@ -169,7 +169,7 @@ export function Cobe() {
           📍 Tokyo
         </button>
         <button
-        className="bg-[#2563eb]"
+        className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
           onClick={() => {
             focusRef.current = locationToAngles(-34.6, -58.38);
             setDistributor(distributors["Buenos Aires"]);
@@ -185,7 +185,7 @@ export function Cobe() {
       padding: "1rem",
       border: "1px solid #2563eb",
       borderRadius: "10px",
-      backgroundColor: "#2563eb",
+      backgroundColor: "#FAA33A",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       position: "absolute",
       top: "-10px",
