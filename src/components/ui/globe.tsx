@@ -185,7 +185,7 @@ export function Cobe() {
       padding: "1rem",
       border: "1px solid #2563eb",
       borderRadius: "10px",
-      backgroundColor: "#FAA33A",
+      backgroundColor: "black",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       position: "absolute",
       top: "-10px",
