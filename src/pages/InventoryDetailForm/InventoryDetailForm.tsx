@@ -12,6 +12,8 @@ const InventoryDetailForm = () => {
   const [recommendations, setRecommendations] = useState("");
   const [properties, setProperties] = useState("");
   const [image, setImage] = useState<File | null>(null);
+  const [tds, setTds] = useState<File | null>(null); // State for TDS file
+  const [msds, setMsds] = useState<File | null>(null); // State for MSDS file
   const [categories, setCategories] = useState<{ id: number; name: string }[]>([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
   const [loading, setLoading] = useState(false);
@@ -29,9 +31,9 @@ const InventoryDetailForm = () => {
     fetchCategories();
   }, []);
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, setFile: React.Dispatch<React.SetStateAction<File | null>>) => {
     const file = e.target.files?.[0] || null;
-    setImage(file);
+    setFile(file);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,9 +43,9 @@ const InventoryDetailForm = () => {
     const formData = new FormData();
     formData.append("inventory_name", inventoryName);
     formData.append("description", description);
-    formData.append("application", JSON.stringify(application.split(",")));
+    formData.append("application", application);
     formData.append("performance", JSON.stringify(performance.split(",")));
-    formData.append("recommendations", recommendations);
+    formData.append("recommendations", JSON.stringify(recommendations.split(",")));
     formData.append("properties", JSON.stringify(properties.split(",")));
 
     if (selectedCategoryId) {
@@ -51,7 +53,13 @@ const InventoryDetailForm = () => {
     }
 
     if (image) {
-      formData.append("photo", image);
+      formData.append("image", image);
+    }
+    if (tds) {
+      formData.append("tds", tds);
+    }
+    if (msds) {
+      formData.append("msds", msds);
     }
 
     try {
@@ -71,13 +79,14 @@ const InventoryDetailForm = () => {
       setRecommendations("");
       setProperties("");
       setImage(null);
+      setTds(null);
+      setMsds(null);
       setSelectedCategoryId(null);
 
-      // Clear the file input field
-      const fileInput = document.querySelector<HTMLInputElement>('input[type="file"]');
-      if (fileInput) {
-        fileInput.value = "";
-      }
+      // Clear the file input fields
+      const fileInputs = document.querySelectorAll<HTMLInputElement>('input[type="file"]');
+      fileInputs.forEach(input => input.value = "");
+
     } catch (error) {
       console.error("There was an error adding the inventory item!", error);
       alert("Error adding inventory item!");
@@ -105,7 +114,7 @@ const InventoryDetailForm = () => {
         />
         <input
           type="text"
-          placeholder="Applications (comma-separated)"
+          placeholder="Applications"
           value={application}
           onChange={(e) => setApplication(e.target.value)}
           required
@@ -119,7 +128,7 @@ const InventoryDetailForm = () => {
         />
         <input
           type="text"
-          placeholder="Recommendations"
+          placeholder="Recommendations (comma-separated)"
           value={recommendations}
           onChange={(e) => setRecommendations(e.target.value)}
           required
@@ -146,8 +155,20 @@ const InventoryDetailForm = () => {
         </select>
         <input
           type="file"
-          onChange={handleFileChange}
+          onChange={(e) => handleFileChange(e, setImage)}
           accept="image/*"
+          required
+        />
+        <input
+          type="file"
+          onChange={(e) => handleFileChange(e, setTds)}
+          accept="application/pdf"
+          required
+        />
+        <input
+          type="file"
+          onChange={(e) => handleFileChange(e, setMsds)}
+          accept="application/pdf"
           required
         />
         <button
