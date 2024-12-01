@@ -10,7 +10,6 @@ const InventoryDetailForm = () => {
   const [application, setApplication] = useState("");
   const [performance, setPerformance] = useState("");
   const [recommendations, setRecommendations] = useState("");
-  const [properties, setProperties] = useState("");
   const [image, setImage] = useState<File | null>(null);
   const [tds, setTds] = useState<File | null>(null); // State for TDS file
   const [msds, setMsds] = useState<File | null>(null); // State for MSDS file
@@ -46,7 +45,6 @@ const InventoryDetailForm = () => {
     formData.append("application", application);
     formData.append("performance", JSON.stringify(performance.split(",")));
     formData.append("recommendations", JSON.stringify(recommendations.split(",")));
-    formData.append("properties", JSON.stringify(properties.split(",")));
 
     if (selectedCategoryId) {
       formData.append("categoryId", selectedCategoryId.toString());
@@ -77,7 +75,6 @@ const InventoryDetailForm = () => {
       setApplication("");
       setPerformance("");
       setRecommendations("");
-      setProperties("");
       setImage(null);
       setTds(null);
       setMsds(null);
@@ -133,13 +130,6 @@ const InventoryDetailForm = () => {
           onChange={(e) => setRecommendations(e.target.value)}
           required
         />
-        <input
-          type="text"
-          placeholder="Properties (comma-separated)"
-          value={properties}
-          onChange={(e) => setProperties(e.target.value)}
-          required
-        />
         <select
           style={formContainerStyle}
           value={selectedCategoryId || ""}
@@ -153,18 +143,21 @@ const InventoryDetailForm = () => {
             </option>
           ))}
         </select>
+        <label htmlFor="image" className="mb-2">Image File</label>
         <input
           type="file"
           onChange={(e) => handleFileChange(e, setImage)}
           accept="image/*"
           required
         />
+        <label htmlFor="tds" className="mb-2">TDS File (PDF)</label>
         <input
           type="file"
           onChange={(e) => handleFileChange(e, setTds)}
           accept="application/pdf"
           required
         />
+        <label htmlFor="msds" className="mb-2">MSDS File (PDF)</label>
         <input
           type="file"
           onChange={(e) => handleFileChange(e, setMsds)}

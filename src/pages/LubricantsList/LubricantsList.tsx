@@ -10,7 +10,6 @@ interface InventoryItem {
   application?: string;
   performance?: string[];
   recommendations?: string[];
-  properties?: string[];
   image?: string;
 }
 
@@ -39,7 +38,6 @@ const LubricantsList: React.FC = () => {
         application: item.application,
         performance: item.performance || [],
         recommendations: item.recommendations || [],
-        properties: item.properties || [],
         image: item.image,
       });
       setLoading(false); // Stop loader
@@ -94,10 +92,6 @@ const LubricantsList: React.FC = () => {
       formDataToSend.append(
         "recommendations",
         JSON.stringify(formData.recommendations || [])
-      );
-      formDataToSend.append(
-        "properties",
-        JSON.stringify(formData.properties || [])
       );
       if (imageFile) formDataToSend.append("photo", imageFile);
 
@@ -180,13 +174,6 @@ const LubricantsList: React.FC = () => {
               value={(formData.recommendations || []).join(", ")}
               onChange={(e) => handleArrayChange(e, "recommendations")}
               placeholder="Recommendations"
-            />
-            <label>Properties</label>
-            <input
-              type="text"
-              value={(formData.properties || []).join(", ")}
-              onChange={(e) => handleArrayChange(e, "properties")}
-              placeholder="Properties (comma-separated)"
             />
             <label>Images</label>
             <input type="file" onChange={handleImageChange} accept="image/*" />

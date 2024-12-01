@@ -9,7 +9,6 @@ interface InventoryItem {
   recommendations: string[] | null;
   application: string | null;
   performance: string[] | null;
-  properties: string[] | null;
   tdsFile: string | null;
   msdsFile: string | null;
 }
@@ -73,7 +72,6 @@ const InventoryDetail: React.FC = () => {
                 <h1 className="text-2xl font-bold text-gray-800">APPLICATIONS</h1>
                 <p className="text-gray-600 mt-2">{itemData.application}</p>
                 {renderStyledList('Performance', itemData.performance)}
-                {renderStyledList('Properties', itemData.properties)}
                 {renderStyledList("Recommendations", itemData.recommendations)}
                 
                 {/* Buttons for TDS and MSDS */}
