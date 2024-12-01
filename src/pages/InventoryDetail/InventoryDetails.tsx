@@ -71,15 +71,21 @@ const InventoryDetail: React.FC = () => {
                 <p className="text-gray-600 mt-2">{itemData.description}</p>
                 <h1 className="text-2xl font-bold text-gray-800">APPLICATIONS</h1>
                 <p className="text-gray-600 mt-2">{itemData.application}</p>
+                <div className='flex'>
+                  <div className='flex-1'>
                 {renderStyledList('Performance', itemData.performance)}
+                </div>
+                <div className='flex-1'>
                 {renderStyledList("Recommendations", itemData.recommendations)}
-                
+                </div>
+                </div>
                 {/* Buttons for TDS and MSDS */}
-                <div className="flex gap-4 mt-4">
+                <div className="flex gap-4 mt-16">
+                  
                   {itemData.tdsFile && (
                     <button
                       onClick={() => itemData.tdsFile && window.open(itemData.tdsFile, '_blank')}
-                      className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                      className="px-10 py-4 bg-black text-white rounded-lg hover:bg-white hover:text-black hover:border"
                     >
                       View TDS
                     </button>
@@ -87,7 +93,7 @@ const InventoryDetail: React.FC = () => {
                   {itemData.msdsFile && (
                     <button
                       onClick={() => itemData.msdsFile && window.open(itemData.msdsFile, '_blank')}
-                      className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+                      className="px-10 py-4 bg-black text-white rounded-lg hover:bg-white hover:text-black hover:border"
                     >
                       View MSDS
                     </button>
@@ -105,11 +111,11 @@ const InventoryDetail: React.FC = () => {
 // Helper function to render array data as a styled list
 const renderStyledList = (title: string, items: string[] | null) => (
   <div className="section mt-4">
-    <h2 className="text-lg font-semibold text-gray-800 border-b pb-2 mb-2">{title}</h2>
+    <h2 className="text-lg font-semibold text-gray-800 pb-2 mb-2">{title}</h2>
     {Array.isArray(items) && items.length > 0 ? (
       <ul className="list-none text-gray-600 space-y-1">
         {items.map((item, index) => (
-          <li key={index} className="bg-gray-200 p-2 rounded-md hover:bg-gray-300 transition duration-200">
+          <li key={index} className=" py-2 rounded-md transition duration-200">
             {item}
           </li>
         ))}
