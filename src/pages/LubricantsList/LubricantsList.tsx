@@ -7,9 +7,9 @@ interface InventoryItem {
   id: string;
   inventory_name: string;
   description: string;
-  application?: string[];
+  application?: string;
   performance?: string[];
-  recommendations?: string;
+  recommendations?: string[];
   properties?: string[];
   image?: string;
 }
@@ -36,9 +36,9 @@ const LubricantsList: React.FC = () => {
       setFormData({
         inventory_name: item.inventory_name,
         description: item.description,
-        application: item.application || [],
+        application: item.application,
         performance: item.performance || [],
-        recommendations: item.recommendations,
+        recommendations: item.recommendations || [],
         properties: item.properties || [],
         image: item.image,
       });
@@ -86,15 +86,15 @@ const LubricantsList: React.FC = () => {
       const formDataToSend = new FormData();
       formDataToSend.append("inventory_name", formData.inventory_name || "");
       formDataToSend.append("description", formData.description || "");
-      formDataToSend.append(
-        "application",
-        JSON.stringify(formData.application || [])
-      );
+      formDataToSend.append("application", formData.application || "");
       formDataToSend.append(
         "performance",
         JSON.stringify(formData.performance || [])
       );
-      formDataToSend.append("recommendations", formData.recommendations || "");
+      formDataToSend.append(
+        "recommendations",
+        JSON.stringify(formData.recommendations || [])
+      );
       formDataToSend.append(
         "properties",
         JSON.stringify(formData.properties || [])
@@ -141,9 +141,9 @@ const LubricantsList: React.FC = () => {
       </ul>
 
       {loading ? (
-       <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
-       <ClipLoader size={50} color="#007bff" />
-   </div>
+        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
+          <ClipLoader size={50} color="#007bff" />
+        </div>
       ) : (
         editingItem && (
           <div className="edit-form">
@@ -164,7 +164,7 @@ const LubricantsList: React.FC = () => {
             <label>Application</label>
             <input
               type="text"
-              value={(formData.application || []).join(", ")}
+              value={formData.application || ""}
               onChange={(e) => handleArrayChange(e, "application")}
               placeholder="Applications (comma-separated)"
             />
@@ -176,9 +176,9 @@ const LubricantsList: React.FC = () => {
               placeholder="Performance (comma-separated)"
             />
             <label>Recommendation</label>
-            <textarea
-              value={formData.recommendations || ""}
-              onChange={(e) => handleInputChange(e, "recommendations")}
+            <input
+              value={(formData.recommendations || []).join(", ")}
+              onChange={(e) => handleArrayChange(e, "recommendations")}
               placeholder="Recommendations"
             />
             <label>Properties</label>
