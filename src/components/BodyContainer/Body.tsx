@@ -59,7 +59,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
             )}
             <div className="text-container">
                 <h2
-                    className="title-header  text-2xl font-bold"
+                    className="title-header mb-4 mt-2 text-2xl font-bold"
                     style={{
                         color: titleColor || "inherit",
                         backgroundColor: titleBackgroundColor || "transparent",
@@ -74,7 +74,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                 {/* Conditionally render the second title and description */}
                 {title2 && (
                     <h2
-                        className="title-header font-bold"
+                        className="title-header mb-4 mt-2 font-bold"
                         style={{
                             color: titleColor || "inherit",
                             backgroundColor: titleBackgroundColor || "transparent",
@@ -91,7 +91,7 @@ const BodyContainer: React.FC<BodyContainerProps> = ({
                 {/* Conditionally render the second title and description */}
                 {title3 && (
                     <h2
-                        className="title-header font-bold"
+                        className="title-header mb-4 mt-2 font-bold"
                         style={{
                             color: titleColor || "inherit",
                             backgroundColor: titleBackgroundColor || "transparent",
