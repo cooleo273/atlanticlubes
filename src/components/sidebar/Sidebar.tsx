@@ -6,9 +6,10 @@ import LubricantsList from '../../pages/LubricantsList/LubricantsList';
 import AddInventory from '../../pages/InventoryDetailForm/InventoryDetailForm';
 import AddCategoryForm from '../../pages/AddCategoryForm/AddCategoryForm';
 import EditCategoryForm from '../../components/editInventoryForm/EditICategoryForm'; // Import EditCategoryForm
+import AddSlidingImageForm from '../AddSlidingImageForm';
 
 const Sidebar: React.FC = () => {
-    const [activeTab, setActiveTab] = useState<'add' | 'list' | 'category' | 'editCategory'>('add'); 
+    const [activeTab, setActiveTab] = useState<'add' | 'list' | 'category' | 'editCategory'| 'addSlidingImage'>('add'); 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar visibility state
 
     // Toggle sidebar open/close
@@ -69,6 +70,17 @@ const Sidebar: React.FC = () => {
                             Edit Category
                         </button>
                     </li>
+                    <li>
+                        <button
+                            className={activeTab === 'addSlidingImage' ? 'active-link' : ''}
+                            onClick={() => {
+                                setActiveTab('addSlidingImage');
+                                setIsSidebarOpen(false); // Close sidebar after clicking
+                            }}
+                        >
+                            Add Slider Image
+                        </button>
+                    </li>
                 </ul>
             </div>
 
@@ -78,6 +90,7 @@ const Sidebar: React.FC = () => {
                 {activeTab === 'list' && <LubricantsList />}
                 {activeTab === 'category' && <AddCategoryForm />}
                 {activeTab === 'editCategory' && <EditCategoryForm />} {/* New Tab for Editing */}
+                {activeTab === 'addSlidingImage' && <AddSlidingImageForm />}
             </div>
         </div>
     );
