@@ -48,7 +48,7 @@ const CertificatesPage: React.FC = () => {
 
   const handleDownload = async (link: string, filename: string) => {
     try {
-      const response = await fetch(link, { mode: 'cors' });
+      const response = await fetch(link, { mode: 'no-cors' });
       if (!response.ok) {
         throw new Error('Failed to fetch the file.');
       }
@@ -71,10 +71,10 @@ const CertificatesPage: React.FC = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="p-8 w-2/3">
-        <h1 className="text-2xl font-semibold mb-4">Certificates</h1>
+        <h1 className="text-2xl font-semibold mb-4 px-4">Certificates</h1>
         {certificates.map((category, index) => (
           <div key={index} className="mb-6">
-            <h2 className="text-xl font-bold mb-3">{category.category}</h2>
+            <h2 className="text-xl font-bold mb-3 px-4">{category.category}</h2>
             <ul className="space-y-2 w-2/3 lg:w-full">
               {category.items.map((item, idx) => (
                 <li
@@ -83,16 +83,16 @@ const CertificatesPage: React.FC = () => {
                 >
                   <button
                     onClick={() => openModal(item)}
-                    className="text-black bg-white hover:text-white hover:bg-black py-2 px-4 rounded-md"
+                    className="text-black bg-white  hover:underline hover:bg-white py-2 px-4 rounded-md"
                   >
                     {item.name} Image
                   </button>
                   <button
                     onClick={() => handleDownload(item.pdfLink, `${item.name}.pdf`)}
-                    className="text-blue-500 hover:text-blue-700 py-2 px-4 rounded-md"
+                    className=" bg-white text-black hover:text-orange-500 hover:bg-white hover:underline py-2 px-4 rounded-md"
                   >
                     PDF Download
-                  </button>
+                  </button> 
                 </li>
               ))}
             </ul>
@@ -118,7 +118,7 @@ const CertificatesPage: React.FC = () => {
                     href={selectedCertificate.imgLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-700 text-center"
+                    className="px-4 py-1 bg-white text-black border rounded hover:bg-black hover:text-white text-center"
                   >
                     View
                   </a>
@@ -126,13 +126,13 @@ const CertificatesPage: React.FC = () => {
                     onClick={() =>
                       handleDownload(selectedCertificate.imgLink, `${selectedCertificate.name}.jpg`)
                     }
-                    className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 text-center"
+                    className="px-4 py-1 bg-black text-white rounded hover:bg-white hover:text-black hover:border text-center"
                   >
                     Download
                   </button>
                   <button
                     onClick={closeModal}
-                    className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700 text-center"
+                    className="px-4 py-1 bg-gray-500 text-white rounded hover:bg-gray-700 text-center"
                   >
                     Close
                   </button>
