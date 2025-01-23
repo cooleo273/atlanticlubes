@@ -1,12 +1,18 @@
 import React, { useState } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import { useNavigate } from 'react-router-dom';
-import './index.css'; // Import the CSS file for styling
+import './index.css';
 
-// Replace with your actual environment variables setup (e.g., Vite)
-const supabaseUrl = 'https://vkqgunmfpvjkftehgtio.supabase.co';
-const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrcWd1bm1mcHZqa2Z0ZWhndGlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Mjg4NDAyNDMsImV4cCI6MjA0NDQxNjI0M30.aCA0aSE76g1LTkpvD7la7bAd8zG8WaQ4qSC_WgBBGVA"; // Ensure the key is loaded from the env
+// Access environment variables
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+    throw new Error('Supabase environment variables are missing');
+}
+
 const supabase = createClient(supabaseUrl, supabaseKey);
+
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -26,19 +32,18 @@ const Login: React.FC = () => {
             return;
         }
 
-        // Log in the user
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         });
 
         if (error) {
-            setError(error.message);  // Show the error if login fails
+            setError(error.message);
         } else {
             const user = data?.user;
             if (user) {
                 console.log('User logged in:', user);
-                navigate('/inventory');  // Redirect on successful login
+                navigate('/inventory');
             } else {
                 setError('User not found.');
             }
@@ -76,7 +81,7 @@ const Login: React.FC = () => {
                         />
                     </div>
                     {error && <p className="error-message">{error}</p>}
-                    <button type="submit" disabled={loading} className='login-button w-full bg-violet-600'>
+                    <button type="submit" disabled={loading} className="login-button w-full bg-violet-600">
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
