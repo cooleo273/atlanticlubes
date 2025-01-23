@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './index.css'; // Import the CSS file for styling
 
 // Replace with your actual environment variables setup (e.g., Vite)
-const supabaseUrl = 'https://euflaebxyipiwrhlpqud.supabase.co';
+const supabaseUrl = 'https://vkqgunmfpvjkftehgtio.supabase.co';
 const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV1ZmxhZWJ4eWlwaXdyaGxwcXVkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA3OTM0MzMsImV4cCI6MjA0NjM2OTQzM30.ptUF0JoOcawNcHNWmZZo1rzToZMDDZIHQ1X3e0QGQnY"; // Ensure the key is loaded from the env
 const supabase = createClient(supabaseUrl, supabaseKey);
 
