@@ -46,27 +46,19 @@ const CertificatesPage: React.FC = () => {
     setSelectedCertificate(null);
   };
 
-  const handleDownload = async (link: string, filename: string) => {
+  const handleDownload = (link: string, filename: string) => {
     try {
-      const response = await fetch(link, { mode: 'no-cors' });
-      if (!response.ok) {
-        throw new Error('Failed to fetch the file.');
-      }
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-
       const anchor = document.createElement('a');
-      anchor.href = url;
+      anchor.href = link;
       anchor.download = filename;
       document.body.appendChild(anchor);
       anchor.click();
       document.body.removeChild(anchor);
-
-      window.URL.revokeObjectURL(url);
     } catch (error) {
       console.error('Error downloading the file:', error);
     }
   };
+  
 
   return (
     <div className="flex items-center justify-center">
