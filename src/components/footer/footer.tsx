@@ -55,18 +55,7 @@ const Footer: React.FC = () => {
             <a href="https://www.tiktok.com/@schmierol.de" target="_blank" rel="noopener noreferrer" style={{ color: "white", display: "flex", alignItems: "center", textDecoration: "none" }}>
               <TikTokIcon /> TikTok
             </a>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <button style={{
-                backgroundColor: "#555", color: "#fff", border: "none", padding: "5px 10px", cursor: "pointer", borderRadius: "5px", display: "flex", alignItems: "center"
-              }}>
-                <ThumbsUp size={16} style={{ marginRight: "5px" }} /> Like
-              </button>
-              <button style={{
-                backgroundColor: "#555", color: "#fff", border: "none", padding: "5px 10px", cursor: "pointer", borderRadius: "5px", display: "flex", alignItems: "center"
-              }}>
-                <Share2 size={16} style={{ marginRight: "5px" }} /> Share
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>
