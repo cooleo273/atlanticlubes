@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import createGlobe from "cobe";
+import "./index.css"
 
 export function Cobe() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -20,19 +21,19 @@ export function Cobe() {
     },
     Berlin: {
       name: "Anna Schmidt",
-      email: "anna.schmidt@company.com",
+      email: "anna.schm@company.com",
       contact: "+49-30-12345678",
       country: "Germany",
     },
     Tokyo: {
       name: "Takashi Yamamoto",
-      email: "takashi.yamamoto@company.com",
+      email: "takashi.y@company.com",
       contact: "+81-3-1234-5678",
       country: "Japan",
     },
     "Buenos Aires": {
       name: "Carlos López",
-      email: "carlos.lopez@company.com",
+      email: "carlos@company.com",
       contact: "+54-11-1234-5678",
       country: "Argentina",
     },
@@ -66,7 +67,7 @@ export function Cobe() {
       height: width * 2,
       phi: 0,
       theta: 0.3,
-      dark: 1,
+      dark: 0.3,
       diffuse: 3,
       mapSamples: 16000,
       mapBrightness: 1.2,
@@ -137,12 +138,16 @@ export function Cobe() {
         
       />
       <div
-        className="flex flex-col md:flex-row justify-center items-center control-buttons"
-        style={{ gap: ".5rem" }}
+        className="gap-2"
       >
+        <div className="mb-2">
         Rotate to:
+        </div>
+        <div className="flex flex-wrap flex-col md:flex-row justify-center items-center control-buttons"
+        style={{ gap: ".5rem" }}>
         <button
-          className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
+          className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+          style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(37.78, -122.412);
             setDistributor(distributors["San Francisco"]);
@@ -151,7 +156,8 @@ export function Cobe() {
           📍 San Francisco
         </button>
         <button
-        className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
+        className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+        style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(52.52, 13.405);
             setDistributor(distributors["Berlin"]);
@@ -160,7 +166,8 @@ export function Cobe() {
           📍 Berlin
         </button>
         <button
-        className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
+        className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+        style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(35.676, 139.65);
             setDistributor(distributors["Tokyo"]);
@@ -169,7 +176,8 @@ export function Cobe() {
           📍 Tokyo
         </button>
         <button
-        className="bg-black hover:bg-white hover:text-black hover:border hover:border-black"
+        className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+        style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(-34.6, -58.38);
             setDistributor(distributors["Buenos Aires"]);
@@ -177,35 +185,36 @@ export function Cobe() {
         >
           📍 Buenos Aires
         </button>
+        </div>
       </div>
       {distributor && (
   <div
     style={{
       marginTop: "0.5rem",
       padding: "1rem",
-      border: "1px solid #2563eb",
+      // border: "1px solid #2563eb",
       borderRadius: "10px",
-      backgroundColor: "black",
       boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
       position: "absolute",
       top: "-10px",
       right: "-4rem",
-      width: "300px"
+      width: "330px"
     }}
+    className="blurglass"
   >
     <h3
       style={{
-        borderBottom: "2px solid white",
+        borderBottom: "2px solid black",
         paddingBottom: "0.5rem",
         marginBottom: "1rem",
         fontSize: "1.25rem",
-        color: "white"
+        color: "black"
       }}
     >Distributor Details</h3>
-    <p style={{ margin: "0.5rem 0", color: "white" }}><strong>Name:</strong> {distributor.name}</p>
-    <p style={{ margin: "0.5rem 0", color: "white" }}><strong>Email:</strong> {distributor.email}</p>
-    <p style={{ margin: "0.5rem 0", color: "white" }}><strong>Contact:</strong> {distributor.contact}</p>
-    <p style={{ margin: "0.5rem 0", color: "white" }}><strong>Country:</strong> {distributor.country}</p>
+    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Name:</strong> {distributor.name}</p>
+    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Email:</strong> {distributor.email}</p>
+    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Contact:</strong> {distributor.contact}</p>
+    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Country:</strong> {distributor.country}</p>
   </div>
 )}
 
