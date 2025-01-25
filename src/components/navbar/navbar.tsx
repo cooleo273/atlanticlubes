@@ -86,12 +86,21 @@ const Navbar: React.FC = () => {
             </li>
             <li className="my-4">
               <a
-                href="/certificates"
+                href="/products"
+                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
+                onClick={handleLinkClick}
+              >
+                PRODUCTS
+              </a>
+            </li>
+            <li className="my-4">
+              <Link
+                to="/certificates"
                 className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
                 onClick={handleLinkClick}
               >
                 CERTIFICATES
-              </a>
+              </Link>
             </li>
             <li className="my-4">
               <Link
@@ -102,15 +111,7 @@ const Navbar: React.FC = () => {
                 CONTACT US
               </Link>
             </li>
-            <li className="my-4">
-              <Link
-                to="/products"
-                className="text-black text-xs sm:text-sm md:text-md font-medium lg:font-medium transition duration-300 hover:text-orange-500 hover:underline decoration-orange-500 underline-offset-4"
-                onClick={handleLinkClick}
-              >
-                PRODUCTS
-              </Link>
-            </li>
+           
           </ul>
           <div className="md:flex flex-col gap-4">
             <div className="flex flex-row items-center gap-2 cursor-pointer">
