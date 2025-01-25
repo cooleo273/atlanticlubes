@@ -53,7 +53,7 @@
 /* Content section */
 .content {
     flex-grow: 1;
-    
+    background-color: rgb(244, 246, 249);
 }
 
 /* Menu button for small screens */
