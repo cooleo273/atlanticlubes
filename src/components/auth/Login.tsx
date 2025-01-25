@@ -13,7 +13,6 @@ if (!supabaseUrl || !supabaseKey) {
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -53,13 +52,14 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="login-container">
-            <div className="login-card">
-                <h2 className="login-title">Welcome Back</h2>
-                <p className="login-subtitle">Login to your account</p>
+        <div className="flex items-center justify-center min-h-[70vh] bg-gray-200">
+            <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+                <h2 className="text-3xl font-semibold text-center text-[#EF383D] mb-4">Welcome Back</h2>
+                <p className="text-[#FAA33A] text-center mb-6">Login to your account</p>
+                
                 <form onSubmit={handleLogin}>
-                    <div className="form-groups">
-                        <label htmlFor="email">Email</label>
+                    <div className="mb-4">
+                        <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">Email</label>
                         <input
                             type="email"
                             id="email"
@@ -67,10 +67,12 @@ const Login: React.FC = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             placeholder="Enter your email"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EF383D]"
                         />
                     </div>
-                    <div className="form-groups">
-                        <label htmlFor="password">Password</label>
+                    
+                    <div className="mb-6">
+                        <label htmlFor="password" className="block text-gray-700 font-semibold mb-2">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -78,16 +80,25 @@ const Login: React.FC = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             placeholder="Enter your password"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#EF383D]"
                         />
                     </div>
-                    {error && <p className="error-message">{error}</p>}
-                    <button type="submit" disabled={loading} className="login-button w-full bg-violet-600">
+
+                    {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="w-full bg-[#EF383D] hover:bg-[#D63A36] text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105"
+                    >
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
                 </form>
+
             </div>
         </div>
     );
 };
 
 export default Login;
+ 
