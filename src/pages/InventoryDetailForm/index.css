@@ -1,6 +1,6 @@
 .add-inventory-container {
     max-width: 600px; /* Set a max width for the form */
-    margin: 0 auto; /* Center the form on the page */
+    margin-left: 6rem;
     padding: 20px; /* Add padding around the container */
     
     border-radius: 8px; /* Rounded corners */
@@ -8,7 +8,7 @@
   }
   
   .add-inventory-container h1 {
-    text-align: center; /* Center the heading */
+    text-align: left; /* Center the heading */
     margin-bottom: 20px; /* Space below the heading */
     color: #333; /* Darker color for the heading */
   }
