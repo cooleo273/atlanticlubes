@@ -1,193 +1,230 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ClipLoader from "react-spinners/ClipLoader"; // Import the loader
-import "./index.css";
+import ClipLoader from "react-spinners/ClipLoader";
 
-interface InventoryItem {
-  id: string;
+interface Lubricant {
+  id: number;
   inventory_name: string;
   description: string;
-  application?: string;
-  performance?: string[];
-  recommendations?: string[];
-  image?: string;
+  application: string;
+  performance: string;
+  recommendations: string;
+  categoryId?: number;
+  image?: File | null;
+  tds?: File | null;
+  msds?: File | null;
 }
 
 const LubricantsList: React.FC = () => {
-  const [inventory, setInventory] = useState<InventoryItem[]>([]);
-  const [editingItem, setEditingItem] = useState<InventoryItem | null>(null);
-  const [formData, setFormData] = useState<Partial<InventoryItem>>({});
-  const [imageFile, setImageFile] = useState<File | null>(null);
-  const [loading, setLoading] = useState(false); // Track loading state
-  const [isUpdating, setIsUpdating] = useState(false);
+  const [lubricants, setLubricants] = useState<Lubricant[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<Lubricant | null>(null);
 
-  useEffect(() => {
-    axios
-      .get("https://atlanticlubesbackend.vercel.app/api/inventory")
-      .then((response) => setInventory(response.data))
-      .catch((error) => console.error("Error fetching inventory:", error));
-  }, []);
-
-  const handleEditClick = (item: InventoryItem) => {
-    setLoading(true); // Start loader
-    setTimeout(() => {
-      setEditingItem(item);
-      setFormData({
-        inventory_name: item.inventory_name,
-        description: item.description,
-        application: item.application,
-        performance: item.performance || [],
-        recommendations: item.recommendations || [],
-        image: item.image,
-      });
-      setLoading(false); // Stop loader
-    }, 1000); // Simulate a short delay
-  };
-
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    field: keyof InventoryItem
-  ) => {
-    setFormData((prev) => ({ ...prev, [field]: e.target.value }));
-  };
-
-  const handleArrayChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: keyof InventoryItem
-  ) => {
-    const value = e.target.value.split(",").map((item) => item.trim());
-    setFormData((prev) => ({ ...prev, [field]: value }));
-  };
-  const handleDelete = async (id: string) => {
+  const fetchLubricants = async () => {
+    setLoading(true);
     try {
-      await axios.delete(
-        `https://atlanticlubesbackend.vercel.app/api/inventory/${id}`
-      );
-      alert("Item deleted successfully!");
-      setInventory((prev) => prev.filter((item) => item.id !== id));
+      const response = await axios.get<Lubricant[]>("https://atlanticlubesbackend.vercel.app/api/inventory");
+      setLubricants(response.data);
     } catch (error) {
-      console.error("Error deleting item:", error);
+      console.error("Error fetching lubricants", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setImageFile(file);
-  };
+  useEffect(() => {
+    fetchLubricants();
+  }, []);
 
-  // Track update loading state
-
-  const handleUpdate = async () => {
-    if (editingItem) {
-      setIsUpdating(true); // Start loader animation
-
-      const formDataToSend = new FormData();
-      formDataToSend.append("inventory_name", formData.inventory_name || "");
-      formDataToSend.append("description", formData.description || "");
-      formDataToSend.append("application", formData.application || "");
-      formDataToSend.append(
-        "performance",
-        JSON.stringify(formData.performance || [])
-      );
-      formDataToSend.append(
-        "recommendations",
-        JSON.stringify(formData.recommendations || [])
-      );
-      if (imageFile) formDataToSend.append("photo", imageFile);
-
+  const handleDelete = async (id: number) => {
+    if (window.confirm("Are you sure you want to delete this item?")) {
       try {
-        await axios.put(
-          `https://atlanticlubesbackend.vercel.app/api/inventory/${editingItem.id}`,
-          formDataToSend,
-          { headers: { "Content-Type": "multipart/form-data" } }
-        );
-
-        alert("Item updated successfully!");
-        setInventory((prev) =>
-          prev.map((item) =>
-            item.id === editingItem.id ? { ...item, ...formData } : item
-          )
-        );
+        await axios.delete(`https://atlanticlubesbackend.vercel.app/api/inventory/${id}`);
+        alert("Inventory item deleted successfully!");
+        fetchLubricants();
       } catch (error) {
-        console.error("Error updating item:", error);
-      } finally {
-        setIsUpdating(false); // Stop loader after operation
-        setEditingItem(null);
-        setImageFile(null);
+        console.error("Error deleting inventory item", error);
+        alert("Error deleting inventory item!");
       }
     }
   };
 
-  return (
-    <div className="inventory-list">
-      <h1>Lubricants Inventory</h1>
+  const openEditModal = (item: Lubricant) => {
+    setSelectedItem(item);
+    setEditModalOpen(true);
+  };
 
-      <ul>
-        {inventory.map((item) => (
-          <li key={item.id}>
-            <h4>{item.inventory_name}</h4>
-            <div style={{ display: "flex", gap: "1rem" }}>
-              <button onClick={() => handleEditClick(item)}>Edit</button>
-              <button onClick={() => handleDelete(item.id)}>Delete</button>
-            </div>
-          </li>
-        ))}
-      </ul>
+  const closeEditModal = () => {
+    setSelectedItem(null);
+    setEditModalOpen(false);
+  };
+
+  const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!selectedItem) return;
+    setLoading(true);
+
+    const formData = new FormData();
+    formData.append("inventory_name", selectedItem.inventory_name);
+    formData.append("description", selectedItem.description);
+    formData.append("application", selectedItem.application);
+
+    const performance = Array.isArray(selectedItem.performance)
+      ? selectedItem.performance
+      : selectedItem.performance.split(",");
+    const recommendations = Array.isArray(selectedItem.recommendations)
+      ? selectedItem.recommendations
+      : selectedItem.recommendations.split(",");
+
+    formData.append("performance", JSON.stringify(performance));
+    formData.append("recommendations", JSON.stringify(recommendations));
+
+    if (selectedItem.categoryId) {
+      formData.append("categoryId", selectedItem.categoryId.toString());
+    }
+    if (selectedItem.image) {
+      formData.append("image", selectedItem.image);
+    }
+    if (selectedItem.tds) {
+      formData.append("tds", selectedItem.tds);
+    }
+    if (selectedItem.msds) {
+      formData.append("msds", selectedItem.msds);
+    }
+
+    try {
+      await axios.put(
+        `https://atlanticlubesbackend.vercel.app/api/inventory/${selectedItem.id}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      alert("Inventory item updated successfully!");
+      closeEditModal();
+      fetchLubricants();
+    } catch (error) {
+      console.error("Error updating inventory item", error);
+      alert("Error updating inventory item!");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <h1 className="text-3xl font-bold text-left ml-2 text-gray-800 mb-6">Lubricants List</h1>
 
       {loading ? (
-        <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-75 z-50">
-          <ClipLoader size={50} color="#007bff" />
+        <div className="flex justify-center items-center min-h-[300px]">
+          <ClipLoader color="#36D7B7" loading={loading} size={50} />
         </div>
       ) : (
-        editingItem && (
-          <div className="edit-form">
-            <h2>Edit Item</h2>
-            <label>Inventory Name</label>
-            <input
-              type="text"
-              value={formData.inventory_name || ""}
-              onChange={(e) => handleInputChange(e, "inventory_name")}
-              placeholder="Inventory Name"
-            />
-            <label>Description</label>
-            <textarea
-              value={formData.description || ""}
-              onChange={(e) => handleInputChange(e, "description")}
-              placeholder="Description"
-            />
-            <label>Application</label>
-            <input
-              type="text"
-              value={formData.application || ""}
-              onChange={(e) => handleArrayChange(e, "application")}
-              placeholder="Applications (comma-separated)"
-            />
-            <label>Performance</label>
-            <input
-              type="text"
-              value={(formData.performance || []).join(", ")}
-              onChange={(e) => handleArrayChange(e, "performance")}
-              placeholder="Performance (comma-separated)"
-            />
-            <label>Recommendation</label>
-            <input
-              value={(formData.recommendations || []).join(", ")}
-              onChange={(e) => handleArrayChange(e, "recommendations")}
-              placeholder="Recommendations"
-            />
-            <label>Images</label>
-            <input type="file" onChange={handleImageChange} accept="image/*" />
-            {isUpdating ? (
-              <div className="loader">
-                <ClipLoader color="#36d7b7" size={50} />
+        <div className="flex flex-col space-y-6">
+          {lubricants.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition-shadow"
+            >
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                {item.inventory_name}
+              </h3>
+            
+              <div className="flex justify-between items-center">
+                <button
+                  onClick={() => openEditModal(item)}
+                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(item.id)}
+                  className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
+                >
+                  Delete
+                </button>
               </div>
-            ) : (
-              <button onClick={handleUpdate}>Update</button>
-            )}
+            </div>
+          ))}
+        </div>
+      )}
 
-            <button onClick={() => setEditingItem(null)}>Cancel</button>
+      {editModalOpen && selectedItem && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white rounded-lg p-6 w-full max-w-lg">
+            <h2 className="text-2xl font-bold mb-4">Edit Inventory Item</h2>
+            <form onSubmit={handleEditSubmit}>
+              <input
+                type="text"
+                placeholder="Inventory Name"
+                value={selectedItem.inventory_name || ""}
+                onChange={(e) =>
+                  setSelectedItem({ ...selectedItem, inventory_name: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg mb-4"
+                required
+              />
+              <textarea
+                placeholder="Description"
+                value={selectedItem.description || ""}
+                onChange={(e) =>
+                  setSelectedItem({ ...selectedItem, description: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg mb-4"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Applications"
+                value={selectedItem.application || ""}
+                onChange={(e) =>
+                  setSelectedItem({ ...selectedItem, application: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg mb-4"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Performance (comma-separated)"
+                value={selectedItem.performance || ""}
+                onChange={(e) =>
+                  setSelectedItem({ ...selectedItem, performance: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg mb-4"
+                required
+              />
+              <input
+                type="text"
+                placeholder="Recommendations (comma-separated)"
+                value={selectedItem.recommendations || ""}
+                onChange={(e) =>
+                  setSelectedItem({ ...selectedItem, recommendations: e.target.value })
+                }
+                className="w-full p-2 border rounded-lg mb-4"
+                required
+              />
+              <div className="flex justify-end gap-4">
+                <button
+                  type="button"
+                  onClick={closeEditModal}
+                  className="bg-gray-400 text-white px-4 py-2 rounded-lg hover:bg-gray-500 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                >
+                  {loading ? "Saving..." : "Save Changes"}
+                </button>
+              </div>
+            </form>
           </div>
-        )
+        </div>
       )}
     </div>
   );
