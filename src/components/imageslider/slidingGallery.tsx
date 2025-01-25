@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
+import './index.css';
 
 const HorizontalImageSlider: React.FC = () => {
     const [images, setImages] = useState<string[]>([]);
-    
+    const sliderRef = useRef<HTMLDivElement | null>(null);
+    const [isHovered, setIsHovered] = useState(false);
+
     useEffect(() => {
         const fetchImages = async () => {
             try {
                 const response = await axios.get('https://atlanticlubesbackend.vercel.app/api/images');
                 const imageUrls = response.data.map((item: { image: string }) => item.image);
                 setImages(imageUrls);
-                console.log(imageUrls)
             } catch (error) {
                 console.error('Error fetching images:', error);
             }
@@ -19,46 +21,55 @@ const HorizontalImageSlider: React.FC = () => {
         fetchImages();
     }, []);
 
-    const duplicatedImages = [...images, ...images];
-
-    const sliderContainerStyle: React.CSSProperties = {
-        overflow: 'hidden',
-        whiteSpace: 'nowrap',
-        width: '100%',
-        background: "white",
-        marginTop: "2rem"
-    };
-
-    const sliderStyle: React.CSSProperties = {
-        display: 'flex',
-        animation: `scroll 30s linear infinite`,
-    };
-
-    const imageStyle: React.CSSProperties = {
-        width: '100px',
-        height: '100px',
-        objectFit: "contain",
-        marginRight: '5rem',
-    };
-
-    const styles = `
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-${images.length * 105}px); } /* Adjust based on image width */
+    if (images.length === 0) {
+        return <div>Loading...</div>;
     }
-    `;
 
-    const styleSheet = document.createElement("style");
-    styleSheet.type = "text/css";
-    styleSheet.innerText = styles;
-    document.head.appendChild(styleSheet);
+    // Handle the hover event to pause the animation
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
+    // Handle next and previous buttons
+    const scrollSlider = (direction: string) => {
+        if (sliderRef.current) {
+            const scrollAmount = direction === 'next' ? 300 : -300; // Adjust the scroll amount as needed
+            sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     return (
-        <div style={sliderContainerStyle}>
-            <div style={sliderStyle}>
-                {duplicatedImages.map((image, index) => (
-                    <img key={index} src={image} alt={`Slide ${index + 1}`} style={imageStyle} />
+        <div
+            className="logos"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <div
+                ref={sliderRef}
+                className={`logos-slide ${isHovered ? 'paused' : ''}`}
+            >
+                {images.map((image, index) => (
+                    <img key={`first-${index}`} src={image} alt={`Slide ${index + 1}`} className="slider-image" />
                 ))}
+            </div>
+            <div
+                ref={sliderRef}
+                className={`logos-slide ${isHovered ? 'paused' : ''}`}
+            >
+                {images.map((image, index) => (
+                    <img key={`second-${index}`} src={image} alt={`Slide ${index + 1}`} className="slider-image" />
+                ))}
+            </div>
+
+            <div className="slick-arrow prev-arrow" onClick={() => scrollSlider('prev')}>
+                &#8592;
+            </div>
+            <div className="slick-arrow next-arrow" onClick={() => scrollSlider('next')}>
+                &#8594;
             </div>
         </div>
     );
