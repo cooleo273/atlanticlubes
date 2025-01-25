@@ -146,7 +146,7 @@ export function Cobe() {
         <div className="flex flex-wrap flex-col md:flex-row justify-center items-center control-buttons"
         style={{ gap: ".5rem" }}>
         <button
-          className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+          className="bg-white text-black hover:bg-[#F57F27] hover:text-white border border-black hover:border-none p-2 w-36"
           style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(37.78, -122.412);
@@ -156,7 +156,7 @@ export function Cobe() {
           📍 San Francisco
         </button>
         <button
-        className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+        className="bg-white text-black hover:bg-[#F57F27] hover:text-white border border-black hover:border-none p-2 w-36"
         style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(52.52, 13.405);
@@ -166,7 +166,7 @@ export function Cobe() {
           📍 Berlin
         </button>
         <button
-        className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+        className="bg-white text-black hover:bg-[#F57F27] hover:text-white border border-black hover:border-none p-2 w-36"
         style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(35.676, 139.65);
@@ -176,7 +176,7 @@ export function Cobe() {
           📍 Tokyo
         </button>
         <button
-        className="bg-white text-black hover:bg-black hover:text-white border border-black p-2 w-36"
+        className="bg-white text-black hover:bg-[#F57F27] hover:text-white border border-black hover:border-none p-2 w-36"
         style={{ fontSize: '0.9rem' }}
           onClick={() => {
             focusRef.current = locationToAngles(-34.6, -58.38);
@@ -204,17 +204,17 @@ export function Cobe() {
   >
     <h3
       style={{
-        borderBottom: "2px solid black",
+        borderBottom: "2px solid white",
         paddingBottom: "0.5rem",
         marginBottom: "1rem",
         fontSize: "1.25rem",
-        color: "black"
+        color: "white"
       }}
     >Distributor Details</h3>
-    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Name:</strong> {distributor.name}</p>
-    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Email:</strong> {distributor.email}</p>
-    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Contact:</strong> {distributor.contact}</p>
-    <p style={{ margin: "0.5rem 0", color: "black", fontSize:"0.9rem" }}><strong>Country:</strong> {distributor.country}</p>
+    <p style={{ margin: "0.5rem 0", color: "white", fontSize:"0.9rem" }}><strong>Name:</strong> {distributor.name}</p>
+    <p style={{ margin: "0.5rem 0", color: "white", fontSize:"0.9rem" }}><strong>Email:</strong> {distributor.email}</p>
+    <p style={{ margin: "0.5rem 0", color: "white", fontSize:"0.9rem" }}><strong>Contact:</strong> {distributor.contact}</p>
+    <p style={{ margin: "0.5rem 0", color: "white", fontSize:"0.9rem" }}><strong>Country:</strong> {distributor.country}</p>
   </div>
 )}
 
