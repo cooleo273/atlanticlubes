@@ -8,18 +8,18 @@ const certificates = [
     items: [
       {
         name: "API Certificate",
-        pdfLink: "https://atlanticlubes.com/wp-content/uploads/2023/12/EOLCS-Certificate-ATLANTIC-GREASE-LUBRICANTS-FZC-04-Jan-2024.pdf",
-        imgLink: "https://atlanticlubes.com/wp-content/uploads/2023/12/EOLCS-Certificate-ATLANTIC-GREASE-LUBRICANTS-FZC-04-Jan-2024.jpg",
+        pdfLink: "/pdf/EOLCS-Certificate-ATLANTIC-GREASE-LUBRICANTS-FZC-04-Jan-2024 (5).pdf",
+        imgLink: "/images/EOLCS-Certificate-ATLANTIC-GREASE-LUBRICANTS-FZC-04-Jan-2024.webp",
       },
       {
         name: "ISO 14001-2015 ENVIRONMENTAL MANAGEMENT SYSTEM",
-        pdfLink: "https://atlanticlubes.com/wp-content/uploads/2023/11/ISO-14001-2015-UPTO-SEP-2027.pdf",
-        imgLink: "https://atlanticlubes.com/wp-content/uploads/2023/11/ISO-14001-2015-UPTO-SEP-2027.jpg",
+        pdfLink: "/pdf/ISO-14001-2015-UPTO-SEP-2027.pdf",
+        imgLink: "/images/ISO-14001-2015-UPTO-SEP-2027.webp",
       },
       {
         name: "ISO 17025 Accreditation Certificate",
-        pdfLink: "https://atlanticlubes.com/wp-content/uploads/2023/11/05-ISO-17025-2017-Atlantic-Grease-Lubricants-FZC-LB-TEST-095.pdf",
-        imgLink: "https://atlanticlubes.com/wp-content/uploads/2023/11/05-ISO-17025-2017-Atlantic-Grease-Lubricants-FZC-LB-TEST-095.jpg",
+        pdfLink: "/pdf/05-ISO-17025-2017-Atlantic-Grease-Lubricants-FZC-LB-TEST-095.pdf",
+        imgLink: "/images/05-ISO-17025-2017-Atlantic-Grease-Lubricants-FZC-LB-TEST-095.jpg",
       },
     ],
   },
@@ -28,7 +28,7 @@ const certificates = [
     items: [
       {
         name: "DEUTZ DQC III-18 LA-Atlantic Super Top Fleet HD V 15W40 CK4",
-        pdfLink: "/certificates/Deutz_DQC_III_18_LA.pdf",
+        pdfLink: "/pdf/DEUTZ-DQC-III-18-LA-Atlantic-Super-Top-Fleet-HD-V-15W40-CK4.pdf",
         imgLink: "/images/Deutz_DQC_III_18_LA.jpg",
       },
     ],
@@ -50,7 +50,7 @@ const CertificatesPage: React.FC = () => {
     try {
       const anchor = document.createElement('a');
       anchor.href = link;
-      anchor.download = filename;
+      anchor.download = filename; // Forces the download
       document.body.appendChild(anchor);
       anchor.click();
       document.body.removeChild(anchor);
@@ -58,7 +58,6 @@ const CertificatesPage: React.FC = () => {
       console.error('Error downloading the file:', error);
     }
   };
-  
 
   return (
     <div className="flex items-center justify-center">
@@ -79,12 +78,12 @@ const CertificatesPage: React.FC = () => {
                   >
                     {item.name} Image
                   </button>
-                  <button
+                  <a
                     onClick={() => handleDownload(item.pdfLink, `${item.name}.pdf`)}
                     className=" bg-white text-black hover:text-orange-500 hover:bg-white hover:underline py-2 px-4 rounded-md"
                   >
                     PDF Download
-                  </button> 
+                  </a> 
                 </li>
               ))}
             </ul>
@@ -106,14 +105,6 @@ const CertificatesPage: React.FC = () => {
                   className="w-full h-auto mb-4"
                 />
                 <div className="flex flex-col sm:flex-row justify-end gap-4">
-                  <a
-                    href={selectedCertificate.imgLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="px-4 py-1 bg-white text-black border rounded hover:bg-black hover:text-white text-center"
-                  >
-                    View
-                  </a>
                   <button
                     onClick={() =>
                       handleDownload(selectedCertificate.imgLink, `${selectedCertificate.name}.jpg`)
