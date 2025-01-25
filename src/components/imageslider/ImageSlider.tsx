@@ -21,19 +21,19 @@ const ImageSlider: React.FC = () => {
     <Slider {...settings}>
       <div>
         <div
-          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[37rem] bg-cover bg-center"
+          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[37rem] xl:h-[60rem] bg-cover bg-center"
           style={{ backgroundImage: `url(${img1})` }}
         ></div>
       </div>
       <div>
         <div
-          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[37rem] bg-cover bg-center"
+          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[37rem] xl:h-[60rem] bg-cover bg-center"
           style={{ backgroundImage: `url(${img2})` }}
         ></div>
       </div>
       <div>
         <div
-          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[37rem] bg-cover bg-center"
+          className="w-full h-[20rem] sm:h-[20rem] md:h-[30rem] lg:h-[37rem] xl:h-[60rem] bg-cover bg-center"
           style={{ backgroundImage: `url(${img3})` }}
         ></div>
       </div>
