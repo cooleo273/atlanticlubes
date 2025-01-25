@@ -113,7 +113,7 @@ const Navbar: React.FC = () => {
             </li>
            
           </ul>
-          <div className="md:flex flex-col gap-4">
+          <div className="md:flex flex-col gap-0">
             <div className="flex flex-row items-center gap-2 cursor-pointer">
               <Mail size={24} color="#000" />
               <a
