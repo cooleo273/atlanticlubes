@@ -17,14 +17,97 @@
 .next-arrow {
     right: 1%;
 }
-.slider-container {
-    width: 100%;
-    height: 45rem; /* Ensure parent has enough height */
-    overflow: hidden; /* Prevent overflow */
+
+
+/* Slider container styling */
+/* Slider container styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@media only screen and (max-width: 768px) {
-    .slider-image {
-        height: 20rem !important; /* Adjust height for mobile */
+body {
+    background: #f2f2f2;
+}
+
+.logos {
+    overflow: hidden;
+    padding: 60px 0;
+    background: white;
+    white-space: nowrap;
+    position: relative;
+    gap: 42rem;
+    display: flex;
+}
+
+.logos:before,
+.logos:after {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    content: "";
+    z-index: 2;
+}
+
+.logos:before {
+    left: 0;
+    background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.logos:after {
+    right: 0;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+.logos-slide {
+    display: flex;
+    gap: 2rem;
+    animation: 25s slide infinite ease-in-out;
+}
+
+.logos-slide.paused {
+    animation-play-state: paused; /* Pause the animation when hovered */
+}
+
+.logos-slide img {
+    height: 50px;
+    margin: 0 40px;
+}
+
+/* Keyframes for smooth scrolling */
+@keyframes slide {
+    from {
+        transform: translateX(0);
     }
+    to {
+        transform: translateX(-100%); /* Moves the images horizontally */
+    }
+}
+
+/* Arrow styles */
+.slick-arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 2rem;
+    color: #fff;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    transform: translateY(-50%);
+    border-radius: 50%;
+}
+
+.prev-arrow {
+    left: 1%;
+}
+
+.next-arrow {
+    right: 1%;
+}
+
+/* Smooth Scroll Adjustment */
+.logos-slide {
+    scroll-behavior: smooth;
 }
