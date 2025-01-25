@@ -6,16 +6,79 @@ import img1 from "../../assets/whatsapp-image-2023-03-31-at-10.51.07.jpeg";
 import img2 from "../../assets/ImageSlider/4th-01.jpg";
 import HorizontalImageSlider from "../../components/imageslider/slidingGallery";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowBigUpIcon, MessageCircleIcon } from "lucide-react"; // Import WhatsApp-like icon
-import person from "../../assets/capture.png"
+import { ArrowBigUpIcon, HeadphoneOff, MessageCircleIcon } from "lucide-react"; // Import WhatsApp-like icon
+import person from "../../assets/capture.png";
+import emailjs from "@emailjs/browser";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
   const [showScrollTop, setShowScrollTop] = useState(true);
-  const [showWhatsAppPopup, setShowWhatsAppPopup] = useState(false)
+  const [showWhatsAppPopup, setShowWhatsAppPopup] = useState(false);
   const [showCallbackPopup, setShowCallbackPopup] = useState(false);
   const { id } = useParams<{ id: string }>();
+  const [loading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    notARobot: false,
+    country: "",
+  });
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      const { checked } = e.target as HTMLInputElement;
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: checked,
+      }));
+    } else {
+      setFormData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
+  };
 
+  const handleSubmit = (e: React.FormEvent) => {
+     // Set loading to true when form is submitted
+    setLoading(true);
+    e.preventDefault();
+
+    if (formData.notARobot) {
+      const templateParams = {
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        country: formData.country,
+      };
+
+      // Send email using EmailJS with send method (not sendForm)
+      emailjs
+        .send(
+          "service_hq3atgl", // Service ID
+          "template_0h4pz8o", // Template ID
+          templateParams, // Parameters (mapped to your email template)
+          "XKdjkHjDhXBnjODka" // Your EmailJS user ID
+        )
+        .then(
+          (response) => {
+            console.log("Email sent successfully:", response);
+            alert("Your message has been sent successfully!");
+            setLoading(false);
+          },
+          (error) => {
+            console.log("Failed to send email:", error);
+            alert("There was an issue sending your message. Please try again.");
+            setLoading(false);
+          }
+        );
+    } else {
+      alert("Please confirm you are not a robot.");
+    }
+  };
   // Toggle scroll-to-top button visibility based on scroll position
   useEffect(() => {
     const fetchItems = async () => {
@@ -104,7 +167,6 @@ const Home: React.FC = () => {
           conditions, providing peace of mind and extending the lifespan of your
           equipment."
           reverse={true}
-          buttonText="Our Story"
           onButtonClick={() => navigate("/about")}
         />
       </div>
@@ -120,7 +182,6 @@ const Home: React.FC = () => {
         />
       </div>
 
-      
       {/* Distributor Section */}
       <div
         className="relative flex items-center justify-center h-[400px] text-white bg-cover bg-center"
@@ -133,7 +194,8 @@ const Home: React.FC = () => {
               Become a Distributor
             </h1>
             <p className="text-sm sm:text-md mb-3">
-            We follow a rule of one distributor per country. Hurry up and become one of our international distributors.
+              We follow a rule of one distributor per country. Hurry up and
+              become one of our international distributors.
             </p>
           </div>
           <button
@@ -145,16 +207,26 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      {/* Callback Popup */}
       {showCallbackPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h2 className="text-xl font-semibold mb-4">Request a Callback</h2>
-            <form>
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-semibold">Request a Callback</h2>
+              <button
+                className=" text-black hover:bg-white bg-white rounded-full p-0"
+                onClick={toggleCallbackPopup}
+              >
+                ✖
+              </button>
+            </div>
+            <form onSubmit={handleSubmit}>
               <div className="mb-4">
                 <label className="block text-gray-700">Name</label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 rounded p-2"
                   placeholder="Enter your name"
                 />
@@ -163,6 +235,9 @@ const Home: React.FC = () => {
                 <label className="block text-gray-700">Email</label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 rounded p-2"
                   placeholder="Enter your email"
                 />
@@ -171,35 +246,47 @@ const Home: React.FC = () => {
                 <label className="block text-gray-700">Country</label>
                 <input
                   type="text"
+                  name="country"
+                  value={formData.country}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 rounded p-2"
                   placeholder="Enter your country"
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-gray-700">Phone Number</label>
+                <label className="block text-gray-700">Phone</label>
                 <input
-                  type="tel"
+                  type="text"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
                   className="w-full border border-gray-300 rounded p-2"
                   placeholder="Enter your phone number"
                 />
               </div>
+              <div className="mb-4">
+                <label className="flex items-center">
+                  <input
+                    type="checkbox"
+                    name="notARobot"
+                    checked={formData.notARobot}
+                    onChange={handleInputChange}
+                    className="mr-2"
+                  />
+                  <span className="text-gray-700">I am not a robot</span>
+                </label>
+              </div>
               <button
-                type="button"
-                className="bg-black text-white w-full py-2 rounded hover:bg-gray-800 transition"
-              >
-                Request
-              </button>
-            </form>
-            <button
-              className="absolute top-2 p-2 right-2 text-white hover:text-white bg-black hover:bg-black rounded-full "
-              onClick={toggleCallbackPopup}
+              type="submit"
+              disabled={loading} // Disable the button if loading is true
+              className={`w-full bg-black hover:bg-black text-white font-semibold py-3 rounded-lg transition ${loading ? "cursor-not-allowed opacity-50" : ""}`}
             >
-              ✖
+              {loading ? "Sending..." : "Send Message"}
             </button>
+            </form>
           </div>
         </div>
       )}
-
 
       {/* Horizontal Image Slider */}
       <HorizontalImageSlider />
@@ -257,38 +344,40 @@ const Home: React.FC = () => {
       )}
 
       {/* WhatsApp Button */}
-<div
-className="fixed bottom-5 right-5 z-50 cursor-pointer"
-onClick={() => setShowWhatsAppPopup((prev) => !prev)}
->
-<div className="p-3 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition">
-  <MessageCircleIcon color="white" size={24} />
-</div>
-</div>
+      <div
+        className="fixed bottom-5 right-5 z-50 cursor-pointer"
+        onClick={() => setShowWhatsAppPopup((prev) => !prev)}
+      >
+        <div className="p-3 bg-green-500 rounded-full shadow-lg hover:bg-green-600 transition">
+          <MessageCircleIcon color="white" size={24} />
+        </div>
+      </div>
 
-{/* WhatsApp Popup */}
-{showWhatsAppPopup && (
-<div className="fixed bottom-20 right-5 z-50 bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-72">
-  <div className="flex items-center">
-    <img
-      src={person} // Replace with the image of the person
-      alt="Person"
-      className="w-16 h-16 rounded-full mr-4"
-    />
-    <div>
-      <h3 className="text-lg font-bold">John Doe</h3>
-      <h5 className="text-sm text-gray-600 font-bold">Customer Support</h5>
-      <p className="text-sm text-gray-600">+491788854076</p>
-    </div>
-  </div>
-  <button
-    className="w-full mt-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
-    onClick={openWhatsApp}
-  >
-    Chat on WhatsApp
-  </button>
-</div>
-)}
+      {/* WhatsApp Popup */}
+      {showWhatsAppPopup && (
+        <div className="fixed bottom-20 right-5 z-50 bg-white shadow-lg rounded-lg p-4 border border-gray-300 w-72">
+          <div className="flex items-center">
+            <img
+              src={person} // Replace with the image of the person
+              alt="Person"
+              className="w-16 h-16 rounded-full mr-4"
+            />
+            <div>
+              <h3 className="text-lg font-bold">John Doe</h3>
+              <h5 className="text-sm text-gray-600 font-bold">
+                Customer Support
+              </h5>
+              <p className="text-sm text-gray-600">+491788854076</p>
+            </div>
+          </div>
+          <button
+            className="w-full mt-4 py-2 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition"
+            onClick={openWhatsApp}
+          >
+            Chat on WhatsApp
+          </button>
+        </div>
+      )}
     </div>
   );
 };
