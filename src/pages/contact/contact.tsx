@@ -86,8 +86,8 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="contact-us bg-gray-200 min-h-screen flex justify-center items-center px-4 py-12">
-      <div className="w-full flex space-x-12">
+    <div className="contact-us bg-gray-200 min-h-[80vh] flex justify-center items-center px-4 py-12">
+      <div className="w-full flex gap-12">
         {/* Form Section */}
         <div className="flex-1">
           <div className="bg-white p-6 rounded-lg shadow-2xl space-y-6">
@@ -208,7 +208,7 @@ const Contact: React.FC = () => {
                 <button
                   type="submit"
                   disabled={loading} // Disable button if loading
-                  className={`w-full p-3 text-white bg-[#F57F27] rounded-lg font-semibold transition-all hover:bg-[#EF353B] ${
+                  className={`w-full bg-[#F57F27] hover:bg-[#d67e3a] text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 ${
                     loading ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
@@ -224,7 +224,7 @@ const Contact: React.FC = () => {
         </div>
 
         {/* Cobe Section */}
-        <div className="flex-1 max-w-lg">
+        <div className="flex-1">
           <Cobe />
         </div>
       </div>
