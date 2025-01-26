@@ -6,6 +6,7 @@ import { ClipLoader } from 'react-spinners';
 interface InventoryItem {
     id: number;
     inventory_name: string;
+    inventory__slug: string;
     image: string;
     description: string;
 }
@@ -38,6 +39,7 @@ const CategoryDetails: React.FC = () => {
                 const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/inventory?categoryId=${id}`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
+                console.log(data);
                 setItems(data);
                 setFilteredItems(data);
             } catch (error) {
@@ -130,13 +132,16 @@ const CategoryDetails: React.FC = () => {
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6 w-full flex-1">
+                        
                         {error ? (
                             <p className="text-center col-span-full text-red-500">{error}</p>
                         ) : filteredItems.length === 0 ? (
                             <p className="text-center col-span-full text-gray-500">No items found in this category.</p>
                         ) : (
                             filteredItems.map(item => (
-                                <Link key={item.id} to={`/inventory/${item.id}`} className="group">
+                                <Link key={item.id} to={`/inventory/${item.inventory__slug}`} className="group">
+
+                                    
                                     <div className="bg-white shadow-lg rounded-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 h-72">
                                         <div className="relative overflow-hidden">
                                             <img
