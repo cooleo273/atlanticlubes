@@ -19,7 +19,7 @@ const Product: React.FC = () => {
     useEffect(() => {
         const fetchCategories = async () => {
             try {
-                const response = await fetch('https://atlanticlubesbackend.vercel.app/api/category'); // Adjust your API URL
+                const response = await fetch('https://shimerolbackend.vercel.app/api/category'); // Adjust your API URL
                 const data = await response.json();
                 setCategories(data);
                 console.log(data);

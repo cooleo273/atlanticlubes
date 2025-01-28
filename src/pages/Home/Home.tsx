@@ -85,7 +85,7 @@ const Home: React.FC = () => {
       try {
         if (id) {
           const response = await fetch(
-            `https://atlanticlubesbackend.vercel.app/api/inventory?categoryId=${id}`
+            `https://shimerolbackend.vercel.app/api/inventory?categoryId=${id}`
           );
           if (!response.ok) throw new Error("Network response was not ok");
           const data = await response.json();

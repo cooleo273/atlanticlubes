@@ -24,7 +24,7 @@ const LubricantsList: React.FC = () => {
   const fetchLubricants = async () => {
     setLoading(true);
     try {
-      const response = await axios.get<Lubricant[]>("https://atlanticlubesbackend.vercel.app/api/inventory");
+      const response = await axios.get<Lubricant[]>("https://shimerolbackend.vercel.app/api/inventory");
       setLubricants(response.data);
     } catch (error) {
       console.error("Error fetching lubricants", error);
@@ -40,7 +40,7 @@ const LubricantsList: React.FC = () => {
   const handleDelete = async (id: number) => {
     if (window.confirm("Are you sure you want to delete this item?")) {
       try {
-        await axios.delete(`https://atlanticlubesbackend.vercel.app/api/inventory/${id}`);
+        await axios.delete(`https://shimerolbackend.vercel.app/api/inventory/${id}`);
         alert("Inventory item deleted successfully!");
         fetchLubricants();
       } catch (error) {
@@ -95,7 +95,7 @@ const LubricantsList: React.FC = () => {
 
     try {
       await axios.put(
-        `https://atlanticlubesbackend.vercel.app/api/inventory/${selectedItem.id}`,
+        `https://shimerolbackend.vercel.app/api/inventory/${selectedItem.id}`,
         formData,
         {
           headers: {

@@ -20,7 +20,7 @@ const EditCategoryForm: React.FC = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       const response = await fetch(
-        "https://atlanticlubesbackend.vercel.app/api/category"
+        "https://shimerolbackend.vercel.app/api/category"
       );
       const data = await response.json();
       setCategories(data);
@@ -53,7 +53,7 @@ const EditCategoryForm: React.FC = () => {
 
     try {
       await fetch(
-        `https://atlanticlubesbackend.vercel.app/api/category/${selectedCategory.id}`,
+        `https://shimerolbackend.vercel.app/api/category/${selectedCategory.id}`,
         {
           method: "PUT",
           body: formData,
@@ -83,7 +83,7 @@ const EditCategoryForm: React.FC = () => {
     setDeleteLoading(true); // Start delete loader
     try {
       await axios.delete(
-        `https://atlanticlubesbackend.vercel.app/api/category/${selectedCategory.id}`
+        `https://shimerolbackend.vercel.app/api/category/${selectedCategory.id}`
       );
 
       alert("Category deleted successfully!");

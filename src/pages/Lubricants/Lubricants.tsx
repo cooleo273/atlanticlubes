@@ -36,7 +36,7 @@ const CategoryDetails: React.FC = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/inventory?categoryId=${id}`);
+                const response = await fetch(`https://shimerolbackend.vercel.app/api/inventory?categoryId=${id}`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 console.log(data);
@@ -51,7 +51,7 @@ const CategoryDetails: React.FC = () => {
 
         const fetchCategories = async () => {
             try {
-                const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/category`);
+                const response = await fetch(`https://shimerolbackend.vercel.app/api/category`);
                 if (!response.ok) throw new Error('Network response was not ok');
                 const data = await response.json();
                 setCategories(data);
