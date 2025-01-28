@@ -217,6 +217,7 @@ const Home: React.FC = () => {
                 onClick={toggleCallbackPopup}
               >
                 ✖
+                
               </button>
             </div>
             <form onSubmit={handleSubmit}>
