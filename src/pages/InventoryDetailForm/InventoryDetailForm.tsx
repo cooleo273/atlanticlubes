@@ -20,7 +20,7 @@ const InventoryDetailForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get("https://atlanticlubesbackend.vercel.app/api/category");
+        const response = await axios.get("https://shimerolbackend.vercel.app/api/category");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories", error);
@@ -61,7 +61,7 @@ const InventoryDetailForm = () => {
     }
 
     try {
-      const response = await axios.post("https://atlanticlubesbackend.vercel.app/api/inventory", formData, {
+      const response = await axios.post("https://shimerolbackend.vercel.app/api/inventory", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

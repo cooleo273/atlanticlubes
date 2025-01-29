@@ -18,7 +18,7 @@ const SlidingImage: React.FC = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get("https://atlanticlubesbackend.vercel.app/api/images");
+        const response = await axios.get("https://shimerolbackend.vercel.app/api/images");
         setImages(response.data); // Assuming the API response contains an array of images
         console.log(response.data);
       } catch (error) {
@@ -47,7 +47,7 @@ const SlidingImage: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "https://atlanticlubesbackend.vercel.app/api/images",
+        "https://shimerolbackend.vercel.app/api/images",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },
@@ -68,7 +68,7 @@ const SlidingImage: React.FC = () => {
   const handleDelete = async () => {
     if (selectedImageId) {
       try {
-        await axios.delete(`https://atlanticlubesbackend.vercel.app/api/images/${selectedImageId}`);
+        await axios.delete(`https://shimerolbackend.vercel.app/api/images/${selectedImageId}`);
         setImages((prevImages) => prevImages.filter((image) => image.id !== selectedImageId)); // Remove deleted image from state
         alert("Image deleted successfully!");
       } catch (error) {

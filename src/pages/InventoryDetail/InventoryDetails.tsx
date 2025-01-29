@@ -34,7 +34,7 @@ const InventoryDetail: React.FC = () => {
   useEffect(() => {
     const fetchItemDetails = async () => {
       try {
-        const response = await fetch(`https://atlanticlubesbackend.vercel.app/api/inventory/${id}`);
+        const response = await fetch(`https://shimerolbackend.vercel.app/api/inventory/${id}`);
         if (!response.ok) throw new Error('Error fetching item details');
         const data = await response.json();
         setItemData(data);

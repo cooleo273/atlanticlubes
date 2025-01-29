@@ -10,7 +10,7 @@ const HorizontalImageSlider: React.FC = () => {
     useEffect(() => {
         const fetchImages = async () => {
             try {
-                const response = await axios.get('https://atlanticlubesbackend.vercel.app/api/images');
+                const response = await axios.get('https://shimerolbackend.vercel.app/api/images');
                 const imageUrls = response.data.map((item: { image: string }) => item.image);
                 setImages(imageUrls);
             } catch (error) {

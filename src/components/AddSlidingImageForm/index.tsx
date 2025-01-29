@@ -18,7 +18,7 @@ const AddSlidingImageForm: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "https://atlanticlubesbackend.vercel.app/api/images",
+        "https://shimerolbackend.vercel.app/api/images",
         formData,
         {
           headers: {

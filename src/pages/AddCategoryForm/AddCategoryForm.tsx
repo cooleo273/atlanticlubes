@@ -19,7 +19,7 @@ const AddCategoryForm: React.FC = () => {
 
     try {
       const response = await axios.post(
-        "https://atlanticlubesbackend.vercel.app/api/category",
+        "https://shimerolbackend.vercel.app/api/category",
         formData,
         {
           headers: {
