@@ -79,7 +79,7 @@ const Product: React.FC = () => {
                                     <img
                                         src={category.image} // Use category image or fallback to a default image
                                         alt={category.name}
-                                        className="w-full h-40 object-contain group-hover:scale-105 transition-transform duration-300"
+                                        className="w-full h-40 object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
                                 </div>
                                 <div className="p-4 text-center">
