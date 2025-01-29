@@ -37,7 +37,7 @@ body {
     background: white;
     white-space: nowrap;
     position: relative;
-    gap: 28rem;
+    gap: 42rem;
     display: flex;
 }
 
@@ -72,7 +72,7 @@ body {
 }
 
 .logos-slide img {
-    height: 50px;
+    height: 100px;
     margin: 0 40px;
 }
 
