@@ -88,14 +88,14 @@ const SlidingImage: React.FC = () => {
       </h1>
 
       {/* Image Slider Section */}
-      <div className="grid grid-cols-4 gap-4 justify-center" style={{ gap: "1rem", flexWrap: "wrap" }}>
+      <div className="grid grid-cols-4 gap-4 justify-center" style={{ gap: "2rem", flexWrap: "wrap" }}>
         {images.map((image) => (
           <div
             key={image.id}
             className="image-container relative rounded-lg overflow-hidden shadow-lg transform transition-transform ease-in-out"
             style={{
-              width: "300px", // Set fixed width
-              height: "300px", // Set fixed height
+              width: "250px", // Set fixed width
+              height: "250px", // Set fixed height
             }}
           >
             <img
