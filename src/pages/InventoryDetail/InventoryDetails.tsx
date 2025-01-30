@@ -80,7 +80,7 @@ const InventoryDetail: React.FC = () => {
                 </div>
                 </div>
                 {/* Buttons for TDS and MSDS */}
-                <div className="flex gap-4 mt-16">
+                <div className="flex gap-4 mt-16 justify-end">
                   
                   {itemData.tdsFile && (
                     <button
