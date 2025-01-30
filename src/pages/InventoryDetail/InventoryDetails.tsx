@@ -69,16 +69,21 @@ const InventoryDetail: React.FC = () => {
               <div className="w-3/4">
                 <h1 className="text-2xl font-bold text-gray-800">{itemData.inventory_name}</h1>
                 <p className="text-gray-600 mt-2">{itemData.description}</p>
+                <br />
                 <h1 className="text-2xl font-bold text-gray-800">APPLICATIONS</h1>
                 <p className="text-gray-600 mt-2">{itemData.application}</p>
-                <div className='flex'>
-                  <div className='flex-1'>
-                {renderStyledList('Performance', itemData.performance)}
+                
+                <div className='mt-4'>
+                  <h2 className="text-lg font-semibold text-gray-800 pb-2 mb-2">Performance</h2>
+                  <p className="text-gray-600">{itemData.performance?.join(', ') || 'No performance data available'}</p> 
                 </div>
-                <div className='flex-1'>
-                {renderStyledList("Recommendations", itemData.recommendations)}
+
+                <div className='mt-4'>
+                  <h2 className="text-lg font-semibold text-gray-800 pb-2 mb-2">Recommendations</h2>
+                  <p className="text-gray-600">{itemData.recommendations?.join(', ') || 'No recommendations available'}</p> 
                 </div>
-                </div>
+
+                
                 {/* Buttons for TDS and MSDS */}
                 <div className="flex gap-4 mt-16 justify-end">
                   
