@@ -59,6 +59,12 @@ const LubricantsList: React.FC = () => {
     setSelectedItem(null);
     setEditModalOpen(false);
   };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, field: keyof Lubricant) => {
+    if (selectedItem && event.target.files) {
+      setSelectedItem({ ...selectedItem, [field]: event.target.files[0] });
+    }
+  };
+
 
   const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -127,13 +133,13 @@ const LubricantsList: React.FC = () => {
           {lubricants.map((item) => (
             <div
               key={item.id}
-              className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition-shadow"
+              className="bg-white shadow-lg rounded-xl p-6 hover:shadow-xl transition-shadow flex items-center justify-between"
             >
               <h3 className="text-xl font-semibold text-gray-800 mb-2">
                 {item.inventory_name}
               </h3>
             
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center gap-4">
                 <button
                   onClick={() => openEditModal(item)}
                   className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
@@ -153,8 +159,9 @@ const LubricantsList: React.FC = () => {
       )}
 
       {editModalOpen && selectedItem && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-lg">
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-50 flex justify-center items-center z-50 overflow-y-auto">
+        <div className="bg-white rounded-lg p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      
             <h2 className="text-2xl font-bold mb-4">Edit Inventory Item</h2>
             <form onSubmit={handleEditSubmit}>
               <input
@@ -206,6 +213,14 @@ const LubricantsList: React.FC = () => {
                 className="w-full p-2 border rounded-lg mb-4"
                 required
               />
+              <label className="block mb-2">Upload Image:</label>
+              <input type="file" onChange={(e) => handleFileChange(e, "image")} className="mb-4" />
+
+              <label className="block mb-2">Upload TDS:</label>
+              <input type="file" onChange={(e) => handleFileChange(e, "tds")} className="mb-4" />
+
+              <label className="block mb-2">Upload MSDS:</label>
+              <input type="file" onChange={(e) => handleFileChange(e, "msds")} className="mb-4" />
               <div className="flex justify-end gap-4">
                 <button
                   type="button"
