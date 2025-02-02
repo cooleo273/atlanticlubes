@@ -64,7 +64,7 @@ body {
 .logos-slide {
     display: flex;
     gap: 2rem;
-    animation: 25s slide infinite ease-in-out;
+    animation: slide 25s linear infinite;
 }
 
 .logos-slide.paused {
