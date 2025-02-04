@@ -1,11 +1,8 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './index.css';
 
 const HorizontalImageSlider: React.FC = () => {
     const [images, setImages] = useState<string[]>([]);
-    const sliderRef = useRef<HTMLDivElement | null>(null);
-    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         const fetchImages = async () => {
@@ -22,54 +19,39 @@ const HorizontalImageSlider: React.FC = () => {
     }, []);
 
     if (images.length === 0) {
-        return <div>Loading...</div>;
+        return <div className="flex justify-center items-center">Loading...</div>;
     }
 
-    // Handle the hover event to pause the animation
-    const handleMouseEnter = () => {
-        setIsHovered(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsHovered(false);
-    };
-
-    // Handle next and previous buttons
-    const scrollSlider = (direction: string) => {
-        if (sliderRef.current) {
-            const scrollAmount = direction === 'next' ? 300 : -300; // Adjust the scroll amount as needed
-            sliderRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-        }
-    };
-
     return (
-        <div
-            className="logos"
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-        >
-            <div
-                ref={sliderRef}
-                className={`logos-slide ${isHovered ? 'paused' : ''}`}
-            >
+        <div className="slider bg-white h-[100px] overflow-hidden relative">
+            {/* Gradient Overlay - Left */}
+            <div className="absolute left-0 top-0 z-10 h-full w-[200px] bg-gradient-to-r from-white to-transparent" />
+            
+            {/* Gradient Overlay - Right */}
+            <div className="absolute right-0 top-0 z-10 h-full w-[200px] bg-gradient-to-l from-white to-transparent" />
+            
+            {/* Sliding Track */}
+            <div className="slide-track flex animate-infiniteScroll">
+                {/* First Set */}
                 {images.map((image, index) => (
-                    <img key={`first-${index}`} src={image} alt={`Slide ${index + 1}`} className="slider-image" />
+                    <div key={`slide-${index}`} className="slide w-[250px] h-[100px] flex items-center justify-center">
+                        <img 
+                            src={image} 
+                            alt={`Slide ${index + 1}`}
+                            className="h-[100px] w-[250px] object-contain"
+                        />
+                    </div>
                 ))}
-            </div>
-            <div
-                ref={sliderRef}
-                className={`logos-slide ${isHovered ? 'paused' : ''}`}
-            >
+                {/* Duplicate Set for seamless loop */}
                 {images.map((image, index) => (
-                    <img key={`second-${index}`} src={image} alt={`Slide ${index + 1}`} className="slider-image" />
+                    <div key={`slide-duplicate-${index}`} className="slide w-[250px] h-[100px] flex items-center justify-center">
+                        <img 
+                            src={image} 
+                            alt={`Slide ${index + 1}`}
+                            className="h-[100px] w-[250px] object-contain"
+                        />
+                    </div>
                 ))}
-            </div>
-
-            <div className="slick-arrow prev-arrow" onClick={() => scrollSlider('prev')}>
-                &#8592;
-            </div>
-            <div className="slick-arrow next-arrow" onClick={() => scrollSlider('next')}>
-                &#8594;
             </div>
         </div>
     );

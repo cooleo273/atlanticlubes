@@ -31,18 +31,16 @@ body {
     background: #f2f2f2;
 }
 
-.logos {
+.logos-container {
     overflow: hidden;
-    padding: 60px 0;
     background: white;
-    white-space: nowrap;
+    padding: 20px 0;
     position: relative;
-    gap: 56rem;
-    display: flex;
+    width: 100%;
 }
 
-.logos:before,
-.logos:after {
+.logos-container:before,
+.logos-container:after {
     position: absolute;
     top: 0;
     width: 250px;
@@ -51,63 +49,47 @@ body {
     z-index: 2;
 }
 
-.logos:before {
+.logos-container:before {
     left: 0;
     background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
 }
 
-.logos:after {
+.logos-container:after {
     right: 0;
     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
 }
 
 .logos-slide {
     display: flex;
-    gap: 2rem;
-    animation: 25s slide infinite ease-in-out;
-}
-
-.logos-slide.paused {
-    animation-play-state: paused; /* Pause the animation when hovered */
+    animation: slide 10s linear infinite;
+    width: fit-content;
 }
 
 .logos-slide img {
-    height: 100px;
+    height: 150px;
     margin: 0 40px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in;
+    flex-shrink: 0;
 }
 
-/* Keyframes for smooth scrolling */
 @keyframes slide {
-    from {
+    0% {
         transform: translateX(0);
     }
-    to {
-        transform: translateX(-100%); /* Moves the images horizontally */
+    100% {
+        transform: translateX(-33.33%); /* Move by one-third since we have 3 sets */
     }
 }
 
-/* Arrow styles */
-.slick-arrow {
-    position: absolute;
-    top: 50%;
-    font-size: 2rem;
-    color: #fff;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1;
-    transform: translateY(-50%);
-    border-radius: 50%;
+.logos-slide.paused {
+    animation-play-state: paused;
 }
 
-.prev-arrow {
-    left: 1%;
-}
-
-.next-arrow {
-    right: 1%;
-}
-
-/* Smooth Scroll Adjustment */
-.logos-slide {
-    scroll-behavior: smooth;
+/* Add responsive design */
+@media (max-width: 768px) {
+    .logos-slide img {
+        height: 100px;
+        margin: 0 20px;
+    }
 }
