@@ -61,8 +61,12 @@ body {
 
 .logos-slide {
     display: flex;
-    animation: slide 10s linear infinite;
-    width: fit-content;
+    gap: 2rem;
+    animation: slide 20s linear infinite; /* Animation for smooth scrolling */
+}
+
+.logos-slide.paused {
+    animation-play-state: paused; /* Pause the animation when hovered */
 }
 
 .logos-slide img {
@@ -77,19 +81,15 @@ body {
     0% {
         transform: translateX(0);
     }
+    50% {
+        transform: translateX(-100%);
+    }
     100% {
-        transform: translateX(-33.33%); /* Move by one-third since we have 3 sets */
+        transform: translateX(0%);
     }
 }
 
-.logos-slide.paused {
-    animation-play-state: paused;
-}
-
-/* Add responsive design */
-@media (max-width: 768px) {
-    .logos-slide img {
-        height: 100px;
-        margin: 0 20px;
-    }
+/* Smooth Scroll Adjustment */
+.logos-slide {
+    scroll-behavior: smooth;
 }
