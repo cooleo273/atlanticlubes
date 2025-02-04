@@ -325,7 +325,7 @@ const Home: React.FC = () => {
             and ensures customer satisfaction.
           </p>
           <button
-            className="bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-400 hover:text-black transition"
+            className="bg-black text-white font-semibold py-3 px-6 rounded-lg hover:bg-white hover:border hover:border-black hover:text-black transition"
             onClick={() => navigate("/certificates")}
           >
             Certification & Approvals
