@@ -85,12 +85,12 @@ const InventoryDetail: React.FC = () => {
 
                 
                 {/* Buttons for TDS and MSDS */}
-                <div className="flex gap-4 mt-16 justify-end">
+                <div className="flex gap-4 mt-16 justify-center">
                   
                   {itemData.tdsFile && (
                     <button
                       onClick={() => itemData.tdsFile && window.open(itemData.tdsFile, '_blank')}
-                      className="px-10 py-4 bg-black text-white rounded-lg hover:bg-white hover:text-black hover:border"
+                      className="px-5 md:px-10 py-2 md:py-4 bg-black text-white rounded-lg hover:bg-white hover:text-black hover:border"
                     >
                       View TDS
                     </button>
