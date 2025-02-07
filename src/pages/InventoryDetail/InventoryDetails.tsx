@@ -66,7 +66,7 @@ const InventoryDetail: React.FC = () => {
           <div className="flex flex-col overflow-hidden bg-white ">
             <img src={itemData.image} alt={itemData.inventory_name} className="w-full h-64 md:h-80 object-contain" />
             <div className='inventory-info px-4 flex justify-center py-12'>
-              <div className="w-3/4">
+              <div className="w-full md:w-3/4">
                 <h1 className="text-2xl font-bold text-gray-800">{itemData.inventory_name}</h1>
                 <p className="text-gray-600 mt-2">{itemData.description}</p>
                 <br />
